@@ -1,0 +1,582 @@
+{
+  "name": "Alpha HTN Data Exchange Dec-2023",
+  "source": {
+    "params": {
+      "periodTypes": [
+        "MONTHLY"
+      ]
+    },
+    "requests": [
+      {
+        "name": "HTN Cumulative dead patients",
+        "dx": [
+          "EWpkCPCuJf3"
+        ],
+        "pe": [
+          "LAST_12_MONTHS",
+          "THIS_MONTH"
+        ],
+        "ou": [
+          "LEVEL-xsXGrFxHbCN"
+        ],
+        "filters": [],
+        "inputIdScheme": "UID",
+        "outputOrgUnitIdScheme": "UID",
+        "outputIdScheme": "ATTRIBUTE:vudyDP7jUy5"
+      },
+      {
+        "name": "HTN Cumulative registrations",
+        "dx": [
+          "lsUw32leiJX"
+        ],
+        "pe": [
+          "LAST_12_MONTHS",
+          "THIS_MONTH"
+        ],
+        "ou": [
+          "LEVEL-xsXGrFxHbCN"
+        ],
+        "filters": [],
+        "inputIdScheme": "UID",
+        "outputOrgUnitIdScheme": "UID",
+        "outputIdScheme": "ATTRIBUTE:vudyDP7jUy5"
+      },
+      {
+        "name": "HTN New registrations",
+        "dx": [
+          "JycuigrwOA0"
+        ],
+        "pe": [
+          "LAST_12_MONTHS",
+          "THIS_MONTH"
+        ],
+        "ou": [
+          "LEVEL-xsXGrFxHbCN"
+        ],
+        "filters": [],
+        "inputIdScheme": "UID",
+        "outputOrgUnitIdScheme": "UID",
+        "outputIdScheme": "ATTRIBUTE:vudyDP7jUy5"
+      },
+      {
+        "name": "HTN Patients under care",
+        "dx": [
+          "w1OIAqhocAx"
+        ],
+        "pe": [
+          "LAST_12_MONTHS",
+          "THIS_MONTH"
+        ],
+        "ou": [
+          "LEVEL-xsXGrFxHbCN"
+        ],
+        "filters": [],
+        "inputIdScheme": "UID",
+        "outputOrgUnitIdScheme": "UID",
+        "outputIdScheme": "ATTRIBUTE:vudyDP7jUy5"
+      },
+      {
+        "name": "HTN PUC registered before the past 3 months. ",
+        "dx": [
+          "bLiMzdg6ZHz"
+        ],
+        "pe": [
+          "LAST_12_MONTHS",
+          "THIS_MONTH"
+        ],
+        "ou": [
+          "LEVEL-xsXGrFxHbCN"
+        ],
+        "filters": [],
+        "inputIdScheme": "UID",
+        "outputOrgUnitIdScheme": "UID",
+        "outputIdScheme": "ATTRIBUTE:vudyDP7jUy5"
+      },
+      {
+        "name": "HTN PUC registered with controlled BP ",
+        "dx": [
+          "ApG3MF1VmOL"
+        ],
+        "pe": [
+          "LAST_12_MONTHS",
+          "THIS_MONTH"
+        ],
+        "ou": [
+          "LEVEL-xsXGrFxHbCN"
+        ],
+        "filters": [],
+        "inputIdScheme": "UID",
+        "outputOrgUnitIdScheme": "UID",
+        "outputIdScheme": "ATTRIBUTE:vudyDP7jUy5"
+      },
+      {
+        "name": "HTN PUC registered with no visit",
+        "dx": [
+          "kqKZiGQ5DW6"
+        ],
+        "pe": [
+          "LAST_12_MONTHS",
+          "THIS_MONTH"
+        ],
+        "ou": [
+          "LEVEL-xsXGrFxHbCN"
+        ],
+        "filters": [],
+        "inputIdScheme": "UID",
+        "outputOrgUnitIdScheme": "UID",
+        "outputIdScheme": "ATTRIBUTE:vudyDP7jUy5"
+      },
+      {
+        "name": "HTN PUC registered with uncontrolled BP ",
+        "dx": [
+          "HEhrrdabdGQ"
+        ],
+        "pe": [
+          "LAST_12_MONTHS",
+          "THIS_MONTH"
+        ],
+        "ou": [
+          "LEVEL-xsXGrFxHbCN"
+        ],
+        "filters": [],
+        "inputIdScheme": "UID",
+        "outputOrgUnitIdScheme": "UID",
+        "outputIdScheme": "ATTRIBUTE:vudyDP7jUy5"
+      },
+      {
+        "name": "HTN controlled BP patients in this quarter",
+        "dx": [
+          "oViVMFZbHsC"
+        ],
+        "pe": [
+          "LAST_12_MONTHS",
+          "THIS_MONTH"
+        ],
+        "ou": [
+          "LEVEL-xsXGrFxHbCN"
+        ],
+        "filters": [],
+        "inputIdScheme": "UID",
+        "outputOrgUnitIdScheme": "UID",
+        "outputIdScheme": "ATTRIBUTE:vudyDP7jUy5"
+      },
+      {
+        "name": "HTN Patients with no visit in last 12 months",
+        "dx": [
+          "AoqqjFOJGmS"
+        ],
+        "pe": [
+          "LAST_12_MONTHS",
+          "THIS_MONTH"
+        ],
+        "ou": [
+          "LEVEL-xsXGrFxHbCN"
+        ],
+        "filters": [],
+        "inputIdScheme": "UID",
+        "outputOrgUnitIdScheme": "UID",
+        "outputIdScheme": "ATTRIBUTE:vudyDP7jUy5"
+      },
+      {
+        "name": "HTN Patients with no visit in this quarter",
+        "dx": [
+          "qi9pE262Xhm"
+        ],
+        "pe": [
+          "LAST_12_MONTHS",
+          "THIS_MONTH"
+        ],
+        "ou": [
+          "LEVEL-xsXGrFxHbCN"
+        ],
+        "filters": [],
+        "inputIdScheme": "UID",
+        "outputOrgUnitIdScheme": "UID",
+        "outputIdScheme": "ATTRIBUTE:vudyDP7jUy5"
+      },
+      {
+        "name": "HTN Uncontrolled BP patients in this quarter",
+        "dx": [
+          "M4XY1lxHewG"
+        ],
+        "pe": [
+          "LAST_12_MONTHS",
+          "THIS_MONTH"
+        ],
+        "ou": [
+          "LEVEL-xsXGrFxHbCN"
+        ],
+        "filters": [],
+        "inputIdScheme": "UID",
+        "outputOrgUnitIdScheme": "UID",
+        "outputIdScheme": "ATTRIBUTE:vudyDP7jUy5"
+      },
+      {
+        "name": "HTN patient registrations in previous quarter",
+        "dx": [
+          "ZOEEN8WKTFa"
+        ],
+        "pe": [
+          "LAST_12_MONTHS",
+          "THIS_MONTH"
+        ],
+        "ou": [
+          "LEVEL-xsXGrFxHbCN"
+        ],
+        "filters": [],
+        "inputIdScheme": "UID",
+        "outputOrgUnitIdScheme": "UID",
+        "outputIdScheme": "ATTRIBUTE:vudyDP7jUy5"
+      },
+      {
+        "name": "overdue patients",
+        "dx": [
+          "nDKizPgF4OQ"
+        ],
+        "pe": [
+          "LAST_12_MONTHS",
+          "THIS_MONTH"
+        ],
+        "ou": [
+          "LEVEL-xsXGrFxHbCN"
+        ],
+        "filters": [],
+        "inputIdScheme": "UID",
+        "outputOrgUnitIdScheme": "UID",
+        "outputIdScheme": "ATTRIBUTE:vudyDP7jUy5"
+      },
+      {
+        "name": "contactable overdue patients",
+        "dx": [
+          "yihOHUdhwoh"
+        ],
+        "pe": [
+          "LAST_12_MONTHS",
+          "THIS_MONTH"
+        ],
+        "ou": [
+          "LEVEL-xsXGrFxHbCN"
+        ],
+        "filters": [],
+        "inputIdScheme": "UID",
+        "outputOrgUnitIdScheme": "UID",
+        "outputIdScheme": "ATTRIBUTE:vudyDP7jUy5"
+      },
+      {
+        "name": "calls made to unique htn overdue patients",
+        "dx": [
+          "Fp5GAMzbFud"
+        ],
+        "pe": [
+          "LAST_12_MONTHS",
+          "THIS_MONTH"
+        ],
+        "ou": [
+          "LEVEL-xsXGrFxHbCN"
+        ],
+        "filters": [],
+        "inputIdScheme": "UID",
+        "outputOrgUnitIdScheme": "UID",
+        "outputIdScheme": "ATTRIBUTE:vudyDP7jUy5"
+      },
+      {
+        "name": "calls made to unique contactable overdue patients",
+        "dx": [
+          "evGCfeTE3ms"
+        ],
+        "pe": [
+          "LAST_12_MONTHS",
+          "THIS_MONTH"
+        ],
+        "ou": [
+          "LEVEL-xsXGrFxHbCN"
+        ],
+        "filters": [],
+        "inputIdScheme": "UID",
+        "outputOrgUnitIdScheme": "UID",
+        "outputIdScheme": "ATTRIBUTE:vudyDP7jUy5"
+      },
+      {
+        "name": "calls made to unique contactable overdue patients",
+        "dx": [
+          "evGCfeTE3ms"
+        ],
+        "pe": [
+          "LAST_12_MONTHS",
+          "THIS_MONTH"
+        ],
+        "ou": [
+          "LEVEL-xsXGrFxHbCN"
+        ],
+        "filters": [],
+        "inputIdScheme": "UID",
+        "outputOrgUnitIdScheme": "UID",
+        "outputIdScheme": "ATTRIBUTE:vudyDP7jUy5"
+      },
+      {
+        "name": "calls made to unique contactable overdue patients",
+        "dx": [
+          "evGCfeTE3ms"
+        ],
+        "pe": [
+          "LAST_12_MONTHS",
+          "THIS_MONTH"
+        ],
+        "ou": [
+          "LEVEL-xsXGrFxHbCN"
+        ],
+        "filters": [],
+        "inputIdScheme": "UID",
+        "outputOrgUnitIdScheme": "UID",
+        "outputIdScheme": "ATTRIBUTE:vudyDP7jUy5"
+      },
+      {
+        "name": "overdue patients called and agreed to visit",
+        "dx": [
+          "noDYYjIRkNk"
+        ],
+        "pe": [
+          "LAST_12_MONTHS",
+          "THIS_MONTH"
+        ],
+        "ou": [
+          "LEVEL-xsXGrFxHbCN"
+        ],
+        "filters": [],
+        "inputIdScheme": "UID",
+        "outputOrgUnitIdScheme": "UID",
+        "outputIdScheme": "ATTRIBUTE:vudyDP7jUy5"
+      },
+      {
+        "name": "overdue patients called and remind to call later",
+        "dx": [
+          "AJ3OZtYOV2P"
+        ],
+        "pe": [
+          "LAST_12_MONTHS",
+          "THIS_MONTH"
+        ],
+        "ou": [
+          "LEVEL-xsXGrFxHbCN"
+        ],
+        "filters": [],
+        "inputIdScheme": "UID",
+        "outputOrgUnitIdScheme": "UID",
+        "outputIdScheme": "ATTRIBUTE:vudyDP7jUy5"
+      },
+      {
+        "name": "overdue patients called and removed from list",
+        "dx": [
+          "eQafhcra342"
+        ],
+        "pe": [
+          "LAST_12_MONTHS",
+          "THIS_MONTH"
+        ],
+        "ou": [
+          "LEVEL-xsXGrFxHbCN"
+        ],
+        "filters": [],
+        "inputIdScheme": "UID",
+        "outputOrgUnitIdScheme": "UID",
+        "outputIdScheme": "ATTRIBUTE:vudyDP7jUy5"
+      },
+      {
+        "name": "contactable patients called and agreed to visit",
+        "dx": [
+          "SI1FKbORdGy"
+        ],
+        "pe": [
+          "LAST_12_MONTHS",
+          "THIS_MONTH"
+        ],
+        "ou": [
+          "LEVEL-xsXGrFxHbCN"
+        ],
+        "filters": [],
+        "inputIdScheme": "UID",
+        "outputOrgUnitIdScheme": "UID",
+        "outputIdScheme": "ATTRIBUTE:vudyDP7jUy5"
+      },
+      {
+        "name": "contactable patients called and remind to call",
+        "dx": [
+          "gsFV3LLfWmg"
+        ],
+        "pe": [
+          "LAST_12_MONTHS",
+          "THIS_MONTH"
+        ],
+        "ou": [
+          "LEVEL-xsXGrFxHbCN"
+        ],
+        "filters": [],
+        "inputIdScheme": "UID",
+        "outputOrgUnitIdScheme": "UID",
+        "outputIdScheme": "ATTRIBUTE:vudyDP7jUy5"
+      },
+      {
+        "name": "contactable patients called and removed from list",
+        "dx": [
+          "BBTr3ua5oG2"
+        ],
+        "pe": [
+          "LAST_12_MONTHS",
+          "THIS_MONTH"
+        ],
+        "ou": [
+          "LEVEL-xsXGrFxHbCN"
+        ],
+        "filters": [],
+        "inputIdScheme": "UID",
+        "outputOrgUnitIdScheme": "UID",
+        "outputIdScheme": "ATTRIBUTE:vudyDP7jUy5"
+      },
+      {
+        "name": "Contactable overdue patients called and returned",
+        "dx": [
+          "gEd2ounyZps"
+        ],
+        "pe": [
+          "LAST_12_MONTHS",
+          "THIS_MONTH"
+        ],
+        "ou": [
+          "LEVEL-xsXGrFxHbCN"
+        ],
+        "filters": [],
+        "inputIdScheme": "UID",
+        "outputOrgUnitIdScheme": "UID",
+        "outputIdScheme": "ATTRIBUTE:vudyDP7jUy5"
+      },
+      {
+        "name": "returned to care and remove from list",
+        "dx": [
+          "i6P6RPglFSm"
+        ],
+        "pe": [
+          "LAST_12_MONTHS",
+          "THIS_MONTH"
+        ],
+        "ou": [
+          "LEVEL-xsXGrFxHbCN"
+        ],
+        "filters": [],
+        "inputIdScheme": "UID",
+        "outputOrgUnitIdScheme": "UID",
+        "outputIdScheme": "ATTRIBUTE:vudyDP7jUy5"
+      },
+      {
+        "name": "Contactable returned to care and agree to visit",
+        "dx": [
+          "lCowHuOf3KQ"
+        ],
+        "pe": [
+          "LAST_12_MONTHS",
+          "THIS_MONTH"
+        ],
+        "ou": [
+          "LEVEL-xsXGrFxHbCN"
+        ],
+        "filters": [],
+        "inputIdScheme": "UID",
+        "outputOrgUnitIdScheme": "UID",
+        "outputIdScheme": "ATTRIBUTE:vudyDP7jUy5"
+      },
+      {
+        "name": "Contactable returned to care and remind to call",
+        "dx": [
+          "WiZH3fHJB60"
+        ],
+        "pe": [
+          "LAST_12_MONTHS",
+          "THIS_MONTH"
+        ],
+        "ou": [
+          "LEVEL-xsXGrFxHbCN"
+        ],
+        "filters": [],
+        "inputIdScheme": "UID",
+        "outputOrgUnitIdScheme": "UID",
+        "outputIdScheme": "ATTRIBUTE:vudyDP7jUy5"
+      },
+      {
+        "name": "Contactable returned to care and remove from list",
+        "dx": [
+          "iCzaor2MvPX"
+        ],
+        "pe": [
+          "LAST_12_MONTHS",
+          "THIS_MONTH"
+        ],
+        "ou": [
+          "LEVEL-xsXGrFxHbCN"
+        ],
+        "filters": [],
+        "inputIdScheme": "UID",
+        "outputOrgUnitIdScheme": "UID",
+        "outputIdScheme": "ATTRIBUTE:vudyDP7jUy5"
+      },
+      {
+        "name": "overdue patients called and returned to care",
+        "dx": [
+          "HFHPSnEsKtQ"
+        ],
+        "pe": [
+          "LAST_12_MONTHS",
+          "THIS_MONTH"
+        ],
+        "ou": [
+          "LEVEL-xsXGrFxHbCN"
+        ],
+        "filters": [],
+        "inputIdScheme": "UID",
+        "outputOrgUnitIdScheme": "UID",
+        "outputIdScheme": "ATTRIBUTE:vudyDP7jUy5"
+      },
+      {
+        "name": "returned to care and agree to visit",
+        "dx": [
+          "LF7UtJB15bA"
+        ],
+        "pe": [
+          "LAST_12_MONTHS",
+          "THIS_MONTH"
+        ],
+        "ou": [
+          "LEVEL-xsXGrFxHbCN"
+        ],
+        "filters": [],
+        "inputIdScheme": "UID",
+        "outputOrgUnitIdScheme": "UID",
+        "outputIdScheme": "ATTRIBUTE:vudyDP7jUy5"
+      },
+      {
+        "name": "returned to care and remind to call",
+        "dx": [
+          "C2Ooh4Loc4J"
+        ],
+        "pe": [
+          "LAST_12_MONTHS",
+          "THIS_MONTH"
+        ],
+        "ou": [
+          "LEVEL-xsXGrFxHbCN"
+        ],
+        "filters": [],
+        "inputIdScheme": "UID",
+        "outputOrgUnitIdScheme": "UID",
+        "outputIdScheme": "ATTRIBUTE:vudyDP7jUy5"
+      }
+    ]
+  },
+  "target": {
+    "type": "INTERNAL",
+    "request": {
+      "dataElementIdScheme": "UID",
+      "orgUnitIdScheme": "UID",
+      "categoryOptionComboIdScheme": "UID",
+      "idScheme": "UID"
+    }
+  }
+}

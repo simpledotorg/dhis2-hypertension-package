@@ -1,0 +1,174 @@
+{
+  "name": "Internal Data Exchange | Diabetes",
+  "source": {
+    "params": {
+      "periodTypes": [
+        "MONTHLY"
+      ]
+    },
+    "requests": [
+      {
+        "name": "[dm] Blood sugar controlled at latest visit in pas",
+        "dx": [
+          "rrWB0we6eFL"
+        ],
+        "pe": [
+          "LAST_12_MONTHS",
+          "THIS_MONTH"
+        ],
+        "ou": [
+          "LEVEL-xsXGrFxHbCN"
+        ],
+        "filters": [],
+        "inputIdScheme": "UID",
+        "outputOrgUnitIdScheme": "UID",
+        "outputIdScheme": "ATTRIBUTE:vudyDP7jUy5"
+      },
+      {
+        "name": "[dm] Blood sugar uncontrolled at latest visit in p",
+        "dx": [
+          "i1b1YVeexfC"
+        ],
+        "pe": [
+          "LAST_12_MONTHS",
+          "THIS_MONTH"
+        ],
+        "ou": [
+          "LEVEL-xsXGrFxHbCN"
+        ],
+        "filters": [],
+        "inputIdScheme": "UID",
+        "outputOrgUnitIdScheme": "UID",
+        "outputIdScheme": "ATTRIBUTE:vudyDP7jUy5"
+      },
+      {
+        "name": "[dm] Blood sugar uncontrolled at latest visit in p",
+        "dx": [
+          "KDBhJiMyq19"
+        ],
+        "pe": [
+          "LAST_12_MONTHS",
+          "THIS_MONTH"
+        ],
+        "ou": [
+          "LEVEL-xsXGrFxHbCN"
+        ],
+        "filters": [],
+        "inputIdScheme": "UID",
+        "outputOrgUnitIdScheme": "UID",
+        "outputIdScheme": "ATTRIBUTE:vudyDP7jUy5"
+      },
+      {
+        "name": "[dm] Blood sugar uncontrolled at latest visit in p",
+        "dx": [
+          "GuVvSdUEUjS"
+        ],
+        "pe": [
+          "LAST_12_MONTHS",
+          "THIS_MONTH"
+        ],
+        "ou": [
+          "LEVEL-xsXGrFxHbCN"
+        ],
+        "filters": [],
+        "inputIdScheme": "UID",
+        "outputOrgUnitIdScheme": "UID",
+        "outputIdScheme": "ATTRIBUTE:vudyDP7jUy5"
+      },
+      {
+        "name": "[dm] Cumulative registrations",
+        "dx": [
+          "rjBIKw5Ydpb"
+        ],
+        "pe": [
+          "LAST_12_MONTHS",
+          "THIS_MONTH"
+        ],
+        "ou": [
+          "LEVEL-xsXGrFxHbCN"
+        ],
+        "filters": [],
+        "inputIdScheme": "UID",
+        "outputOrgUnitIdScheme": "UID",
+        "outputIdScheme": "ATTRIBUTE:vudyDP7jUy5"
+      },
+      {
+        "name": "[dm] Monthly registrations",
+        "dx": [
+          "fNGOfOPo2p6"
+        ],
+        "pe": [
+          "LAST_12_MONTHS",
+          "THIS_MONTH"
+        ],
+        "ou": [
+          "LEVEL-xsXGrFxHbCN"
+        ],
+        "filters": [],
+        "inputIdScheme": "UID",
+        "outputOrgUnitIdScheme": "UID",
+        "outputIdScheme": "ATTRIBUTE:vudyDP7jUy5"
+      },
+      {
+        "name": "[dm] Patients under care",
+        "dx": [
+          "rc9nx31qyTL"
+        ],
+        "pe": [
+          "LAST_12_MONTHS",
+          "THIS_MONTH"
+        ],
+        "ou": [
+          "LEVEL-xsXGrFxHbCN"
+        ],
+        "filters": [],
+        "inputIdScheme": "UID",
+        "outputOrgUnitIdScheme": "UID",
+        "outputIdScheme": "ATTRIBUTE:vudyDP7jUy5"
+      },
+      {
+        "name": "[dm] Patients with no visit in last 12 months",
+        "dx": [
+          "zD508XWfDis"
+        ],
+        "pe": [
+          "LAST_12_MONTHS",
+          "THIS_MONTH"
+        ],
+        "ou": [
+          "LEVEL-xsXGrFxHbCN"
+        ],
+        "filters": [],
+        "inputIdScheme": "UID",
+        "outputOrgUnitIdScheme": "UID",
+        "outputIdScheme": "ATTRIBUTE:vudyDP7jUy5"
+      },
+      {
+        "name": "[dm] Total patient registrations in previous quart",
+        "dx": [
+          "SMtCq1z3HbK"
+        ],
+        "pe": [
+          "LAST_12_MONTHS",
+          "THIS_MONTH"
+        ],
+        "ou": [
+          "LEVEL-xsXGrFxHbCN"
+        ],
+        "filters": [],
+        "inputIdScheme": "UID",
+        "outputOrgUnitIdScheme": "UID",
+        "outputIdScheme": "ATTRIBUTE:vudyDP7jUy5"
+      }
+    ]
+  },
+  "target": {
+    "type": "INTERNAL",
+    "request": {
+      "dataElementIdScheme": "UID",
+      "orgUnitIdScheme": "UID",
+      "categoryOptionComboIdScheme": "UID",
+      "idScheme": "UID"
+    }
+  }
+}
