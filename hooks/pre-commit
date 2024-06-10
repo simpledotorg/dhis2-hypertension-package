@@ -1,19 +1,32 @@
 #!/bin/bash
 
 # Find all SQL files staged for commit
-staged_files=$(git diff --cached --name-only --diff-filter=ACM | grep '\.sql$')
+staged_sql_files=$(git diff --cached --name-only --diff-filter=ACM | grep '\.sql$')
 
 # If there are no staged SQL files, exit
-if [ -z "$staged_files" ]; then
-    exit 0
+if [ -n "$staged_sql_files" ]; then
+    # Format each staged SQL file
+    for file in $staged_sql_files; do
+        pg_format -i "$file"
+
+        # Add the formatted file back to the staging area
+        git add "$file"
+        echo "$file formatted successfully."
+    done
 fi
 
-# Format each staged SQL file
-for file in $staged_files; do
-    pg_format -i "$file"
+# Find all json files staged for commit
+staged_json_files=$(git diff --cached --name-only --diff-filter=ACM | grep '\.json$')
 
-    # Add the formatted file back to the staging area
-    git add "$file"
-done
+# If there are no staged SQL files, exit
+if [ -n "$staged_json_files" ]; then
+    # Format each staged JSON file
+    for file in $staged_json_files; do
+        jq . "$file" > "tidy.json" && mv "tidy.json" "$file"
+        # Add the formatted file back to the staging area
+        git add "$file"
+        echo "$file formatted successfully."
+    done
+fi
 
 exit 0
