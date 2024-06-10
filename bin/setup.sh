@@ -55,8 +55,9 @@ install_pgformatter (){
 init
 
 # Copy hook scripts to the .git/hooks directory
-SOURCE_DIR="../hooks"
-DEST_DIR="../.git/hooks"
+REPO_DIR="."
+SOURCE_DIR="$REPO_DIR/hooks"
+DEST_DIR="$REPO_DIR/.git/hooks"
 echo "Copying hook scripts from $SOURCE_DIR to $DEST_DIR..."
 if [ -d "$SOURCE_DIR" ]; then
     cp "$SOURCE_DIR"/* "$DEST_DIR"
