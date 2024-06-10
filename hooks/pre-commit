@@ -1,0 +1,19 @@
+#!/bin/bash
+
+# Find all SQL files staged for commit
+staged_files=$(git diff --cached --name-only --diff-filter=ACM | grep '\.sql$')
+
+# If there are no staged SQL files, exit
+if [ -z "$staged_files" ]; then
+    exit 0
+fi
+
+# Format each staged SQL file
+for file in $staged_files; do
+    pg_format -i "$file"
+
+    # Add the formatted file back to the staging area
+    git add "$file"
+done
+
+exit 0
