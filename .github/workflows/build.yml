@@ -25,4 +25,3 @@ jobs:
       - name: Sets up version
         working-directory: .
         run: ls
-
