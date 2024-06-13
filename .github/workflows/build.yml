@@ -27,6 +27,6 @@ jobs:
         working-directory: packager
         run: mvn versions:set -DnewVersion=${{github.ref_name}}.${{github.run_number}}
       - name: Builds Artifacts and Images
-        working-directory: rtsl_util
+        working-directory: packager
         run: mvn clean install
         
