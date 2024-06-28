@@ -460,6 +460,72 @@ For reference, the JSON equivalent of these working lists is provided below. Not
 
 By implementing these working lists, users will be able to efficiently manage and track overdue patients in various stages of follow-up within the hypertension program.
 
+
+### Triggers for Tracked Entity Attribute Updates
+
+#### Current Limitations in DHIS2
+
+In the current DHIS2 implementation, Tracked Entity Attributes (TEAs) cannot be updated from a program stage. Program rules are limited to affecting data within their own context, typically within the form a user is working on. For instance, if a program rule is designed to assign a value to a TEA, the user would need to open the profile widget to trigger that program rule.
+
+#### Database Trigger Workaround
+
+To overcome this limitation, we've implemented a series of database triggers. These triggers update TEAs based on specific events in the system:
+
+1. **Upcoming Visit Trigger**
+   - Activates when a new row for the "HTN visit" stage is inserted into the `programstageinstance` table with status SCHEDULE
+   - Updates TEA to UPCOMING_VISIT
+
+2. **Overdue Pending Call Trigger**
+   - Activates when a row for the "HTN visit" stage in the `programstageinstance` table is updated from SCHEDULE to OVERDUE status
+   - Updates TEA to OVERDUE_PENDING_CALL
+   - Note: This trigger is primarily useful with the Android app, which updates this status when syncing an overdue patient
+
+3. **Called Status Trigger**
+   - Activates when a new row for the "Calling report" stage is inserted into the `programstageinstance` table
+   - Updates TEA to CALLED
+   - Subsequent calls do not affect this TEA value
+
+Certainly! I'll add the cron job information to the section about the Nightly Overdue Check Function. Here's the updated section:
+
+4. **Nightly Overdue Check Function**
+   - Executes nightly to check the due date of rows in `programstageinstance` where status = SCHEDULE
+   - If due date > current date, updates TEA to OVERDUE_PENDING_CALL
+   - To ensure this function runs automatically, a cron job needs to be set up:
+     ```
+     0 1 * * * psql -d dhis2 -f /path/to/overdue_check_function.sql
+     ```
+   - This cron job runs every night at 1:00 AM, executing the SQL function stored in the `overdue_check_function.sql` file on the DHIS2 database
+
+To install this cron job:
+
+1. Open the crontab file for editing:
+   ```
+   crontab -e
+   ```
+
+2. Add the above line to the file, ensuring you replace `/path/to/overdue_check_function.sql` with the actual path to your SQL file.
+
+3. Save and close the file. The cron job is now installed and will run automatically.
+
+Note: Ensure that the user running the cron job has appropriate permissions to execute the SQL function on the DHIS2 database.
+
+## Benefits of This Approach
+
+This solution addresses several key issues:
+
+1. Resolves a Jira ticket regarding hiding/showing the Calling report stage
+2. Improves functionality of overdue patients working lists
+3. Enables showing the "Calling report" Program Stage for patients with TEA value OVERDUE_PENDING_CALL
+4. Overcomes the limitation of filtering patients across different Program Stages
+
+By storing patient status in a TEA, we can more easily manage complex scenarios, such as showing overdue patients who haven't been called, which was previously challenging due to data being spread across different Program Stages.
+
+![Database Trigger Workflow](./image-trigger_workflow.png)
+
+*Figure 1: Workflow diagram illustrating the database trigger process*
+
+This approach significantly enhances the flexibility and functionality of patient management within the DHIS2 system, particularly for scenarios involving multiple program stages and complex status tracking.
+
 ## Adapting the tracker program
 
 Once the programme has been imported, you might want to make certain modifications to the programme. Examples of local adaptations that *could* be made include:
