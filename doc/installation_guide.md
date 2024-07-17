@@ -516,7 +516,7 @@ To overcome this limitation, we've implemented a series of database triggers. Th
    - Function name: update_overdue_pending_call_for_existing_data_function
    - To be run only ONCE to update the TEA value to "OVERDUE_PENDING_CALL" of current overdue patients in your system
 
-## Benefits of This Approach
+#### Benefits of This Approach
 
 This solution addresses several key issues:
 
