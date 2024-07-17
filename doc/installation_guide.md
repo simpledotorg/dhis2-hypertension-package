@@ -152,7 +152,7 @@ After importing the metadata package, some manual changes are required in the DH
 
 1. Navigate to: Maintenance > Program > Hypertension & Diabetes > Attributes
 2. Ensure the name is visible in the TEI card and details
-!(image-Configure_TEI_Card_and_Details.png)
+[!(image-Configure_TEI_Card_and_Details.png)
 
 ###### 1.2 Limit Searchable TEAs
 
@@ -175,13 +175,13 @@ After importing the metadata package, some manual changes are required in the DH
 
 1. Navigate to: General settings > Opt-In Features
 2. Configure the latest data entry form
-!(image-Configure_Latest_Data_Entry_Form.png)
+![Configure Data Entry Form](./image-Configure_Latest_Data_Entry_Form.png)
 
 ###### 2.2 Show All Sections in Form
 
 1. Navigate to: Appearance > Program
 2. Select "Do not collapse sections in form" to show all sections
-!(image-Show_All_Sections_in_Form.png)
+![Show all sections in form](./image-Show_All_Sections_in_Form.png)
 
 By completing these manual changes, you'll ensure that the user interface is properly configured for the Hypertension & Diabetes program, improving usability and data entry efficiency.
 
@@ -578,12 +578,12 @@ This guide provides instructions for setting up aggregate data exchanges in DHIS
 When the data available in your instance is of a reasonable size, it might be possible to run these exchanges manually using the Aggregate Data Exchange application. 
 
 Here is an example of how the exchange for previous periods will appear in the UI:
-![AGG Data Exchange UI](image-data_exchange_app.png)
+![AGG Data Exchange UI](./image-data_exchange_app.png)
 
 - Notice that there are four different requests for Hypertension and Diabetes, and for monthly and quarterly periods respectively. They can be seen in the tabs.
 
 After clicking on **Submit**, you will get a confirmation screen similar to this:
-![AGG Data Exchange UI Result](image-exchange_app_result.png)
+![AGG Data Exchange UI Result](./image-exchange_app_result.png)
 
 Lastly, do not forget to run **Analytics Tables** to ensure that the dashboards show the latest aggregated data.
 
