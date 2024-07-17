@@ -21,7 +21,7 @@ Great care should be taken to ensure that the server itself and the DHIS2 applic
 
 **NOTE**: If you are installing the package on a new instance of DHIS2, you can skip the “Preparing the metadata file” section and move immediately to the section on “[Importing a metadata file into DHIS2](#importing-metadata).”
 
-While not always necessary, it can often be advantageous to make certain modifications to the metadata file before importing it into DHIS2.
+While not always necessary, you may need to make modifications prior to importing the metadata file in DHIS2. Refer to the following sections for more info.
 
 ### Default data dimension
 
@@ -516,7 +516,7 @@ To overcome this limitation, we've implemented a series of database triggers. Th
    - Function name: update_overdue_pending_call_for_existing_data_function
    - To be run only ONCE to update the TEA value to "OVERDUE_PENDING_CALL" of current overdue patients in your system
 
-## Benefits of This Approach
+#### Benefits of This Approach
 
 This solution addresses several key issues:
 

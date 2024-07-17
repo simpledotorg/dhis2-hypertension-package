@@ -22,5 +22,10 @@
             <outputDirectory>/aggregate-data-exchange</outputDirectory>
             <filtered>true</filtered>
         </fileSet>
+        <fileSet>
+            <directory>${project.basedir}/../doc</directory>
+            <outputDirectory>/doc</outputDirectory>
+            <filtered>false</filtered>
+        </fileSet>
     </fileSets>
 </assembly>
