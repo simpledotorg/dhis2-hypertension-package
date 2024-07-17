@@ -4,6 +4,6 @@
 
 ## Resources
 
-- [Installation Guide](docs/installation_guide.md)
-- [Design Guide](docs/design_guide.md)
+- [Installation Guide](doc/installation_guide.md)
+- [Design Guide](doc/design_guide.md)
 
