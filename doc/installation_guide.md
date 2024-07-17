@@ -162,7 +162,7 @@ After importing the metadata package, some manual changes are required in the DH
    - Full name
    - Phone number
    - Patient ID
-!(image-Limit_Searchable_TEAs.png)
+![Limit Searchable TEAs](./image-Limit_Searchable_TEAs.png)
 
 ###### 1.3 Hide Schedule for Calling Report
 
