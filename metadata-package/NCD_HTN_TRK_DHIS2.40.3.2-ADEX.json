@@ -1,0 +1,320 @@
+{
+    "aggregateDataExchanges": [
+        {
+            "href": "https://dhis2-sandbox2.simple.org/api/aggregateDataExchanges/tQ3bUoFoaSI",
+            "name": "ADEX - HTN DM - Current period",
+            "code": "NCD_HTN_CURRENT_PERIOD",
+            "created": "2024-07-15T13:25:09.804",
+            "lastUpdated": "2024-07-15T13:25:09.804",
+            "translations": [],
+            "externalAccess": false,
+            "publicAccess": "rw------",
+            "createdBy": {
+                "id": "BW6MS6kGMmJ",
+                "code": null,
+                "name": "admin admin",
+                "displayName": "admin admin",
+                "username": "manu"
+            },
+            "userGroupAccesses": [],
+            "userAccesses": [],
+            "access": {
+                "manage": true,
+                "externalize": true,
+                "write": true,
+                "read": true,
+                "update": true,
+                "delete": true
+            },
+            "favorites": [],
+            "lastUpdatedBy": {
+                "id": "BW6MS6kGMmJ",
+                "code": null,
+                "name": "admin admin",
+                "displayName": "admin admin",
+                "username": "manu"
+            },
+            "sharing": {
+                "owner": "BW6MS6kGMmJ",
+                "external": false,
+                "users": {},
+                "userGroups": {},
+                "public": "rw------"
+            },
+            "source": {
+                "requests": [
+                    {
+                        "name": "HTN Monthly indicators",
+                        "dx": [
+                            "JycuigrwOA0",
+                            "w1OIAqhocAx",
+                            "lsUw32leiJX",
+                            "EWpkCPCuJf3",
+                            "bLiMzdg6ZHz",
+                            "ApG3MF1VmOL",
+                            "kqKZiGQ5DW6",
+                            "HEhrrdabdGQ",
+                            "AoqqjFOJGmS"
+                        ],
+                        "pe": [
+                            "THIS_MONTH"
+                        ],
+                        "ou": [
+                            "LEVEL-xsXGrFxHbCN"
+                        ],
+                        "filters": [],
+                        "inputIdScheme": "UID",
+                        "outputDataElementIdScheme": "UID",
+                        "outputOrgUnitIdScheme": "UID",
+                        "outputIdScheme": "ATTRIBUTE:vudyDP7jUy5"
+                    },
+                    {
+                        "name": "HTN Quarterly indicators",
+                        "dx": [
+                            "oViVMFZbHsC",
+                            "qi9pE262Xhm",
+                            "M4XY1lxHewG",
+                            "ZOEEN8WKTFa"
+                        ],
+                        "pe": [
+                            "THIS_QUARTER"
+                        ],
+                        "ou": [
+                            "LEVEL-xsXGrFxHbCN"
+                        ],
+                        "filters": [],
+                        "inputIdScheme": "UID",
+                        "outputDataElementIdScheme": "UID",
+                        "outputOrgUnitIdScheme": "UID",
+                        "outputIdScheme": "ATTRIBUTE:vudyDP7jUy5"
+                    },
+                    {
+                        "name": "DM Monthly indicators",
+                        "dx": [
+                            "rjBIKw5Ydpb",
+                            "fNGOfOPo2p6",
+                            "rc9nx31qyTL",
+                            "rrWB0we6eFL",
+                            "i1b1YVeexfC",
+                            "KDBhJiMyq19",
+                            "GuVvSdUEUjS",
+                            "thoTnZfrjsP",
+                            "vP3OrhwjMHp",
+                            "zTLkufz2LHb",
+                            "VfiZtajVST3",
+                            "zD508XWfDis"
+                        ],
+                        "pe": [
+                            "THIS_MONTH"
+                        ],
+                        "ou": [
+                            "LEVEL-xsXGrFxHbCN"
+                        ],
+                        "filters": [],
+                        "inputIdScheme": "UID",
+                        "outputDataElementIdScheme": "UID",
+                        "outputOrgUnitIdScheme": "UID",
+                        "outputIdScheme": "ATTRIBUTE:vudyDP7jUy5"
+                    },
+                    {
+                        "name": "DM Quarterly indicators",
+                        "dx": [
+                            "gCkPPFQvWVT",
+                            "iJOng6lGYE6",
+                            "GEzyNBxdmeD",
+                            "SMtCq1z3HbK"
+                        ],
+                        "pe": [
+                            "THIS_QUARTER"
+                        ],
+                        "ou": [
+                            "LEVEL-xsXGrFxHbCN"
+                        ],
+                        "filters": [],
+                        "inputIdScheme": "UID",
+                        "outputDataElementIdScheme": "UID",
+                        "outputOrgUnitIdScheme": "UID",
+                        "outputIdScheme": "ATTRIBUTE:vudyDP7jUy5"
+                    }
+                ]
+            },
+            "target": {
+                "type": "INTERNAL",
+                "request": {
+                    "dataElementIdScheme": "UID",
+                    "orgUnitIdScheme": "UID",
+                    "categoryOptionComboIdScheme": "UID",
+                    "idScheme": "UID"
+                }
+            },
+            "user": {
+                "id": "BW6MS6kGMmJ",
+                "code": null,
+                "name": "admin admin",
+                "displayName": "admin admin",
+                "username": "manu"
+            },
+            "favorite": false,
+            "id": "tQ3bUoFoaSI",
+            "attributeValues": []
+        },
+        {
+            "href": "https://dhis2-sandbox2.simple.org/api/aggregateDataExchanges/tQ3bUoFoaSI",
+            "name": "ADEX - HTN DM - Previous periods",
+            "code": "NCD_HTN_PREVIOUS_PERIOD",
+            "created": "2024-07-15T13:25:09.804",
+            "lastUpdated": "2024-07-15T13:25:09.804",
+            "translations": [],
+            "externalAccess": false,
+            "publicAccess": "rw------",
+            "createdBy": {
+                "id": "BW6MS6kGMmJ",
+                "code": null,
+                "name": "admin admin",
+                "displayName": "admin admin",
+                "username": "manu"
+            },
+            "userGroupAccesses": [],
+            "userAccesses": [],
+            "access": {
+                "manage": true,
+                "externalize": true,
+                "write": true,
+                "read": true,
+                "update": true,
+                "delete": true
+            },
+            "favorites": [],
+            "lastUpdatedBy": {
+                "id": "BW6MS6kGMmJ",
+                "code": null,
+                "name": "admin admin",
+                "displayName": "admin admin",
+                "username": "manu"
+            },
+            "sharing": {
+                "owner": "BW6MS6kGMmJ",
+                "external": false,
+                "users": {},
+                "userGroups": {},
+                "public": "rw------"
+            },
+            "source": {
+                "requests": [
+                    {
+                        "name": "HTN Monthly indicators",
+                        "dx": [
+                            "JycuigrwOA0",
+                            "w1OIAqhocAx",
+                            "lsUw32leiJX",
+                            "EWpkCPCuJf3",
+                            "bLiMzdg6ZHz",
+                            "ApG3MF1VmOL",
+                            "kqKZiGQ5DW6",
+                            "HEhrrdabdGQ",
+                            "AoqqjFOJGmS"
+                        ],
+                        "pe": [
+                            "LAST_12_MONTHS"
+                        ],
+                        "ou": [
+                            "LEVEL-xsXGrFxHbCN"
+                        ],
+                        "filters": [],
+                        "inputIdScheme": "UID",
+                        "outputDataElementIdScheme": "UID",
+                        "outputOrgUnitIdScheme": "UID",
+                        "outputIdScheme": "ATTRIBUTE:vudyDP7jUy5"
+                    },
+                    {
+                        "name": "HTN Quarterly indicators",
+                        "dx": [
+                            "oViVMFZbHsC",
+                            "qi9pE262Xhm",
+                            "M4XY1lxHewG",
+                            "ZOEEN8WKTFa"
+                        ],
+                        "pe": [
+                            "LAST_4_QUARTERS"
+                        ],
+                        "ou": [
+                            "LEVEL-xsXGrFxHbCN"
+                        ],
+                        "filters": [],
+                        "inputIdScheme": "UID",
+                        "outputDataElementIdScheme": "UID",
+                        "outputOrgUnitIdScheme": "UID",
+                        "outputIdScheme": "ATTRIBUTE:vudyDP7jUy5"
+                    },
+                    {
+                        "name": "DM Monthly indicators",
+                        "dx": [
+                            "rjBIKw5Ydpb",
+                            "fNGOfOPo2p6",
+                            "rc9nx31qyTL",
+                            "rrWB0we6eFL",
+                            "i1b1YVeexfC",
+                            "KDBhJiMyq19",
+                            "GuVvSdUEUjS",
+                            "thoTnZfrjsP",
+                            "vP3OrhwjMHp",
+                            "zTLkufz2LHb",
+                            "VfiZtajVST3",
+                            "zD508XWfDis"
+                        ],
+                        "pe": [
+                            "LAST_12_MONTHS"
+                        ],
+                        "ou": [
+                            "LEVEL-xsXGrFxHbCN"
+                        ],
+                        "filters": [],
+                        "inputIdScheme": "UID",
+                        "outputDataElementIdScheme": "UID",
+                        "outputOrgUnitIdScheme": "UID",
+                        "outputIdScheme": "ATTRIBUTE:vudyDP7jUy5"
+                    },
+                    {
+                        "name": "DM Quarterly indicators",
+                        "dx": [
+                            "gCkPPFQvWVT",
+                            "iJOng6lGYE6",
+                            "GEzyNBxdmeD",
+                            "SMtCq1z3HbK"
+                        ],
+                        "pe": [
+                            "LAST_4_QUARTERS"
+                        ],
+                        "ou": [
+                            "LEVEL-xsXGrFxHbCN"
+                        ],
+                        "filters": [],
+                        "inputIdScheme": "UID",
+                        "outputDataElementIdScheme": "UID",
+                        "outputOrgUnitIdScheme": "UID",
+                        "outputIdScheme": "ATTRIBUTE:vudyDP7jUy5"
+                    }
+                ]
+            },
+            "target": {
+                "type": "INTERNAL",
+                "request": {
+                    "dataElementIdScheme": "UID",
+                    "orgUnitIdScheme": "UID",
+                    "categoryOptionComboIdScheme": "UID",
+                    "idScheme": "UID"
+                }
+            },
+            "user": {
+                "id": "BW6MS6kGMmJ",
+                "code": null,
+                "name": "admin admin",
+                "displayName": "admin admin",
+                "username": "manu"
+            },
+            "favorite": false,
+            "id": "ty6LYIC2aE5",
+            "attributeValues": []
+        }
+    ]
+}
