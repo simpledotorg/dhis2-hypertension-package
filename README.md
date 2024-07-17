@@ -6,4 +6,5 @@
 
 - [Installation Guide](doc/installation_guide.md)
 - [Design Guide](doc/design_guide.md)
+- [Flat File](https://docs.google.com/spreadsheets/d/1Jy31fIP77R7YLQkGnBSxs_iE5XzJ-rYRdqz0wPSbEPw)
 
