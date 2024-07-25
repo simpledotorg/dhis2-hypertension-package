@@ -55,22 +55,7 @@ Furthermore, laboratory tests, generally performed asynchronously with facility 
 
 For a new patient to be registered into the DHIS2 Hypertension and Diabetes registry, the user will first enter a number of Tracked Entity Attributes in the enrollment page. Tracked Entity Attributes gather personal identifiable information (such as name, date of birth, ID number) for the purposes of patient search and validation. In the Hypertension and Diabetes Registry program, sixteen Tracked Entity Attributes are included, but only four are made searchable as identifiers. The full list is available in the Metadata Reference file.
 
-<div style="display: flex; grid-auto-columns: 1fr; max-width: 680px; margin: auto;">
-<div style="width: 50%; text-align: center;">
-
-**Registration start**
-
-![](./07eb2319-3c1e-4d5d-97c8-fe084d826934.003.png)
-
-</div>
-<div style="width: 50%; text-align: center;">
-
-**Registration end**
-
-![](./07eb2319-3c1e-4d5d-97c8-fe084d826934.004.png)
-
-</div>
-</div>
+![](./design-guide-images/dhis2-package-android-app-registration-screens.png)
 
 Seven fields are mandatory to enter during registration, noted with \*
 
@@ -100,26 +85,9 @@ There are three optional sections in a visit:
 
 At the end of this section, the care provider can schedule the next visit date for the patient. This is defaulted to 28 days from the current visit date and based on most patients being provided a month's supply of medication. If the patient receives medication for multiple months, the care provider can change the date of the next visit accordingly.
 
-<div style="display: flex; grid-auto-columns: 1fr; max-width: 680px; margin: auto;">
-<div style="width: 50%; text-align: center;">
+![](./design-guide-images/dhis2-package-android-app-record-visit-screens.png)
 
-**Hypertension record**
-
-![](./07eb2319-3c1e-4d5d-97c8-fe084d826934.005.png)
-
-</div>
-<div style="width: 50%; text-align: center;">
-
-**Medicines**
-
-![](./07eb2319-3c1e-4d5d-97c8-fe084d826934.006.png)
-
-</div>
-</div>
-
-![]() <!-- leave for styling -->
 _Enter HTN/DM visit details_
-<a name="_h20g9xurnphw"></a>
 
 On completing the event data entry, the care provider will be asked to schedule a follow-up visit date for the patient. This is defaulted to 28 days from the current visit date as patients commonly receive one month's supply of medication. If the patient receives medication for multiple months, the care provider can change the date of the follow-up visit accordingly.
 
