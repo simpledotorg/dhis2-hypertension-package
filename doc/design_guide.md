@@ -157,6 +157,7 @@ Each dashboard is divided into the following sections:
 ### Treatment outcomes
 
 ![ref1]
+
 _Dashboard - treatment outcomes_
 
 The first three charts display treatment outcomes related to blood pressure/blood sugar control of patients under care. Blood pressure/blood sugar control is the best indicator to know if patients under treatment are being treated effectively. These three charts consider a patient’s latest visit within the last three months for all active patients registered before the past three months. Patients registered within the last three months are excluded, as three months gives patients time to take their hypertension/diabetes medication and to get their blood pressure/blood sugar under control. Most newly registered patients have uncontrolled blood pressure/blood sugar and including them would not reflect an accurate picture of actual controlled patients.
@@ -239,5 +240,5 @@ The users are assigned to the appropriate user group based on their role within 
 1. World Health Organization (25/08/2021). Hypertension Key Facts. Retrieved from: <https://www.who.int/news-room/fact-sheets/detail/hypertension> (Accessed on 19/09/2022) [↩](https://docs.dhis2.org/en/implement/health/non-communicable-diseases/hypertension-control/design.html#fnref:first)
 2. Global Burden of Disease 2021: Findings from the GBD 2021 Study. Retrieved from: <https://www.healthdata.org/research-analysis/library/global-burden-disease-2021-findings-gbd-2021-study> (Accessed on 02/07/2024)
 
-[ref1]: ./07eb2319-3c1e-4d5d-97c8-fe084d826934.007.png
+[ref1]: ./design-guide-images/htn-dashboard-top-3-cards.png
 [ref2]: ./07eb2319-3c1e-4d5d-97c8-fe084d826934.008.png
