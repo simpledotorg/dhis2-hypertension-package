@@ -8,7 +8,7 @@ This Hypertension and Diabetes Registry System Design Guide provides an overview
 
 ### Background
 
-Hypertension or elevated blood pressure is a serious medical condition that significantly increases the risks of diabetes, heart, brain, kidney, and other diseases. According to the WHO, an estimated 1.28 billion adults aged 30-79 years worldwide have hypertension, with two-thirds living in low- and middle-income countries. Only 1 in 5 adults with hypertension have their blood pressure under control. Diabetes is also a leading cause of death and disability, affecting 0.5 billion people worldwide, the majority in low- and middle-income countries.
+Hypertension or elevated blood pressure is a serious medical condition that significantly increases the risks of diabetes, heart, brain, kidney, and other diseases. According to the WHO, an estimated 1.28 billion adults aged 30-79 years worldwide have hypertension, with two-thirds living in low- and middle-income countries. Only 1 in 5 adults with hypertension have their blood pressure under control<sup>1</sup>. Diabetes is also a leading cause of death and disability, affecting 0.5 billion people worldwide, the majority in low- and middle-income countries<sup>2</sup>.
 
 Given the high prevalence and co-morbidity of hypertension and diabetes, they are often treated together in primary care settings. Having a single digital tool to manage these patients is critical.
 
