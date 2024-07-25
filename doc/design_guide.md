@@ -36,7 +36,7 @@ Other data elements collected are instrumental for hypertension and diabetes man
 
 Because primary health care centres often lack reliable internet, the DHIS2 Android app is designed to allow offline data entry. Data entry can also be completed in the web browser using the DHIS2 Tracker Capture app.
 
-![Design Diagram](./07eb2319-3c1e-4d5d-97c8-fe084d826934.002.png)
+![Design diagram](./design-guide-images/hypertension-and-diabetes-registry-workflow-design-diagram.png)
 _Design Diagram_
 
 ### Rationale for program structure
