@@ -24,7 +24,7 @@ The key goal of this package is to collect accurate data at the right time, driv
 
 ### Use Case
 
-![Nigeria healthcare worker using DHIS2](./07eb2319-3c1e-4d5d-97c8-fe084d826934.001.jpeg)
+![Nigeria healthcare worker using DHIS2](./design-guide-images/healthcare-worker.jpeg)
 
 _Nigeria healthcare worker using DHIS2_
 
