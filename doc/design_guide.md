@@ -164,13 +164,15 @@ The treatment cascade provides a view of how many expected individuals in a regi
 
 ### Sub-region comparisons and quarterly cohort reports
 
-![](./07eb2319-3c1e-4d5d-97c8-fe084d826934.009.png)
+![](./design-guide-images/htn-dashboard-compare-sub-regions.png)
 
-![](./07eb2319-3c1e-4d5d-97c8-fe084d826934.010.png)
-
-_Dashboard - sub-region comparisons, quarterly cohort reports_
+_Dashboard - Sub-region comparison table_
 
 The sub-region comparisons repeat information from the previous two sections at the sub-national level for the last month. This is useful for a higher-level user (at district or regional level) to assess outcomes across facilities.
+
+![](./design-guide-images/htn-dashboard-quartery-cohort-reports.png)
+
+_Dashboard - Cohort report_
 
 The quarterly cohort report allows program managers to track onboarding and initial treatment outcomes for cohorts of newly registered patients. The reports take all patients registered during a quarter and displays the outcome of their latest visit in the following quarter. For example, the April-June quarterly cohort refers to treatment outcomes for patients registered in January-March. The quarterly cohort report indicators are:
 | **Indicator** | **Hypertension dashboard** | **Diabetes dashboard** |
@@ -209,4 +211,4 @@ The users are assigned to the appropriate user group based on their role within 
 2. Global Burden of Disease 2021: Findings from the GBD 2021 Study. Retrieved from: <https://www.healthdata.org/research-analysis/library/global-burden-disease-2021-findings-gbd-2021-study> (Accessed on 02/07/2024)
 
 [ref1]: ./design-guide-images/htn-dashboard-top-3-cards.png
-[ref2]: ./07eb2319-3c1e-4d5d-97c8-fe084d826934.008.png
+[ref2]: ./design-guide-images/htn-dashboard-next-3-cards.png
