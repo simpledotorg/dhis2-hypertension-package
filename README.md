@@ -6,7 +6,7 @@ DHIS2 package that can be used by any team working on hypertension/diabetes cont
 Please feel free to use or copy any ideas that you see in this package.
 
 ## See a live example
-[View a live example]([https://dhis2-htn-dm-demo.simple.org/])
+[View a live example](https://dhis2-htn-dm-demo.simple.org/)
 
 ## Resources
 
