@@ -171,6 +171,8 @@ After importing the metadata package, some manual changes are required in the DH
 
 ##### 2. Android App Settings
 
+If not already present, install the android app settings app from the app management hub.
+
 ###### 2.1 Configure Latest Data Entry Form
 
 1. Navigate to: General settings > Opt-In Features
