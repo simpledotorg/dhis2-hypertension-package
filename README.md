@@ -8,6 +8,8 @@ Please feel free to use or copy any ideas that you see in this package.
 ## See a live example
 [View a live example](https://dhis2-htn-dm-demo.simple.org/)
 
+## Get started
+
 ## Resources
 
 - [Installation Guide](doc/installation_guide.md)
