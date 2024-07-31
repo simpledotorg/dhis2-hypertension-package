@@ -13,7 +13,7 @@ Please feel free to use or copy any ideas that you see in this package. This pac
 ### 1. Install DHIS2
 Follow DHIS2 guidelines for server set-up [here](https://docs.dhis2.org/en/manage/performing-system-administration/dhis-core-version-master/installation.html)
 
-### 2. Install the hypertension and diabetes package
+### 2. Install the Hypertension and Diabetes Package
 Refer to the package [installation guide](doc/installation_guide.md) on requirements for the package installation, package installation and adapting the package to meet your needs (e.g. customised medication protocol list).
 
 Refer to the [design guide](doc/design_guide.md) for an overview of the use cases, design considerations for the progran, indicator definitions and dashboard design.
