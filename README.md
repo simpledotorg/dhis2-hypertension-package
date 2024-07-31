@@ -1,7 +1,7 @@
 # NCD Hypertension and Diabetes DHIS2 Package
 
 ## About
-A DHIS2 package that can be used by any team working on hypertension/diabetes control projects. The package consists of a DHIS2 tracker program to manage individual patients and a dashboard to monitor project outcomes. This package draws on the many lessons the team has learned while developing the [Simple.org](https://simple.org/) project and is based on the [WHO HEARTS indicators](https://iris.who.int/bitstream/handle/10665/260423/WHO-NMH-NVI-18.5-eng.pdf). This package is being used in Nigeria to manage over 30,000 patients with hypertension.
+A DHIS2 package that can be used by any team working on hypertension and/or diabetes control projects. The package consists of a **DHIS2 Tracker program** to manage individual patients and a **DHIS2 Dashboard** to monitor program outcomes. This package draws on the many lessons the team has learned while developing the [Simple.org](https://simple.org/) project and is based on the [WHO HEARTS indicators](https://iris.who.int/bitstream/handle/10665/260423/WHO-NMH-NVI-18.5-eng.pdf). This package is being used in Nigeria to manage over 30,000 patients with hypertension.
 
 Please feel free to use or copy any ideas that you see in this package. This package is maintained by Resolve to Save Lives, contact us at [info@resolvetosavelives.org](info@resolvetosavelives.org) for more information.
 
