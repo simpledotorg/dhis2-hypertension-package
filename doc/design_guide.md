@@ -8,15 +8,15 @@ This Hypertension and Diabetes Registry System Design Guide provides an overview
 
 ### Background
 
-Hypertension or elevated blood pressure is a serious medical condition that significantly increases the risks of diabetes, heart, brain, kidney, and other diseases. According to the WHO, an estimated 1.28 billion adults aged 30-79 years worldwide have hypertension, with two-thirds living in low- and middle-income countries. Only 1 in 5 adults with hypertension have their blood pressure under control<sup>1</sup>. Diabetes is also a leading cause of death and disability, affecting 0.5 billion people worldwide, the majority in low- and middle-income countries<sup>2</sup>.
+Hypertension or elevated blood pressure is a serious medical condition that significantly increases the risks of diabetes, heart, brain, kidney, and other diseases. According to the WHO, an estimated 1.28 billion adults aged 30-79 years worldwide have hypertension, with two-thirds living in low- and middle-income countries. But only 1 in 5 adults with hypertension have their blood pressure under control<sup>1</sup>. Diabetes is another leading cause of death and disability, affecting 0.5 billion people worldwide, the majority in low- and middle-income countries<sup>2</sup>.
 
 Given the high prevalence and co-morbidity of hypertension and diabetes, they are often treated together in primary care settings. Having a single digital tool to manage these patients is critical.
 
-This Hypertension & Diabetes package is based on the DHIS2 Tracker program deployed in Nigeria since 2021, in collaboration with the Federal Ministry of Health Nigeria, National Primary Health Care Development Agency, HISP-Nigeria, WHO and Resolve to Save Lives. Indicators for the package were derived from the WHO HEARTS Technical package for hypertension management and WHO guidelines for diabetes.
+This Hypertension & Diabetes package is based on the DHIS2 Tracker program deployed in Nigeria since 2021, in collaboration with the Federal Ministry of Health Nigeria, National Primary Health Care Development Agency, HISP-Nigeria, WHO and Resolve to Save Lives. Indicators for the package were derived from the [WHO HEARTS Technical Package](https://www.who.int/publications/i/item/9789240001367) for hypertension management and WHO guidelines for diabetes.
 
 As of May 2024, over 30,000 hypertensive and diabetes patients are being managed across 104 primary healthcare facilities with this DHIS2 Tracker program. The Nigeria program is based on the design of the [Simple App](https://www.simple.org/), a custom mobile application developed by RTSL, deployed in 4 countries, with 4 million patients enrolled for hypertension and diabetes care as of June 2024.
 
-Before the [Nigeria Hypertension Control Initiative](https://www.afro.who.int/news/nigeria-collaborates-who-curb-hypertension-introduces-control-initiative) (NHCI), there were no tools to track the management of hypertension and diabetes patients, and only suspected cases were recorded in the national DHIS2 system. NHCI first introduced paper-based tools for tracking and monitoring these patients over time, but this approach had several issues. It increased workload and placed the burden on frontline healthcare workers. This resulted in data quality problems, such as inconsistencies, missing information, calculation errors, and delays in reporting. Program managers and policymakers couldn’t get the accurate data they needed for decision-making. To address these issues, the DHIS2 Tracker was deployed across NHCI-supported facilities in Kano and Ogun states.
+Before the [Nigeria Hypertension Control Initiative](https://www.afro.who.int/news/nigeria-collaborates-who-curb-hypertension-introduces-control-initiative) (NHCI), there were no tools to track the management of hypertension and diabetes patients, and only suspected cases were recorded in the national DHIS2 system. NHCI first introduced paper-based tools for tracking and monitoring these patients over time, but this approach had several issues. It increased workload and placed the burden on frontline healthcare workers. This caused data quality problems, such as inconsistencies, missing information, calculation errors, and delays in reporting. The result was that program managers and policymakers couldn’t get the accurate data they needed for decision-making. To address this, the DHIS2 Tracker was deployed across NHCI-supported facilities in Kano and Ogun states.
 
 The key goal of this package is to collect accurate data at the right time, drive data-backed program improvements and scale hypertension management. And to do it while reducing the burden on health staff.
 
@@ -28,32 +28,36 @@ The key goal of this package is to collect accurate data at the right time, driv
 
 _Nigeria healthcare worker using DHIS2_
 
-The principal end users of this system are care providers at primary health centers who see patients for monthly hypertension and diabetes services. Since hypertension and diabetes generally affects a broad proportion of the population, in many contexts care providers have little time to enter detailed data on hypertension and diabetes patient encounters. Therefore the focus is on collecting a _limited set of data elements_ to produce three key indicators: percent of patients with controlled blood pressure/blood sugar, percent of patients with uncontrolled blood pressure/blood sugar, and percent of patients with missed monthly visits.
+The main users of DHIS2 Capture app are care providers at primary health facilities who see patients for monthly hypertension and diabetes services. The dashboard is for health system managers and public health officers so they can analyse system performance and populations, often covering millions of people.
 
-These indicators can be monitored on the facility level or at higher district and national levels on dashboards (see below). Aggregate outputs can later be pushed into a national HMIS instance.
+Since hypertension and diabetes affect a large proportion of the population, care providers typically have little time to enter detailed data on patient encounters. To address this, the system focuses on collecting a limited set of data elements to produce three key indicators:
 
-Other data elements collected are instrumental for hypertension and diabetes management. For example, providers enter hypertension and diabetes treatments and medications provided. However, patients must be diagnosed with hypertension and/or diabetes in order to be enrolled in the program.
+- Percent of patients with controlled blood pressure/blood sugar: How many patients have visited recently with their blood pressure/blood sugar under control? This is the critical indicator to measure a successful hypertension and diabetes control program.
+- Percent of patients with uncontrolled blood pressure/blood sugar: How many patients visited recently but their blood pressure/blood sugar is not controlled yet? These patients need to be treated successfully to bring their blood pressure/blood sugar under control.
+- Percent of patients with missed monthly visits: How many patients are not regularly receiving care? These patients need to be encouraged to return to care.
 
-Because primary health care centres often lack reliable internet, the DHIS2 Android app is designed to allow offline data entry. Data entry can also be completed in the web browser using the DHIS2 Tracker Capture app.
+These indicators can be monitored at the facility level or at higher district and national levels on dashboards (pictures below). Aggregate data can later be pushed into a national HMIS instance.
+
+The system also supports patient management by collecting data like medication, helping clinicians manage prescribed medication to help patients control their BP and blood sugar.
+
+Data entry can be done via a web browser or the [DHIS2 Tracker Android app](https://play.google.com/store/apps/details?id=com.dhis2&hl=en_IN). Since primary health care centres often lack reliable internet, the app is designed to work with offline data entry.
 
 ![Design diagram](./design-guide-images/hypertension-and-diabetes-registry-workflow-design-diagram.png)
 _Design Diagram_
 
 ### Rationale for program structure
 
-The fundamental goal of the program is for clinicians to record monthly blood pressure/blood sugar readings, prescribed medication and to schedule follow-up visits quickly. This provides clinicians critical information to manage their patients with hypertension/diabetes over time. The data collected are only needed to identify patients and manage hypertension/diabetes, and should be entered as quickly as possible.
+Hypertension clinics get very busy. In India, a typical follow-up visit is 3 minutes. In Bangladesh, it’s 2 minutes. The fundamental goal of this program is to record blood pressure, blood sugar, medicines and schedule a follow-up visit REALLY FAST. This provides clinicians critical information to manage their patients, and generates key indicators for program managers to monitor the Hypertension and Diabetes program.
 
-However, the Hypertension and Diabetes Registry could be expanded to cover related Non-Communicable diseases (NCDs) such as CVD. This is particularly useful in scenarios where comorbidities are frequently monitored and managed by the clinician during a hypertension visit, like cardiovascular disease.
+The data collected is only what’s needed to identify patients and manage hypertension/diabetes. But the Hypertension and Diabetes Registry can be expanded to cover other Non-Communicable diseases (NCDs) such as COPD. This is useful when other co-morbidities are also managed by the clinician during a Hypertension visit.
 
-When adapting the program for local use, diagnosis of such these other NCDs could therefore be considered eligibility for enrollment into what is currently the ‘Hypertension Registry'. Therefore, a Tracked Entity Attribute for ‘Does this patient have hypertension?’ is autofilled as ‘Yes’ during enrollment, and program indicators for hypertension reporting require this value. The approach gives an implementation flexibility to augment the program with other NCDs after roll-out has started.
-
-Furthermore, laboratory tests, generally performed asynchronously with facility visits, can also be added as new program stages.
+A significant challenge in managing chronic conditions like hypertension is ensuring patients return for regular check-ups and medication. The program has an overdue patient management component to bring overdue patients back to care.
 
 ## Program Configuration
 
 ### Registration
 
-For a new patient to be registered into the DHIS2 Hypertension and Diabetes registry, the user will first enter a number of Tracked Entity Attributes in the enrollment page. Tracked Entity Attributes gather personal identifiable information (such as name, date of birth, ID number) for the purposes of patient search and validation. In the Hypertension and Diabetes Registry program, sixteen Tracked Entity Attributes are included, but only four are made searchable as identifiers. The full list is available in the Metadata Reference file.
+A new patient is enrolled into the Hypertension and Diabetes registry as a Tracked Entity Instance (TEI). For each TEI, the user will record Tracked Entity Attributes like name, date of birth etc. in the enrollment page to create the patient profile.
 
 ![](./design-guide-images/dhis2-package-android-app-registration-screens.png)
 
@@ -69,33 +73,33 @@ QR codes that are stuck on patient appointment cards and recorded as a Tracked E
 
 The history of cardiovascular and kidney disease for a patient is recorded to inform patient treatment.
 
-NB: since these demographic and identifier data are often reusable across tracker programs, the tracked entity attributes can be shared by multiple DHIS2 Tracker packages. Those metadata are found in the [Common Metadata Library](https://docs.dhis2.org/en/topics/metadata/dhis2-who-digital-health-data-toolkit/common-metadata-library/design.html) (and are prefixed with “GEN -” in the attribute name).
+NB. Since these demographic and identifier data are often reusable across tracker programs, the tracked entity attributes can be shared by multiple DHIS2 Tracker packages. Those metadata are found in the Common Metadata Library [Common Metadata Library](https://docs.dhis2.org/en/topics/metadata/dhis2-who-digital-health-data-toolkit/common-metadata-library/design.html) (and are prefixed with “GEN -” in the attribute name).
 
 After the user clicks the _Save_ icon, the patient is considered enrolled in the Hypertension and Diabetes Registry, and the first Hypertension/Diabetes Visit event immediately opens.
 
 ### Hypertension & Diabetes Visit
 
-The main stage in the program is the _Hypertension/Diabetes visit (HTN/DM visit)_. This is assumed it will be repeated every month after enrollment.
+The main stage in the program is the _Hypertension/Diabetes visit_ (HTN/DM visit). This stage is assumed to repeat every month after enrollment.
 
-There are three optional sections in a visit:
+There is one mandatory and two optional sections in a visit:
 
 1. **Hypertension record:** Systolic and diastolic blood pressure is recorded. Invalid blood pressure values (systolic reading of below 60 or above 260, diastolic reading of below 40 or above 260) are prohibited by program rules
-1. **Diabetes record:** Type of blood sugar measure, unit and reading is recorded. The care provider can choose between random blood sugar, fasting blood sugar, post prandial blood sugar and HbA1c
-1. **Medicines:** Captures the current hypertension and diabetes medication prescribed. Each implementation can customize the medication list based on their treatment protocol. Previously entered medication is listed in the program indicators widget and number of days since the most recent HTN visit
-
-At the end of this section, the care provider can schedule the next visit date for the patient. This is defaulted to 28 days from the current visit date and based on most patients being provided a month's supply of medication. If the patient receives medication for multiple months, the care provider can change the date of the next visit accordingly.
+2. **Diabetes record:** Type of blood sugar measure, unit and reading is recorded. The care provider can choose between random blood sugar, fasting blood sugar, post prandial blood sugar and HbA1c
+3. **Medicines:** Captures the current hypertension and diabetes medication prescribed. Each implementation can customize the medication list based on their treatment protocol. Previously entered medication is listed in the program indicators widget and number of days since the most recent HTN visit.
 
 ![](./design-guide-images/dhis2-package-android-app-record-visit-screens.png)
 
 _Enter HTN/DM visit details_
 
-On completing the event data entry, the care provider will be asked to schedule a follow-up visit date for the patient. This is defaulted to 28 days from the current visit date as patients commonly receive one month's supply of medication. If the patient receives medication for multiple months, the care provider can change the date of the follow-up visit accordingly.
+On completing the event data entry, the care provider will be asked to schedule a follow-up visit for the patient. This is defaulted to 28 days from the current visit date as patients commonly receive one month's supply of medication. If the patient receives medication for multiple months, the care provider can change the date of the follow-up visit accordingly.
 
 ### Calling report
 
+[](ref1)
+
 This stage in the program is only visible for patients that are overdue (i.e. have missed a scheduled HTN/DM visit). The purpose of this stage is for care providers to call overdue patients and record the outcome of that call (i.e. whether a patient agrees to return to care, is not reachable or should be removed from the overdue list).
 
-The care provider can view a line list of overdue patients using the pre-configured working lists. The care provider should sync with the backend to have up-to-date patient lists on their devices. Refer to the installation guide for more info. Working lists in the app include:
+The care provider can view a line list of overdue patients using the pre-configured working lists. The care provider should sync with the backend to have up-to-date patient lists on their devices. Refer to the [installation guide](https://github.com/simpledotorg/dhis2-hypertension-package/blob/main/doc/installation_guide.md) for more info. Working lists in the app include:
 
 - Overdue - 1. Pending to call: List of overdue patients that are yet to be called
 - Overdue - 2. Agreed to visit: List of overdue patients that have been called and agreed to visit
@@ -108,7 +112,7 @@ NB. An overdue patient is no longer overdue only when they return to care for a 
 
 If a patient is no longer being seen by the health facility, it is important to update the patient status, which will remove the patient’s record from the denominators of key performance indicators.
 
-When calling overdue patients, the care provider may encounter individuals no longer expected at the health facility, whether due to death or transfer to another facility. To record this change in the program, in the calling report, the care provider can update the call outcome as removed from overdue list and the corresponding reason (e.g. died, moved to private practitioner, transferred to another public health facility). A program rule will update the patient status and remove these patients from key performance indicators.
+When calling overdue patients, the care provider may encounter individuals no longer expected at the health facility, whether due to death or transfer to another facility. To record this change in the program, in the calling report, the care provider can update the call outcome as ‘removed from overdue list’ and the corresponding reason (e.g. died, moved to private practitioner, transferred to another public health facility). A program rule will update the patient status and remove these patients from key performance indicators.
 
 ## Monthly summary form (aggregate reports)
 
@@ -126,9 +130,13 @@ Each dashboard is divided into the following sections:
 
 ![ref1]
 
-_Dashboard - treatment outcomes_
+_Dashboard - Treatment outcomes_
 
-The first three charts display treatment outcomes related to blood pressure/blood sugar control of patients under care. Blood pressure/blood sugar control is the best indicator to know if patients under treatment are being treated effectively. These three charts consider a patient’s latest visit within the last three months for all active patients registered before the past three months. Patients registered within the last three months are excluded, as three months gives patients time to take their hypertension/diabetes medication and to get their blood pressure/blood sugar under control. Most newly registered patients have uncontrolled blood pressure/blood sugar and including them would not reflect an accurate picture of actual controlled patients.
+The first three charts display treatment outcomes related to blood pressure and blood sugar control of patients under care. Blood pressure and blood sugar control is the best indicator to know if patients under treatment are being treated effectively.
+
+These three charts use data from the latest visit within the last three months, of patients registered more than 3 months ago.
+
+**Why are patients registered within the last 3 months excluded?** Three months gives patients time to take their hypertension/diabetes medication and to get their blood pressure/blood sugar under control. Most newly registered patients have uncontrolled blood pressure and including them would not reflect an accurate picture of actual controlled patients.
 
 The three charts within the treatment outcomes section are based on the following indicators:
 
@@ -146,7 +154,9 @@ _Dashboard - registrations, patients under care, lost to follow-up, treatment ca
 
 The next section highlights registrations (how many patients are enrolled in a hypertension/diabetes control program) and how many of those patients are “under care” (have visited in the past 12 months). Patients that have not visited in the last 12 months (i.e. no BP measure/blood sugar recorded in the past 12 months) are recorded as lost to follow-up.
 
-The treatment cascade provides a view of how many expected individuals in a region are under treatment for hypertension/diabetes and, of those patients, how many have their BP/blood sugar under control.
+The treatment cascade (on right side) provides an estimated view of how many individuals in a region are under treatment for hypertension/diabetes and, of those patients, how many have their BP/blood sugar under control.
+
+Figures shown include:
 
 | **Indicator**                                    | **Hypertension dashboard**                                                                                                                                              | **Diabetes dashboard**                                                                                                                                                  |
 | :----------------------------------------------- | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -168,19 +178,20 @@ The treatment cascade provides a view of how many expected individuals in a regi
 
 _Dashboard - Sub-region comparison table_
 
-The sub-region comparisons repeat information from the previous two sections at the sub-national level for the last month. This is useful for a higher-level user (at district or regional level) to assess outcomes across facilities.
+The sub-region comparisons repeat information from the charts which show sub-national level data for the last month. This is useful for a higher-level user (at district or regional level) to assess outcomes across facilities.
 
 ![](./design-guide-images/htn-dashboard-quartery-cohort-reports.png)
 
 _Dashboard - Cohort report_
 
-The quarterly cohort report allows program managers to track onboarding and initial treatment outcomes for cohorts of newly registered patients. The reports take all patients registered during a quarter and displays the outcome of their latest visit in the following quarter. For example, the April-June quarterly cohort refers to treatment outcomes for patients registered in January-March. The quarterly cohort report indicators are:
-| **Indicator** | **Hypertension dashboard** | **Diabetes dashboard** |
-| :----------------------------------------- | :---------------------------------------------------------------------------------------------------------------------- | :-------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| % Patients controlled | The number of patients with a BP <140/90 at their latest visit in the quarter after the quarter when they were registered | The number of patients with controlled blood sugar (FBS < 126mg/dL or HbA1c <7%) at their latest visit in the quarter after the quarter when they were registered |
-| % Patients uncontrolled | The number of patients with a BP ≥140/90 at their latest visit in the quarter after the quarter when they were registered | The number of patients with uncontrolled blood sugar (FBS ≥126mg/dL or HbA1c ≥7%) at their latest visit in the quarter after the quarter when they were registered |
-| % Patients no visit in past 3 months | The number of patients with no visit in the quarter after the quarter when they were registered | The number of patients with no visit in the quarter after the quarter when they were registered |
-| Quarterly registrations | The number of new patients registered in the hypertension control program in a quarter | The number of new patients registered in the diabetes control program in a quarter |
+The quarterly cohort reports show treatment outcomes for newly registered patients at the end of the following quarter. For example, the April-June quarterly cohort refers to treatment outcomes for patients registered in January-March. The quarterly cohort report indicators are:
+
+| **Indicator**                        | **Hypertension dashboard**                                                                                                | **Diabetes dashboard**                                                                                                                                             |
+| :----------------------------------- | :------------------------------------------------------------------------------------------------------------------------ | :----------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| % Patients controlled                | The number of patients with a BP <140/90 at their latest visit in the quarter after the quarter when they were registered | The number of patients with controlled blood sugar (FBS < 126mg/dL or HbA1c <7%) at their latest visit in the quarter after the quarter when they were registered  |
+| % Patients uncontrolled              | The number of patients with a BP ≥140/90 at their latest visit in the quarter after the quarter when they were registered | The number of patients with uncontrolled blood sugar (FBS ≥126mg/dL or HbA1c ≥7%) at their latest visit in the quarter after the quarter when they were registered |
+| % Patients no visit in past 3 months | The number of patients with no visit in the quarter after the quarter when they were registered                           | The number of patients with no visit in the quarter after the quarter when they were registered                                                                    |
+| Quarterly registrations              | The number of new patients registered in the hypertension control program in a quarter                                    | The number of new patients registered in the diabetes control program in a quarter                                                                                 |
 
 ### Drug stock and inventory reports
 
