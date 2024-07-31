@@ -87,7 +87,7 @@ There is one mandatory and two optional sections in a visit:
 2. **Diabetes record:** Type of blood sugar measure, unit and reading is recorded. The care provider can choose between random blood sugar, fasting blood sugar, post prandial blood sugar and HbA1c
 3. **Medicines:** Captures the current hypertension and diabetes medication prescribed. Each implementation can customize the medication list based on their treatment protocol. Previously entered medication is listed in the program indicators widget and number of days since the most recent HTN visit.
 
-![](./design-guide-images/dhis2-package-android-app-record-visit-screens.png)
+![Enter HTN/DM visit details screen](./design-guide-images/dhis2-package-android-app-record-visit-screens.png)
 
 _Enter HTN/DM visit details_
 
@@ -117,6 +117,10 @@ When calling overdue patients, the care provider may encounter individuals no lo
 ## Monthly summary form (aggregate reports)
 
 At health facility level, the monthly summary form can be used to collect data on drug stock, medical device inventory and hypertension screening. At the end of each month, a care provider can record the number of adults screened for hypertension that month, the number of tablets of each medication remaining and functioning BP monitors.
+
+![Month summary form for aggregate reports](./design-guide-images/dhis2-package-android-app-monthly-aggregrate-report-screens.png)
+
+_Enter monthly aggregate details_
 
 ## Dashboards
 
