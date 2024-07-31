@@ -23,3 +23,4 @@ Refer to the [design guide](doc/design_guide.md) for an overview of the use case
 - [Core features of the package](https://docs.google.com/document/d/1oTkn6nZwfIhYDCX2BWJhChdnjI2y3CaayNjvBfbjqGg/edit)
 - Known limitations with DHIS2
 
+<img width="1461" alt="dhis2packagegraphic" src="https://github.com/user-attachments/assets/a59653fa-0cd5-437e-8c76-0ee04c7f3828">
