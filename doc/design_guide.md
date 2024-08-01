@@ -8,7 +8,7 @@ This Hypertension and Diabetes Registry System Design Guide provides an overview
 
 ### Background
 
-Hypertension or elevated blood pressure is a serious medical condition that significantly increases the risks of diabetes, heart, brain, kidney, and other diseases. According to the WHO, an estimated 1.28 billion adults aged 30-79 years worldwide have hypertension, with two-thirds living in low- and middle-income countries. But only 1 in 5 adults with hypertension have their blood pressure under control<sup>1</sup>. Diabetes is another leading cause of death and disability, affecting 0.5 billion people worldwide, the majority in low- and middle-income countries<sup>2</sup>.
+Hypertension or elevated blood pressure is a serious medical condition that significantly increases the risks of diabetes, heart, brain, kidney, and other diseases. According to the WHO, an estimated 1.28 billion adults aged 30-79 years worldwide have hypertension, with two-thirds living in low- and middle-income countries. But only 1 in 5 adults with hypertension have their blood pressure under control[^1]. Diabetes is another leading cause of death and disability, affecting 0.5 billion people worldwide, the majority in low- and middle-income countries[^2].
 
 Given the high prevalence and co-morbidity of hypertension and diabetes, they are often treated together in primary care settings. Having a single digital tool to manage these patients is critical.
 
@@ -218,12 +218,8 @@ The users are assigned to the appropriate user group based on their role within 
 | HTN access       | Can edit and view | Can view only        | Can view only        |
 | HTN data capture | Can view          | Can view only        | Can capture and view |
 
----
-
-## References
-
-1. World Health Organization (25/08/2021). Hypertension Key Facts. Retrieved from: <https://www.who.int/news-room/fact-sheets/detail/hypertension> (Accessed on 19/09/2022) [↩](https://docs.dhis2.org/en/implement/health/non-communicable-diseases/hypertension-control/design.html#fnref:first)
-2. Global Burden of Disease 2021: Findings from the GBD 2021 Study. Retrieved from: <https://www.healthdata.org/research-analysis/library/global-burden-disease-2021-findings-gbd-2021-study> (Accessed on 02/07/2024)
+[^1]: World Health Organization (25/08/2021). Hypertension Key Facts. Retrieved from: <https://www.who.int/news-room/fact-sheets/detail/hypertension> (Accessed on 19/09/2022) [↩](https://docs.dhis2.org/en/implement/health/non-communicable-diseases/hypertension-control/design.html#fnref:first)
+[^2]: Global Burden of Disease 2021: Findings from the GBD 2021 Study. Retrieved from: <https://www.healthdata.org/research-analysis/library/global-burden-disease-2021-findings-gbd-2021-study> (Accessed on 02/07/2024)
 
 [ref1]: ./design-guide-images/htn-dashboard-top-3-cards.png
 [ref2]: ./design-guide-images/htn-dashboard-next-3-cards.png
