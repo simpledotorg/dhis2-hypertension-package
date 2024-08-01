@@ -152,7 +152,7 @@ After importing the metadata package, some manual changes are required in the DH
 
 1. Navigate to: Maintenance > Program > Hypertension & Diabetes > Attributes
 2. Ensure the name is visible in the TEI card and details
-[!](image-Configure_TEI_Card_and_Details.png)
+![Configure TEI card and details](image-Configure_TEI_Card_and_Details.png)
 
 ###### 1.2 Limit Searchable TEAs
 
