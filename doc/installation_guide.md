@@ -514,10 +514,6 @@ To overcome this limitation, we've implemented a series of database triggers. Th
 
     Note: Ensure that the user running the cron job has appropriate permissions to execute the SQL function on the DHIS2 database.
 
-5. **Overdue patient updated in legacy data**
-   - Function name: update_overdue_pending_call_for_existing_data_function
-   - To be run only ONCE to update the TEA value to "OVERDUE_PENDING_CALL" of current overdue patients in your system
-
 #### Benefits of This Approach
 
 This solution addresses several key issues:
@@ -534,6 +530,29 @@ By storing patient status in a TEA, we can more easily manage complex scenarios,
 *Figure 1: Workflow diagram illustrating the database trigger process*
 
 This approach significantly enhances the flexibility and functionality of patient management within the DHIS2 system, particularly for scenarios involving multiple program stages and complex status tracking.
+
+### Trigger for managing overdue patient report in DHIS2
+
+#### Current Limitations in DHIS2
+In the current DHIS2 implementation, Program Indicator (PI) filter cannot perform cross program stage lookups.
+
+#### Database Trigger Workaround
+To overcome this limitation, we've implemented a database trigger that update the program stage of an overdue Tracked Entity Instance with the relevant data from another program stage.
+- **Update HTN and Diabetes Visits Trigger**
+  - Trigger name: after_insert_calling_report_programstageinstance
+  - Activates when a new row is inserted into the `programstageinstance` table
+  - Adds the details from the previous "Calling report" program stage to the current "Htn and diabetes visit" program stage.
+  - The "Calling report" program stage chosen corresponds to the first call made in the reporting month.
+
+#### Update legacy data
+If you are already on an overdue management program and want to adapt to this previous approach, use the below script to update the legacy data.
+- **Update existing HTN & diabetes visits event with calling report event data**
+  - Function name: update_htn_visits_and_ncd_patient_status_with_call_data
+
+#### Benefits of This Approach
+- Overcomes the limitation of filtering events across different Program Stages.
+
+![Database Trigger Workflow](overdue-Trigger-Workflow.png)
 
 ### Aggregate Data Exchange
 
@@ -599,5 +618,3 @@ Once the programme has been imported, you might want to make certain modificatio
 * Modifying program indicators based on local case definitions
 
 However, it is strongly recommended to take great caution if you decide to change or remove any of the included form/metadata. There is a danger that modifications could break functionality, for example program rules and program indicators.
-
-
