@@ -197,29 +197,31 @@ Please create the following working lists:
    - Filter criteria:
      - Patient status: ACTIVE
      - Hypertension status: Yes
-     - Overdue status: Overdue
-     - Calling report: No call received yet (OVERDUE_PENDING_CALL)
+     - Patient follow-up status: Overdue Pending Call
 
 2. **Overdue - 2. Agreed to visit**
    - Filter criteria:
      - Patient status: ACTIVE
      - Hypertension status: Yes
-     - Overdue status: Overdue
-     - Call outcome: AGREE_TO_VISIT
-
+     - Patient follow-up status: Called
+     - Program stage filter: Calling report
+        - Result of call: Agreed to visit
+          
 3. **Overdue - 3. Remind to call later**
    - Filter criteria:
      - Patient status: ACTIVE
      - Hypertension status: Yes
-     - Overdue status: Overdue
-     - Call outcome: REMIND_TO_CALL_LATER
+     - Patient follow-up status: Called
+     - Program stage filter: Calling report
+        - Result of call: Remind to call later
 
 4. **Overdue - 4. Remove from list**
    - Filter criteria:
      - Patient status: ACTIVE
      - Hypertension status: Yes
-     - Overdue status: Overdue
-     - Call outcome: REMOVE_FROM_OVERDUE
+     - Patient follow-up status: Called
+     - Program stage filter: Calling report
+        - Result of call: Remove from overdue
 
 5. **Overdue patients**
    - Filter criteria:
