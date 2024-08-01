@@ -23,4 +23,4 @@ Refer to the [design guide](doc/design_guide.md) for an overview of the use case
 ## More resources
 - [Flat File](https://docs.google.com/spreadsheets/d/1Jy31fIP77R7YLQkGnBSxs_iE5XzJ-rYRdqz0wPSbEPw)
 - [Core features of the package](https://docs.google.com/document/d/1oTkn6nZwfIhYDCX2BWJhChdnjI2y3CaayNjvBfbjqGg/edit)
-- Known limitations with DHIS2 (doc/known_issues.md)
+- [Known limitations with DHIS2](doc/known_issues.md)
