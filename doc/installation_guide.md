@@ -1,4 +1,4 @@
-# Hypertension & Diabetes Registry - Installation Guide { #ncd-htn-dm-installation }
+# DHIS2 Hypertension & Diabetes Package - Installation Guide { #ncd-htn-dm-installation }
 
 ## Installation
 
