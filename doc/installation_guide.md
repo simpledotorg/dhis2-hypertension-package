@@ -513,6 +513,9 @@ To overcome this limitation, we've implemented a series of database triggers. Th
     3. Save and close the file. The cron job is now installed and will run automatically.
 
     Note: Ensure that the user running the cron job has appropriate permissions to execute the SQL function on the DHIS2 database.
+5. **Overdue patient updated in legacy data**
+    - Function name: update_overdue_pending_call_for_existing_data_function
+    - To be run only ONCE to update the TEA value to "OVERDUE_PENDING_CALL" of current overdue patients in your system
 
 #### Benefits of This Approach
 
