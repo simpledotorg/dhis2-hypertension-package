@@ -189,7 +189,7 @@ By completing these manual changes, you'll ensure that the user interface is pro
 
 ##### Working Lists
 
-Due to an error encountered during the import process using the import/export application, it was not possible to include the working lists in the JSON file. As a result, users need to create these working lists manually through the user interface. This section provides guidance on creating the necessary working lists based on their JSON equivalents.
+Due to an error encountered during the import process using the import/export application, it was not possible to include the working lists in the JSON file. As a result, users need to create these working lists manually through the user interface. This section provides guidance on creating the necessary working lists based on their JSON equivalents. If you have access to the database, you can actually create them using the SQL script [here](https://github.com/simpledotorg/dhis2-hypertension-package/blob/main/scripts/create_overdue_working_lists.sql)
 
 Please create the following working lists:
 
