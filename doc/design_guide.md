@@ -99,6 +99,8 @@ On completing the event data entry, the care provider will be asked to schedule 
 
 This stage in the program is only visible for patients that are overdue (i.e. have missed a scheduled HTN/DM visit). The purpose of this stage is for care providers to call overdue patients and record the outcome of that call (i.e. whether a patient agrees to return to care, is not reachable or should be removed from the overdue list).
 
+![Calling report workflow](./design-guide-images/dhis2-package-android-app-calling-report.png)
+
 The care provider can view a line list of overdue patients using the pre-configured working lists. The care provider should sync with the backend to have up-to-date patient lists on their devices. Refer to the [installation guide](https://github.com/simpledotorg/dhis2-hypertension-package/blob/main/doc/installation_guide.md) for more info. Working lists in the app include:
 
 - Overdue - 1. Pending to call: List of overdue patients that are yet to be called
