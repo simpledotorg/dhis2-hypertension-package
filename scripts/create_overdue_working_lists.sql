@@ -3,7 +3,7 @@ INSERT INTO programstageworkinglist (
     lastupdatedby, name, description, programid, programstageid, 
     programstagequerycriteria, translations, sharing, userid
 ) VALUES (
-    1, 'KkcUsY8F5tK', 'NCD_HTN_AGREED_TO_VISIT', '2024-05-03 19:32:55.134', 1, '2024-05-03 19:32:55.134', 
+    1, 'KkcUsY8F5tK', 'NCD_HTN_AGREED_TO_VISIT', NOW(), 1, NOW(), 
     1, 'Overdue - 2. Agreed to visit', '', 
     (SELECT programid FROM program WHERE uid = 'pMIglSEqPGS'), 
     (SELECT programstageid FROM programstage WHERE uid = 'W7BCOaSquMd'), 
@@ -17,7 +17,7 @@ INSERT INTO programstageworkinglist (
     lastupdatedby, name, description, programid, programstageid, 
     programstagequerycriteria, translations, sharing, userid
 ) VALUES (
-    2, 'E1eBXuCAXUU', 'NCD_HTN_REMOVE_FROM_LIST', '2024-03-04 22:27:38.627', 1, '2024-03-05 23:02:59.122', 
+    2, 'E1eBXuCAXUU', 'NCD_HTN_REMOVE_FROM_LIST', NOW(), 1, NOW(), 
     1, 'Overdue - 4. Remove from list', '', 
     (SELECT programid FROM program WHERE uid = 'pMIglSEqPGS'), 
     (SELECT programstageid FROM programstage WHERE uid = 'W7BCOaSquMd'), 
@@ -31,7 +31,7 @@ INSERT INTO programstageworkinglist (
     lastupdatedby, name, description, programid, programstageid, 
     programstagequerycriteria, translations, sharing, userid
 ) VALUES (
-    3, 'g7YeCCkyj0N', 'NCD_HTN_REMIND_TO_CALL', '2024-05-03 21:24:33.885', 1, '2024-05-03 21:24:33.885', 
+    3, 'g7YeCCkyj0N', 'NCD_HTN_REMIND_TO_CALL', NOW(), 1, NOW(), 
     1, 'Overdue - 3. Remind to call later', '', 
     (SELECT programid FROM program WHERE uid = 'pMIglSEqPGS'), 
     (SELECT programstageid FROM programstage WHERE uid = 'W7BCOaSquMd'), 
@@ -45,7 +45,7 @@ INSERT INTO programstageworkinglist (
     lastupdatedby, name, description, programid, programstageid, 
     programstagequerycriteria, translations, sharing, userid
 ) VALUES (
-    4, 'IVpnpOgBdBq', '', '2024-06-05 20:16:22.822', 1, '2024-06-05 20:16:22.822', 
+    4, 'IVpnpOgBdBq', '', NOW(), 1, NOW(), 
     1, 'Overdue patients', '', 
     (SELECT programid FROM program WHERE uid = 'pMIglSEqPGS'), 
     (SELECT programstageid FROM programstage WHERE uid = 'anb2cjLx3WM'), 
@@ -59,7 +59,7 @@ INSERT INTO programstageworkinglist (
     lastupdatedby, name, description, programid, programstageid, 
     programstagequerycriteria, translations, sharing, userid
 ) VALUES (
-    5, 'UJ6ohaQ4S5X', 'NCD_HTN_PENDING_TO_CALL', '2024-05-03 21:25:08.131', 1, '2024-05-03 21:25:08.131', 
+    5, 'UJ6ohaQ4S5X', 'NCD_HTN_PENDING_TO_CALL', NOW(), 1, NOW(), 
     1, 'Overdue - 1. Pending to call', '', 
     (SELECT programid FROM program WHERE uid = 'pMIglSEqPGS'), 
     (SELECT programstageid FROM programstage WHERE uid = 'anb2cjLx3WM'), 
