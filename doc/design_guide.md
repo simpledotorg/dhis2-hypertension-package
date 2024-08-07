@@ -1,14 +1,14 @@
-﻿# Hypertension and Diabetes Registry System Design
+﻿# Hypertension and Diabetes Package Design Guide
 
 ## Introduction
 
 ### Purpose
 
-This Hypertension and Diabetes Registry System Design Guide provides an overview of the reasoning and design used to configure a DHIS2 tracker program for registering and managing patients with hypertension and/or diabetes. This document is intended for use by DHIS2 implementers at country and regional level to support implementation and localization of the package. Local work flows and national guidelines should always be considered in the localization and adaptation of this configuration package.
+This guide provides an overview of the reasoning and design used to configure a DHIS2 tracker program and dashboards for registering and managing patients with hypertension and/or diabetes. This document is intended for DHIS2 implementers at country and regional level to support implementation and localization of the package. Local work flows and national guidelines should always be considered in the localization and adaptation of this configuration package.
 
 ### Background
 
-Hypertension or elevated blood pressure is a serious medical condition that significantly increases the risks of diabetes, heart, brain, kidney, and other diseases. According to the WHO, an estimated 1.28 billion adults aged 30-79 years worldwide have hypertension, with two-thirds living in low- and middle-income countries. But only 1 in 5 adults with hypertension have their blood pressure under control[^1]. Diabetes is another leading cause of death and disability, affecting 0.5 billion people worldwide, the majority in low- and middle-income countries[^2].
+Hypertension or elevated blood pressure is a serious medical condition that significantly increases the risks of diabetes, heart, brain, kidney, and other diseases. According to the WHO, an estimated 1.28 billion adults aged 30-79 years worldwide have hypertension, with two-thirds living in low- and middle-income countries. However, only 1 in 5 adults with hypertension have their blood pressure under control[^1]. Diabetes is another leading cause of death and disability, affecting 0.5 billion people worldwide, the majority in low- and middle-income countries[^2].
 
 Given the high prevalence and co-morbidity of hypertension and diabetes, they are often treated together in primary care settings. Having a single digital tool to manage these patients is critical.
 
