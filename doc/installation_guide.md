@@ -7,7 +7,7 @@ Installation of the package consists of several steps:
 1. [Preparing](#preparing-the-metadata-file) the metadata file with DHIS2 metadata.
 2. [Importing](#importing-metadata) the metadata file into DHIS2.
 3. [Configuring](#additional-configuration) the imported metadata.
-4. [Adapting](#adapting-the-tracker-program) the program after being imported
+4. [Adapting](#adapting-the-tracker-program) the program after metadata import.
 
 It is recommended to first read through each section before starting the installation and configuration process in DHIS2. Sections that are not applicable have been identified, depending on if you are importing into a new instance of DHIS2 or a DHIS2 instance with metadata already present. The procedure outlined in this document should be tested in a test/staging environment before either being repeated or transferred to a production instance of DHIS2.
 
