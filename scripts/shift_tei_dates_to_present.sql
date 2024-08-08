@@ -8,7 +8,8 @@ BEGIN
 
     -- Calculate the difference in days between today's date and the maximum execution date
     IF max_executiondate IS NOT NULL THEN
-        SELECT EXTRACT(DAY FROM (CURRENT_DATE - max_executiondate)) INTO days_difference;
+        -- Use AGE function to get the interval and EXTRACT to get the days part
+        SELECT EXTRACT(DAY FROM AGE(CURRENT_DATE, max_executiondate)) INTO days_difference;
     ELSE
         days_difference := 0; -- If there is no max execution date, no days difference
     END IF;
@@ -16,9 +17,9 @@ BEGIN
     -- Update dates in programinstance table
     UPDATE public.programinstance
     SET
-        enrollmentdate = CASE WHEN enrollmentdate IS NOT NULL THEN enrollmentdate + (days_difference || ' days')::INTERVAL ELSE enrollmentdate END,
-        incidentdate = CASE WHEN incidentdate IS NOT NULL THEN incidentdate + (days_difference || ' days')::INTERVAL ELSE incidentdate END,
-        enddate = CASE WHEN enddate IS NOT NULL THEN enddate + (days_difference || ' days')::INTERVAL ELSE enddate END
+        enrollmentdate = CASE WHEN enrollmentdate IS NOT NULL THEN enrollmentdate + INTERVAL '1 day' * days_difference ELSE enrollmentdate END,
+        incidentdate = CASE WHEN incidentdate IS NOT NULL THEN incidentdate + INTERVAL '1 day' * days_difference ELSE incidentdate END,
+        enddate = CASE WHEN enddate IS NOT NULL THEN enddate + INTERVAL '1 day' * days_difference ELSE enddate END
     WHERE 
         enrollmentdate IS NOT NULL
         OR incidentdate IS NOT NULL
@@ -27,9 +28,9 @@ BEGIN
     -- Update dates in programstageinstance table
     UPDATE public.programstageinstance
     SET
-        executiondate = CASE WHEN executiondate IS NOT NULL THEN executiondate + (days_difference || ' days')::INTERVAL ELSE executiondate END,
-        duedate = CASE WHEN duedate IS NOT NULL THEN duedate + (days_difference || ' days')::INTERVAL ELSE duedate END,
-        completeddate = CASE WHEN completeddate IS NOT NULL THEN completeddate + (days_difference || ' days')::INTERVAL ELSE completeddate END
+        executiondate = CASE WHEN executiondate IS NOT NULL THEN executiondate + INTERVAL '1 day' * days_difference ELSE executiondate END,
+        duedate = CASE WHEN duedate IS NOT NULL THEN duedate + INTERVAL '1 day' * days_difference ELSE duedate END,
+        completeddate = CASE WHEN completeddate IS NOT NULL THEN completeddate + INTERVAL '1 day' * days_difference ELSE completeddate END
     WHERE 
         executiondate IS NOT NULL
         OR duedate IS NOT NULL
