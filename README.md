@@ -15,7 +15,7 @@ Please feel free to use or copy any ideas that you see in this package. This pac
 ## Getting started
 1. Install DHIS2 on your server using [DHIS2 guidelines](https://docs.dhis2.org/en/manage/performing-system-administration/dhis-core-version-master/installation.html).
 2. Refer to the [design guide](doc/design_guide.md) for an overview of the design of the **DHIS2 Tracker program** and **DHIS2 dashboard**. 
-3. Install the hypertension and diabetes package using the [installation guide](doc/installation_guide.md).
+3. Install the hypertension and diabetes package using this [installation guide](doc/installation_guide.md).
 
 ## Other resources
 - [Flat File](https://docs.google.com/spreadsheets/d/1Jy31fIP77R7YLQkGnBSxs_iE5XzJ-rYRdqz0wPSbEPw)
