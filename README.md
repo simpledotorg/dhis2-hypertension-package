@@ -5,7 +5,7 @@
 ## About
 A DHIS2 package that can be used by any team working on hypertension and/or diabetes control projects. The package consists of a **DHIS2 Tracker program** to manage individual patients and a **DHIS2 Dashboard** to monitor program outcomes.
 
-This package draws on the many lessons the team has learned while developing the [Simple.org](https://simple.org/) project and is based on the [WHO HEARTS indicators](https://iris.who.int/bitstream/handle/10665/260423/WHO-NMH-NVI-18.5-eng.pdf). This package is used in Nigeria to manage over 30,000 patients with hypertension. Find out more on how this package can support your hypertension and/or diabetes control project [here](doc/Marketing Material_DHIS2 for Hypertension Control Programs).
+This package draws on the many lessons the team has learned while developing the [Simple.org](https://simple.org/) project and is based on the [WHO HEARTS indicators](https://iris.who.int/bitstream/handle/10665/260423/WHO-NMH-NVI-18.5-eng.pdf). This package is used in Nigeria to manage over 30,000 patients with hypertension. Find out more on how this package can support your hypertension and/or diabetes control project [here](https://github.com/simpledotorg/dhis2-hypertension-package/blob/main/doc/Marketing%20Material_%20DHIS2%20for%20Hypertension%20Control%20Programs.pdf).
 
 Please feel free to use or copy any ideas that you see in this package. This package is maintained by Resolve to Save Lives, contact us at [info@resolvetosavelives.org](mailto:info@resolvetosavelives.org) for more information.
 
