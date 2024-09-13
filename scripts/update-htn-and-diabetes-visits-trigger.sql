@@ -45,8 +45,8 @@ CREATE OR REPLACE FUNCTION update_htn_and_diabetes_visits_trigger ()
     RETURNS TRIGGER
     AS $$
 DECLARE
-    htn_diabetes_program_stage_uid text := 'anb2cjLx3WM';
-    calling_report_program_stage_uid text := 'W7BCOaSquMd';
+    htn_diabetes_program_stage_uid text;
+    calling_report_program_stage_uid text;
     first_call_date_data_element_uid text := 'XMtcYl6Y3Jp';
     result_of_call_data_element_uid text := 'q362A7evMYt';
     remove_from_overdue_reason_data_element_uid text := 'MZkqsWH2KSe';
@@ -55,6 +55,34 @@ DECLARE
     first_calling_report_id bigint;
     first_calling_report_date timestamp;
 BEGIN
+    -- set the HTN program stage UID
+    select
+        htn_diabetes.program_stage_uid
+    into
+        htn_diabetes_program_stage_uid
+    from (
+        select
+            uid as program_stage_uid
+        from
+            programstage
+        where
+            name = 'Hypertension & Diabetes visit'
+    ) htn_diabetes;
+
+    -- set the calling report program stage UID
+    select
+        calling_report.program_stage_uid
+    into
+        calling_report_program_stage_uid
+    from (
+        select
+            uid as program_stage_uid
+        from
+            dataelement
+        where
+            name = 'HTN - Date of first call'
+    ) calling_report;
+
     -- Update event status from OVERDUE to SCHEDULE
     IF NEW.programstageid = (
         SELECT
