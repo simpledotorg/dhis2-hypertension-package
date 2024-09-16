@@ -104,7 +104,6 @@ BEGIN
             psi.programinstanceid = NEW.programinstanceid
             AND psi.executiondate < NEW.executiondate
             AND ps.uid = htn_diabetes_program_stage_uid;
-        RAISE WARNING 'previous_visit_date: %', previous_visit_date;
         -- Find the execution date of the first calling report of the month between the previous visit and the current visit
         IF previous_visit_date IS NOT NULL THEN
             SELECT
