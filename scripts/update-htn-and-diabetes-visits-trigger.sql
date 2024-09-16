@@ -35,12 +35,13 @@ BEGIN
                 programinstanceid = program_instance_id);
 EXCEPTION
     WHEN OTHERS THEN
-        RAISE NOTICE 'Error updating patient status: %', SQLERRM;
+        RAISE WARNING 'Error updating patient status: %', SQLERRM;
 END;
 
 $$
 LANGUAGE plpgsql;
 
+--------------------------------------------------------------------------------------------------------------------------------------------------------
 CREATE OR REPLACE FUNCTION update_htn_and_diabetes_visits_trigger ()
     RETURNS TRIGGER
     AS $$
@@ -54,7 +55,11 @@ DECLARE
     first_calling_report_data jsonb;
     first_calling_report_id bigint;
     first_calling_report_date timestamp;
+    start_time timestamp;
+    end_time timestamp;
 BEGIN
+    -- Record the start time
+    start_time := clock_timestamp();
     -- Update event status from OVERDUE to SCHEDULE
     IF NEW.programstageid = (
         SELECT
@@ -136,20 +141,26 @@ BEGIN
                         programstageinstanceid = first_calling_report_id), 'providedElsewhere', FALSE));
         NEW.eventdatavalues := first_calling_report_data;
     END IF;
+    -- Record the end time
+    end_time := clock_timestamp();
+    -- Log performance statistics
+    RAISE WARNING 'Function execution time: %', end_time - start_time;
     RETURN NEW;
 EXCEPTION
     WHEN OTHERS THEN
         -- Log the error message
-        RAISE NOTICE 'Failed to update HTN & Diabetes visit event with call report event details: %', SQLERRM;
+        RAISE WARNING 'Failed to update HTN & Diabetes visit event with call report event details: %', SQLERRM;
     RETURN NEW;
 END;
 
 $$
 LANGUAGE plpgsql;
 
-CREATE OR REPLACE TRIGGER after_insert_calling_report_programstageinstance
-    AFTER INSERT OR UPDATE ON programstageinstance
+--------------------------------------------------------------------------------------------------------------------------------------------------------
+CREATE OR REPLACE TRIGGER insert_or_update_programstageinstance
+    BEFORE INSERT OR UPDATE ON programstageinstance
     FOR EACH ROW
     WHEN (PG_TRIGGER_DEPTH() = 0)
     EXECUTE FUNCTION update_htn_and_diabetes_visits_trigger ();
 
+--------------------------------------------------------------------------------------------------------------------------------------------------------
