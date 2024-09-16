@@ -104,42 +104,49 @@ BEGIN
             psi.programinstanceid = NEW.programinstanceid
             AND psi.executiondate < NEW.executiondate
             AND ps.uid = htn_diabetes_program_stage_uid;
+        RAISE WARNING 'previous_visit_date: %', previous_visit_date;
         -- Find the execution date of the first calling report of the month between the previous visit and the current visit
-        SELECT
-            executiondate,
-            programstageinstanceid,
-            eventdatavalues INTO first_calling_report_date,
-            first_calling_report_id,
-            first_calling_report_data
-        FROM (
+        IF previous_visit_date IS NOT NULL THEN
             SELECT
-                *,
-                ROW_NUMBER() OVER (PARTITION BY psi.programinstanceid, DATE_TRUNC('month', psi.executiondate) ORDER BY psi.executiondate) AS call_number
-            FROM
-                programstageinstance psi
-                JOIN programstage ps ON psi.programstageid = ps.programstageid
-            WHERE
-                psi.programinstanceid = NEW.programinstanceid
-                AND psi.executiondate >= previous_visit_date
-                AND psi.executiondate < NEW.executiondate
-                AND ps.uid = calling_report_program_stage_uid) AS first_call_report_of_month
-    WHERE
-        call_number = 1
-    ORDER BY
-        executiondate DESC
-    LIMIT 1;
-        first_calling_report_data = COALESCE(NEW.eventdatavalues, '{}'::jsonb) || first_calling_report_data || JSONB_BUILD_OBJECT(first_call_date_data_element_uid, JSONB_BUILD_OBJECT('value', first_calling_report_date, 'created', (
-                    SELECT
-                        created
-                    FROM programstageinstance
-                    WHERE
-                        programstageinstanceid = first_calling_report_id), 'lastUpdated', (
-                    SELECT
-                        lastupdated
-                    FROM programstageinstance
-                    WHERE
-                        programstageinstanceid = first_calling_report_id), 'providedElsewhere', FALSE));
-        NEW.eventdatavalues := first_calling_report_data;
+                executiondate,
+                programstageinstanceid,
+                eventdatavalues INTO first_calling_report_date,
+                first_calling_report_id,
+                first_calling_report_data
+            FROM (
+                SELECT
+                    *,
+                    ROW_NUMBER() OVER (PARTITION BY psi.programinstanceid, DATE_TRUNC('month', psi.executiondate) ORDER BY psi.executiondate) AS call_number
+                FROM
+                    programstageinstance psi
+                    JOIN programstage ps ON psi.programstageid = ps.programstageid
+                WHERE
+                    psi.programinstanceid = NEW.programinstanceid
+                    AND psi.executiondate >= previous_visit_date
+                    AND psi.executiondate <= NEW.executiondate
+                    AND ps.uid = calling_report_program_stage_uid) AS first_call_report_of_month
+        WHERE
+            call_number = 1
+        ORDER BY
+            executiondate DESC
+        LIMIT 1;
+            IF first_calling_report_data IS NULL THEN
+                RAISE INFO 'No previous call data';
+                RETURN NEW;
+            END IF;
+            first_calling_report_data = COALESCE(NEW.eventdatavalues, '{}'::jsonb) || first_calling_report_data || JSONB_BUILD_OBJECT(first_call_date_data_element_uid, JSONB_BUILD_OBJECT('value', first_calling_report_date, 'created', (
+                        SELECT
+                            created
+                        FROM programstageinstance
+                        WHERE
+                            programstageinstanceid = first_calling_report_id), 'lastUpdated', (
+                        SELECT
+                            lastupdated
+                        FROM programstageinstance
+                        WHERE
+                            programstageinstanceid = first_calling_report_id), 'providedElsewhere', FALSE));
+            NEW.eventdatavalues := first_calling_report_data;
+        END IF;
     END IF;
     -- Record the end time
     end_time := clock_timestamp();
