@@ -542,18 +542,37 @@ In the current DHIS2 implementation, Program Indicator (PI) filter cannot perfor
 #### Database Trigger Workaround
 To overcome this limitation, we've implemented a database trigger that update the program stage of an overdue Tracked Entity Instance with the relevant data from another program stage.
 - **Update HTN and Diabetes Visits Trigger**
-  - Trigger name: after_insert_calling_report_programstageinstance
-  - Activates when a new row is inserted into the `programstageinstance` table
-  - Adds the details from the previous "Calling report" program stage to the current "Htn and diabetes visit" program stage.
-  - The "Calling report" program stage chosen corresponds to the first call made in the reporting month.
+  - Trigger name: insert_or_update_programstageinstance
+  - Triggers when a new row is inserted/updated into the `programstageinstance` table
+  - Adds the details from the previous "Calling report" event to the current "Htn and diabetes visit" event. The previous "Calling report" event has to be after the previous "Htn and diabetes visit" event.
+  - The "Calling report" event corresponds to the first call made in the reporting month.
+
+##### Setup
+You will need to make some changes to the program stages inorder for the trigger to work as expected.
+
+- Update the 'HTN and Diabetes Visits' program stage
+  - Go to 'Assign data elements' section under the 'HTN and Diabetes Visits' program stage.
+  - Add the following data elements from 'Calling report' program stage to 'HTN and Diabetes Visits' program stage:
+    1. HTN - Result of call
+    2. HTN - Reason for defaulting
+    3. HTN - Date of first call
+    4. HTN - Reason from overdue list because:
+  - Save
+- Run the script: [update-htn-and-diabetes-visits-trigger.sql](https://github.com/simpledotorg/dhis2-hypertension-package/blob/main/scripts/update-htn-and-diabetes-visits-trigger.sql) against your database.
 
 #### Update legacy data
-If you are already on an overdue management program and want to adapt to this previous approach, use the below script to update the legacy data.
+If you are already on an overdue management program and want to adapt our approach of reporting the data, use the below script to update your legacy data.
+You can find the script in the 'scripts' folder in this repo. Details of the script are given below:
 - **Update existing HTN & diabetes visits event with calling report event data**
   - Function name: update_htn_visits_and_ncd_patient_status_with_call_data
 
+##### Setup
+- Run the script:[update-htn-and-diabetes-visits-in-legacy-data.sql](https://github.com/simpledotorg/dhis2-hypertension-package/blob/main/scripts/update-htn-and-diabetes-visits-in-legacy-data.sql)
+
 #### Benefits of This Approach
-- Overcomes the limitation of filtering events across different Program Stages.
+Overcomes the limitation of filtering events across different Program Stages by bringing the data from two program stages to one program stage.
+This allows us to compare the data from calling report event and visit event. This required to define overdue indicators.
+
 
 ![Database Trigger Workflow](overdue-Trigger-Workflow.png)
 
