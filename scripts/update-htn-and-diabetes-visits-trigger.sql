@@ -35,7 +35,7 @@ BEGIN
                 programinstanceid = program_instance_id);
 EXCEPTION
     WHEN OTHERS THEN
-        RAISE WARNING 'Error updating patient status: %', SQLERRM;
+        RAISE WARNING '[source: update-htn-and-diabetes-visits-trigger.sql] Error updating patient status: %', SQLERRM;
 END;
 
 $$
@@ -130,7 +130,7 @@ BEGIN
             executiondate DESC
         LIMIT 1;
             IF first_calling_report_data IS NULL THEN
-                RAISE INFO 'No previous call data';
+                RAISE INFO '[source: update-htn-and-diabetes-visits-trigger.sql] No previous call data';
                 RETURN NEW;
             END IF;
             first_calling_report_data = COALESCE(NEW.eventdatavalues, '{}'::jsonb) || first_calling_report_data || JSONB_BUILD_OBJECT(first_call_date_data_element_uid, JSONB_BUILD_OBJECT('value', first_calling_report_date, 'created', (
@@ -150,12 +150,12 @@ BEGIN
     -- Record the end time
     end_time := clock_timestamp();
     -- Log performance statistics
-    RAISE WARNING 'Function execution time: %', end_time - start_time;
+    RAISE WARNING '[source: update-htn-and-diabetes-visits-trigger.sql] Function execution time: %', end_time - start_time;
     RETURN NEW;
 EXCEPTION
     WHEN OTHERS THEN
         -- Log the error message
-        RAISE WARNING 'Failed to update HTN & Diabetes visit event with call report event details: %', SQLERRM;
+        RAISE WARNING '[source: update-htn-and-diabetes-visits-trigger.sql] Failed to update HTN & Diabetes visit event with call report event details: %', SQLERRM;
     RETURN NEW;
 END;
 
