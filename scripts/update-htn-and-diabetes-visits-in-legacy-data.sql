@@ -30,7 +30,7 @@ BEGIN
         IF (new_eventdatavalues -> result_of_call_data_element_uid ->> 'value') = 'REMOVE_FROM_OVERDUE' THEN
             PERFORM
                 update_ncd_patient_status (new_program_instance_id, new_eventdatavalues -> remove_from_overdue_reason_data_element_uid ->> 'value');
-            RAISE NOTICE 'Updated the attribute';
+            RAISE WARNING 'Updated the attribute';
         END IF;
         -- Check if the newly inserted row corresponds to the visit program stage
         -- **Note** If the health worker skips a scheduled event after or before creating
@@ -95,14 +95,14 @@ BEGIN
             eventdatavalues = first_calling_report_data
         WHERE
             programstageinstanceid = new_program_stage_instance_id;
-        RAISE NOTICE 'Updated the HTN & Diabetes visit event with call report event details: %', first_calling_report_data;
+        RAISE WARNING 'Updated the HTN & Diabetes visit event with call report event details: %', first_calling_report_data;
     END IF;
 EXCEPTION
     WHEN NOT_NULL_VIOLATION THEN
-        RAISE NOTICE 'No previous call data for the tei: %', new_program_instance_id;
+        RAISE WARNING 'No previous call data for the tei: %', new_program_instance_id;
     WHEN OTHERS THEN
         -- Log the error message
-        RAISE NOTICE 'Failed to update HTN & Diabetes visit event with call report event details: %', SQLERRM;
+        RAISE WARNING 'Failed to update HTN & Diabetes visit event with call report event details: %', SQLERRM;
 END;
 
 $$

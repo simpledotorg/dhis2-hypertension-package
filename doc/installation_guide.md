@@ -520,10 +520,9 @@ To overcome this limitation, we've implemented a series of database triggers. Th
     3. Save and close the file. The cron job is now installed and will run automatically.
 
     Note: Ensure that the user running the cron job has appropriate permissions to execute the SQL function on the DHIS2 database.
-
 5. **Overdue patient updated in legacy data**
-   - Function name: update_overdue_pending_call_for_existing_data_function
-   - To be run only ONCE to update the TEA value to "OVERDUE_PENDING_CALL" of current overdue patients in your system
+    - Function name: update_overdue_pending_call_for_existing_data_function
+    - To be run only ONCE to update the TEA value to "OVERDUE_PENDING_CALL" of current overdue patients in your system
 
 #### Benefits of This Approach
 
@@ -541,6 +540,50 @@ By storing patient status in a TEA, we can more easily manage complex scenarios,
 *Figure 1: Workflow diagram illustrating the database trigger process*
 
 This approach significantly enhances the flexibility and functionality of patient management within the DHIS2 system, particularly for scenarios involving multiple program stages and complex status tracking.
+
+### Trigger for managing overdue patient report in DHIS2
+
+#### Current Limitations in DHIS2
+In the current DHIS2 implementation, Program Indicator (PI) filter cannot perform cross program stage lookups.
+
+#### Database Trigger Workaround
+To overcome this limitation, we've implemented a database trigger that update the program stage of an overdue Tracked Entity Instance with the relevant data from another program stage.
+- **Update HTN and Diabetes Visits Trigger**
+  - Trigger name: insert_or_update_programstageinstance
+  - Triggers when a new row is inserted/updated into the `programstageinstance` table
+  - Adds the details from the previous "Calling report" event to the current "Htn and diabetes visit" event. The previous "Calling report" event has to be after the previous "Htn and diabetes visit" event.
+  - The "Calling report" event corresponds to the first call made in the reporting month.
+
+##### Setup
+You will need to make some changes to the program stages inorder for the trigger to work as expected.
+
+- Update the 'HTN and Diabetes Visits' program stage
+  - Go to 'Assign data elements' section under the 'HTN and Diabetes Visits' program stage.
+  - Add the following data elements from 'Calling report' program stage to 'HTN and Diabetes Visits' program stage:
+    1. HTN - Result of call
+    2. HTN - Reason for defaulting
+    3. HTN - Date of first call
+    4. HTN - Reason from overdue list because:
+  - Save
+- Run the script: [update-htn-and-diabetes-visits-trigger.sql](https://github.com/simpledotorg/dhis2-hypertension-package/blob/main/scripts/update-htn-and-diabetes-visits-trigger.sql) against your database.
+- To be run only ONCE to create the trigger in your database.
+
+#### Update legacy data
+If you are already on an overdue management program and want to adapt our approach of reporting the data, use the below script to update your legacy data.
+You can find the script in the 'scripts' folder in this repo. Details of the script are given below:
+- **Update existing HTN & diabetes visits event with calling report event data**
+  - Function name: update_htn_visits_and_ncd_patient_status_with_call_data
+
+##### Setup
+- Run the script:[update-htn-and-diabetes-visits-in-legacy-data.sql](https://github.com/simpledotorg/dhis2-hypertension-package/blob/main/scripts/update-htn-and-diabetes-visits-in-legacy-data.sql)
+- To be run only ONCE to update the event data values of visits in your system.
+
+#### Benefits of This Approach
+Overcomes the limitation of filtering events across different Program Stages by bringing the data from two program stages to one program stage.
+This allows us to compare the data from calling report event and visit event. This required to define overdue indicators.
+
+
+![Database Trigger Workflow](overdue-Trigger-Workflow.png)
 
 ### Aggregate Data Exchange
 
@@ -606,5 +649,3 @@ Once the programme has been imported, you might want to make certain modificatio
 * Modifying program indicators based on local case definitions
 
 However, it is strongly recommended to take great caution if you decide to change or remove any of the included form/metadata. There is a danger that modifications could break functionality, for example program rules and program indicators.
-
-

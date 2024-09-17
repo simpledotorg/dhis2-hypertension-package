@@ -35,12 +35,13 @@ BEGIN
                 programinstanceid = program_instance_id);
 EXCEPTION
     WHEN OTHERS THEN
-        RAISE NOTICE 'Error updating patient status: %', SQLERRM;
+        RAISE WARNING '[source: update-htn-and-diabetes-visits-trigger.sql] Error updating patient status: %', SQLERRM;
 END;
 
 $$
 LANGUAGE plpgsql;
 
+--------------------------------------------------------------------------------------------------------------------------------------------------------
 CREATE OR REPLACE FUNCTION update_htn_and_diabetes_visits_trigger ()
     RETURNS TRIGGER
     AS $$
@@ -54,7 +55,11 @@ DECLARE
     first_calling_report_data jsonb;
     first_calling_report_id bigint;
     first_calling_report_date timestamp;
+    start_time timestamp;
+    end_time timestamp;
 BEGIN
+    -- Record the start time
+    start_time := clock_timestamp();
     -- Update event status from OVERDUE to SCHEDULE
     IF NEW.programstageid = (
         SELECT
@@ -100,56 +105,68 @@ BEGIN
             AND psi.executiondate < NEW.executiondate
             AND ps.uid = htn_diabetes_program_stage_uid;
         -- Find the execution date of the first calling report of the month between the previous visit and the current visit
-        SELECT
-            executiondate,
-            programstageinstanceid,
-            eventdatavalues INTO first_calling_report_date,
-            first_calling_report_id,
-            first_calling_report_data
-        FROM (
+        IF previous_visit_date IS NOT NULL THEN
             SELECT
-                *,
-                ROW_NUMBER() OVER (PARTITION BY psi.programinstanceid, DATE_TRUNC('month', psi.executiondate) ORDER BY psi.executiondate) AS call_number
-            FROM
-                programstageinstance psi
-                JOIN programstage ps ON psi.programstageid = ps.programstageid
-            WHERE
-                psi.programinstanceid = NEW.programinstanceid
-                AND psi.executiondate >= previous_visit_date
-                AND psi.executiondate < NEW.executiondate
-                AND ps.uid = calling_report_program_stage_uid) AS first_call_report_of_month
-    WHERE
-        call_number = 1
-    ORDER BY
-        executiondate DESC
-    LIMIT 1;
-        first_calling_report_data = COALESCE(NEW.eventdatavalues, '{}'::jsonb) || first_calling_report_data || JSONB_BUILD_OBJECT(first_call_date_data_element_uid, JSONB_BUILD_OBJECT('value', first_calling_report_date, 'created', (
-                    SELECT
-                        created
-                    FROM programstageinstance
-                    WHERE
-                        programstageinstanceid = first_calling_report_id), 'lastUpdated', (
-                    SELECT
-                        lastupdated
-                    FROM programstageinstance
-                    WHERE
-                        programstageinstanceid = first_calling_report_id), 'providedElsewhere', FALSE));
-        NEW.eventdatavalues := first_calling_report_data;
+                executiondate,
+                programstageinstanceid,
+                eventdatavalues INTO first_calling_report_date,
+                first_calling_report_id,
+                first_calling_report_data
+            FROM (
+                SELECT
+                    *,
+                    ROW_NUMBER() OVER (PARTITION BY psi.programinstanceid, DATE_TRUNC('month', psi.executiondate) ORDER BY psi.executiondate) AS call_number
+                FROM
+                    programstageinstance psi
+                    JOIN programstage ps ON psi.programstageid = ps.programstageid
+                WHERE
+                    psi.programinstanceid = NEW.programinstanceid
+                    AND psi.executiondate >= previous_visit_date
+                    AND psi.executiondate <= NEW.executiondate
+                    AND ps.uid = calling_report_program_stage_uid) AS first_call_report_of_month
+        WHERE
+            call_number = 1
+        ORDER BY
+            executiondate DESC
+        LIMIT 1;
+            IF first_calling_report_data IS NULL THEN
+                RAISE INFO '[source: update-htn-and-diabetes-visits-trigger.sql] No previous call data';
+                RETURN NEW;
+            END IF;
+            first_calling_report_data = COALESCE(NEW.eventdatavalues, '{}'::jsonb) || first_calling_report_data || JSONB_BUILD_OBJECT(first_call_date_data_element_uid, JSONB_BUILD_OBJECT('value', first_calling_report_date, 'created', (
+                        SELECT
+                            created
+                        FROM programstageinstance
+                        WHERE
+                            programstageinstanceid = first_calling_report_id), 'lastUpdated', (
+                        SELECT
+                            lastupdated
+                        FROM programstageinstance
+                        WHERE
+                            programstageinstanceid = first_calling_report_id), 'providedElsewhere', FALSE));
+            NEW.eventdatavalues := first_calling_report_data;
+        END IF;
     END IF;
+    -- Record the end time
+    end_time := clock_timestamp();
+    -- Log performance statistics
+    RAISE WARNING '[source: update-htn-and-diabetes-visits-trigger.sql] Function execution time: %', end_time - start_time;
     RETURN NEW;
 EXCEPTION
     WHEN OTHERS THEN
         -- Log the error message
-        RAISE NOTICE 'Failed to update HTN & Diabetes visit event with call report event details: %', SQLERRM;
+        RAISE WARNING '[source: update-htn-and-diabetes-visits-trigger.sql] Failed to update HTN & Diabetes visit event with call report event details: %', SQLERRM;
     RETURN NEW;
 END;
 
 $$
 LANGUAGE plpgsql;
 
-CREATE OR REPLACE TRIGGER after_insert_calling_report_programstageinstance
-    AFTER INSERT OR UPDATE ON programstageinstance
+--------------------------------------------------------------------------------------------------------------------------------------------------------
+CREATE OR REPLACE TRIGGER insert_or_update_programstageinstance
+    BEFORE INSERT OR UPDATE ON programstageinstance
     FOR EACH ROW
     WHEN (PG_TRIGGER_DEPTH() = 0)
     EXECUTE FUNCTION update_htn_and_diabetes_visits_trigger ();
 
+--------------------------------------------------------------------------------------------------------------------------------------------------------
