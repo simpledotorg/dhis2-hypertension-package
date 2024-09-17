@@ -559,6 +559,7 @@ You will need to make some changes to the program stages inorder for the trigger
     4. HTN - Reason from overdue list because:
   - Save
 - Run the script: [update-htn-and-diabetes-visits-trigger.sql](https://github.com/simpledotorg/dhis2-hypertension-package/blob/main/scripts/update-htn-and-diabetes-visits-trigger.sql) against your database.
+- To be run only ONCE to create the trigger in your database.
 
 #### Update legacy data
 If you are already on an overdue management program and want to adapt our approach of reporting the data, use the below script to update your legacy data.
@@ -568,6 +569,7 @@ You can find the script in the 'scripts' folder in this repo. Details of the scr
 
 ##### Setup
 - Run the script:[update-htn-and-diabetes-visits-in-legacy-data.sql](https://github.com/simpledotorg/dhis2-hypertension-package/blob/main/scripts/update-htn-and-diabetes-visits-in-legacy-data.sql)
+- To be run only ONCE to update the event data values of visits in your system.
 
 #### Benefits of This Approach
 Overcomes the limitation of filtering events across different Program Stages by bringing the data from two program stages to one program stage.
