@@ -97,8 +97,8 @@ Feature: Contactable Overdue Patients
       | HTN - Consent to record data          | true         |
       | HTN - NCD Patient Status              | ACTIVE       |
     And That TEI has a "Hypertension & Diabetes visit" event on "7_MonthsAgo" with following data
-      | Systole  | 142 |
-      | Diastole | 95  |
+      | Systole  | 139 |
+      | Diastole | 89  |
     And That TEI has a "Hypertension & Diabetes visit" event scheduled for "6_MonthsAgo"
 
     When I wait for 1 second
