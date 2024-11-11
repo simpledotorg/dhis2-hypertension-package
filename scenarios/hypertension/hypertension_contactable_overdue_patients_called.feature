@@ -20,7 +20,6 @@ Feature: Contactable overdue patients called
       | GEN - Date of birth                   | 32           |
       | Address (current)                     | Rose Gardens |
       | Patient Phone Number                  | 345672781624 |
-      | District                              | KOLARA       |
       | HTN - Consent to record data          | true         |
       | HTN - NCD Patient Status              | ACTIVE       |
     And That TEI has a "Hypertension & Diabetes visit" event on "7_MonthsAgo" with following data
@@ -56,7 +55,6 @@ Feature: Contactable overdue patients called
       | GEN - Date of birth                   | 32           |
       | Address (current)                     | Rose Gardens |
       | Patient Phone Number                  | 345672781624 |
-      | District                              | KOLARA       |
       | HTN - Consent to record data          | true         |
       | HTN - NCD Patient Status              | ACTIVE       |
     And That TEI has a "Hypertension & Diabetes visit" event on "7_MonthsAgo" with following data
@@ -91,7 +89,6 @@ Feature: Contactable overdue patients called
       | HTN - Does patient have diabetes?     | YES          |
       | GEN - Date of birth                   | 32           |
       | Address (current)                     | By the beach |
-      | District                              | KOLARA       |
       | HTN - Consent to record data          | true         |
       | HTN - NCD Patient Status              | ACTIVE       |
     And That TEI has a "Hypertension & Diabetes visit" event on "7_MonthsAgo" with following data
@@ -107,7 +104,6 @@ Feature: Contactable overdue patients called
       | HTN - Does patient have diabetes?     | YES          |
       | GEN - Date of birth                   | 32           |
       | Address (current)                     | By the beach |
-      | District                              | KOLARA       |
       | HTN - Consent to record data          | true         |
       | HTN - NCD Patient Status              | ACTIVE       |
     And That TEI has a "Calling report" event on "4_MonthsAgo" with following data
