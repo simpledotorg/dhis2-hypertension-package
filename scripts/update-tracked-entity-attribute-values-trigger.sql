@@ -237,6 +237,7 @@ BEGIN
     FROM
         programstageinstance AS psi
     WHERE
+        psi.deleted = false AND
         EXISTS (
             SELECT
                 1
