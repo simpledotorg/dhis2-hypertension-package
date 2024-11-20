@@ -20,6 +20,7 @@ BEGIN
     FROM
         programstageinstance AS psi
     WHERE
+        psi.deleted = false AND
         psi.programinstanceid IN (
             SELECT
                 pi.programinstanceid
