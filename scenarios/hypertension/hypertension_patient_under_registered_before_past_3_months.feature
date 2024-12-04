@@ -16,7 +16,6 @@ Feature: Audit the program indicator: HTN - Patients under care registered befor
       | DM diagnosis       | YES          |
       | Date of birth      | 32           |
       | Address            | Rose Gardens |
-      | District           | KOLARA       |
       | Data consent       | true         |
       | NCD Patient Status | ACTIVE       |
     And That TEI has a "Hypertension & Diabetes visit" event on "7_MonthsAgo" with following data
@@ -47,7 +46,6 @@ Feature: Audit the program indicator: HTN - Patients under care registered befor
       | v4DnYfXn9Mu        | YES          |
       | NI0QRzJvQ0k        | 32           |
       | Address            | Rose Gardens |
-      | District           | KOLARA       |
       | Data consent       | true         |
       | NCD Patient Status | ACTIVE       |
 
@@ -100,7 +98,6 @@ Feature: Audit the program indicator: HTN - Patients under care registered befor
       | DM diagnosis       | YES          |
       | Date of birth      | 32           |
       | Address            | Rose Gardens |
-      | District           | KOLARA       |
       | Data consent       | true         |
       | NCD Patient Status | ACTIVE       |
     And That TEI has a "Hypertension & Diabetes visit" event on "6_MonthsAgo" with following data
@@ -138,7 +135,6 @@ Feature: Audit the program indicator: HTN - Patients under care registered befor
       | v4DnYfXn9Mu        | YES          |
       | NI0QRzJvQ0k        | 32           |
       | Address            | Rose Gardens |
-      | District           | KOLARA       |
       | Data consent       | true         |
       | NCD Patient Status | ACTIVE       |
 
@@ -191,7 +187,6 @@ Feature: Audit the program indicator: HTN - Patients under care registered befor
       | DM diagnosis       | NO           |
       | Date of birth      | 32           |
       | Address            | Rose Gardens |
-      | District           | KOLARA       |
       | Data consent       | true         |
       | NCD Patient Status | ACTIVE       |
     And That TEI has a "Hypertension & Diabetes visit" event on "10_MonthsAgo" with following data
@@ -224,7 +219,6 @@ Feature: Audit the program indicator: HTN - Patients under care registered befor
       | v4DnYfXn9Mu        | YES          |
       | NI0QRzJvQ0k        | 32           |
       | Address            | Rose Gardens |
-      | District           | KOLARA       |
       | Data consent       | true         |
       | NCD Patient Status | ACTIVE       |
 
@@ -277,7 +271,6 @@ Feature: Audit the program indicator: HTN - Patients under care registered befor
       | DM diagnosis       | NO           |
       | Date of birth      | 32           |
       | Address            | Rose Gardens |
-      | District           | KOLARA       |
       | Data consent       | true         |
       | NCD Patient Status | ACTIVE       |
 
@@ -305,7 +298,6 @@ Feature: Audit the program indicator: HTN - Patients under care registered befor
       | v4DnYfXn9Mu        | NO           |
       | NI0QRzJvQ0k        | 32           |
       | Address            | Rose Gardens |
-      | District           | KOLARA       |
       | Data consent       | true         |
       | NCD Patient Status | ACTIVE       |
 
@@ -336,7 +328,6 @@ Feature: Audit the program indicator: HTN - Patients under care registered befor
       | DM diagnosis       | NO           |
       | Date of birth      | 32           |
       | Address            | Rose Gardens |
-      | District           | KOLARA       |
       | Data consent       | true         |
       | NCD Patient Status | ACTIVE       |
     And That TEI has a "Hypertension & Diabetes visit" event on "18_MonthsAgo" with following data
