@@ -20,7 +20,7 @@ jobs:
           maven-version: 3.9.6
       - name: Clean branch name
         run: |
-          BRANCH_NAME=${{ env.CLEAN_BRANCH_NAME }}
+          BRANCH_NAME=${{github.ref_name}}
           CLEAN_BRANCH_NAME=$(echo $BRANCH_NAME | sed 's/[\/_]/-/g')
           echo "Cleaned branch name: $CLEAN_BRANCH_NAME"
           echo CLEAN_BRANCH_NAME=$CLEAN_BRANCH_NAME >> $GITHUB_ENV
