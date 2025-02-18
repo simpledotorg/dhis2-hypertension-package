@@ -194,7 +194,7 @@ Feature: Number of overdue patients
     And That TEI has a "Hypertension & Diabetes visit" event scheduled for "6_MonthsAgo"
     And That TEI has a "Calling report" event on "5_MonthsAgo_Plus_1_Day" with following data
       | Result of call                          | REMOVE_FROM_OVERDUE             |
-      | HTN - Remove from overdue list because: | MOVED_TO_ANOTHER_FACILITY |
+      | HTN - Remove from overdue list because: | TRANSFERRED_TO_ANOTHER_FACILITY |
 
     When I wait for 1 second
     And I export the analytics
