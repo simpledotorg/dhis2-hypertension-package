@@ -9,7 +9,7 @@ BEGIN
     SET
         value = CASE WHEN remove_reason = 'DIED' THEN
             'DIED'
-        WHEN remove_reason = 'TRANSFERRED_TO_PRIVATE_PRACTITIONER' THEN
+        WHEN remove_reason = 'MOVED_TO_PRIVATE_PRACTITIONER' THEN
             'TRANSFER'
         WHEN remove_reason = 'TRANSFERRED_TO_ANOTHER_FACILITY' THEN
             'TRANSFER'
