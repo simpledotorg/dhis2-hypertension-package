@@ -585,6 +585,33 @@ This allows us to compare the data from calling report event and visit event. Th
 
 ![Database Trigger Workflow](overdue-Trigger-Workflow.png)
 
+
+### Aggregating Overdue Indicator Values
+
+#### Current Limitation in DHIS2
+In the current DHIS2 setup, using Program Indicators directly in the dashboards, with relatively large data sets, makes the data loading significantly slow. To overcome this limitation, for our Overdue dashboard we have implemented an SQL script to calculate the aggregate data asynchronously and populate related Data Elements. This way, since the values are precalculated we can make the dashboards load faster.
+
+#### Setup
+- If you have the package already running into the system, we need to first delete some of the values that were calculated with the previous approach of using Program Indicators. To do this, run the following command in your database.
+
+   `DELETE FROM datavalue WHERE dataelementid = ( SELECT dataelementid FROM dataelement WHERE uid = 'X0pBiQ6SN5O')
+      AND categoryoptioncomboid = (SELECT categoryoptioncomboid FROM categoryoptioncombo WHERE uid = 'HllvX50cXC0');`
+   
+   After this run the script [sql_agg_calculate_and_store-functions_and_procedure.sql
+](https://github.com/simpledotorg/dhis2-hypertension-package/blob/main/scripts/sql_agg_calculate_and_store-functions_and_procedure.sql) in your database.
+
+- If you are installing the fresh package, just run the script [sql_agg_calculate_and_store-functions_and_procedure.sql
+](https://github.com/simpledotorg/dhis2-hypertension-package/blob/main/scripts/sql_agg_calculate_and_store-functions_and_procedure.sql) in your database.
+
+- To ensure this scripts runs automatically, a cron job needs to be setup.
+   Open the crontab file for editing using `crontab -e`.
+   Add the following line to the file replacing user and schema with your corresponding configurations.
+  
+   `25 20 * * * psql -U[user] -d[schema] -c "call sql_agg_calculate_and_store();"`
+  
+   Save and close the file. The cron job is now installed and will run automatically at 8:25 PM every night on the database.
+
+
 ### Aggregate Data Exchange
 
 ## DHIS2 Aggregate Data Exchange Installation Guide
