@@ -197,7 +197,7 @@ The drug stock and inventory stock can be viewed at facility level. The drug sto
 
 ### Overdue management dashboard
 
-An overdue patient under care with a scheduled visit date which has passed with no visit.
+Overdue patient: A hypertension patient with a scheduled visit date which has passed with no visit
 
 The overdue dashboard includes several new reports showing:
 
