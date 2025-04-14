@@ -115,13 +115,13 @@ At health facility level, the monthly summary form can be used to collect data o
 
 ## Dashboards
 
-Two dashboards are included in this package, the _Hypertension_ and _Diabetes Dashboards_. These dashboards provide an overview of key indicators for hypertension and diabetes treatment outcomes. The dashboard can be viewed as a high-level program administrator user to compare different regions or at a local facility level.
+Three dashboards are included in this package, the _Hypertension_, _Diabetes_ and _Overdue management_ dashboards. These dashboards provide an overview of key indicators for hypertension and diabetes treatment outcomes as well as monitoring of overdue patients. The dashboard can be viewed as a high-level program administrator user to compare different regions or at a local facility level.
 
 Definitions for the dashboard indicators are based on definitions for reporting of [aggregate data from the Simple app](https://docs.simple.org/reports/what-we-report) and the [WHO HEARTS Technical Package](https://www.who.int/publications/i/item/9789240001367). The definitions are included below, and in a text box at the bottom of the dashboard.
 
 ### Hypertension and diabetes dashboards
 
-Each dashboard is divided into the following sections:
+The hypertension and diabetes dashboards are divided into the following sections:
 
 #### Treatment outcomes
 
@@ -195,12 +195,71 @@ The drug stock and inventory stock can be viewed at facility level. The drug sto
 | # Facilities without a working BP monitor                      | The number of facilities without a working BP monitor.                                                                                                                                                                                       |
 | % Facilities reporting BP monitor status                       | Proportion of facilities reporting BP monitor inventory data                                                                                                                                                                                 |
 
-### Overdue Hypertension Patients
+### Overdue management dashboard
+
+An overdue patient under care with a scheduled visit date which has passed with no visit.
+
+The overdue dashboard includes several new reports showing:
+
+- **Overdue patients**: the number of patients under care that were overdue on the 1st of every month.
+- **Overdue patients called**: the number of unique overdue patients that received a call during the month.
+- **Overdue patients that returned to care**: the number of patients that returned to care within 15 days of receiving a call.
+- **Overdue patients line list (table)**: list of patients that are overdue for their scheduled appointments.
 
 ![](./design-guide-images/htn-overdue-dashboard-top-section-part-1.png)
+
+The top three charts follow a specific cascade, the first chart gives the percentage and total number of patients overdue at the start of the month who are contactable. The second chart shows the percentage and number of overdue patients called within the month, and the third chart shows the percentage and number of overdue patients who received at least 1 phone call within the month and returned for a follow-up visit within 15 days.
+
 ![](./design-guide-images/htn-overdue-dashboard-top-section-part-2.png)
+
+The first chart in the next section shows the number of contactable overdue patients as at the start of the month for the past 12 months.
+
+The second chart shows the breakdown of call results for calls made to overdue patients.
+
+The last chart shows the percentage breakdown of overdue patients that returned to care by call result.
+
+**Call results**: There are three categories following outreach to an overdue patient:
+**Agreed to visit** - patient agreed to visit the health facility soon
+**Remind to call later** - health worker is unable to reach the patient and would like to retry calling
+**Remove from overdue** - patient is removed from the overdue patient list because the patient has already visited, is unavailable, has the wrong phone number, transferred to a different facility, has moved, died, refused to return or other
+
+#### Overdue patients called
+
 ![](./design-guide-images/htn-overdue-dashboard-call-table.png)
+
+The sub-region comparison table repeats information on overdue patients called from the charts above at sub-national level for the past four months.
+
+#### Overdue patients line list
+
 ![](./design-guide-images/htn-overdue-dashboard-line-list.png)
+
+The overdue patient line list is a list of overdue patients that contains patient demographic information, patient medical summary and call status. This line list allows a program officer to monitor individual overdue patients. This list can be downloaded and shared with community health workers for home visits, or as part of other outreach programs.
+
+#### Definitions
+
+| **Indicator**                                                                                                                                                                                                     | **Definition**                                                                                                                                                                                                            |
+| :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| % Overdue patients                                                                                                                                                                                                | The number of contactable hypertension patients that are overdue at the start of the month.                                                                                                                               |
+| % Overdue patients called                                                                                                                                                                                         | Unique hypertension patients with at least one calling report event during the month. **Note**: _Patients that become overdue during the month and received a call are counted, they may not be part of the denominator_. |
+| % Overdue patients called during the month with result ‘Agreed to visit’                                                                                                                                          |
+| Patients with the call result '**_Agreed to visit_**' for their first call during the month.                                                                                                                      |
+| % Overdue patients called during the month with result ‘Remind to call later’                                                                                                                                     |
+| Patients with a call result '**_Remind to call later_**' for their first call during the month.                                                                                                                   |
+| % Overdue patients called during the month with result ‘Remove from overdue’                                                                                                                                      |
+| Patients with a call result '**_Remove from overdue_**' for their first call during the month.                                                                                                                    |
+| % Overdue patients called during the month with no result recorded                                                                                                                                                |
+| Patients with **_no result recorded_** for their first call during the month. **_Note_**: _This occurs when a call is made, but the 'Result of call' field was not selected before marking the call as complete_. |
+| % Called overdue patients that returned to care                                                                                                                                                                   |
+| Hypertension patients that returned to care within 15 days of their first call during the month.                                                                                                                  |
+
+| % Called overdue patients with result ‘Agreed to visit’ that returned within 15 days
+Patients that received a call with a call result “Agreed to visit” and returned to care within 15 days. |
+| % Called overdue patients with result ‘Remind to call later’ that returned within 15 days |
+Patients that received a call with a call result “Remind to call later” and returned to care within 15 days. |
+| % Called overdue patients with result ‘Remove from overdue’ that returned within 15 days |
+Patients that received a call with a call result “Remove from overdue” and returned to care within 15 days. |
+| % Called overdue patients with no call result recorded that returned within 15 days |
+Patients that received a call with no call result recorded and returned to care within 15 days. |
 
 [^1]: World Health Organization (25/08/2021). Hypertension Key Facts. Retrieved from: <https://www.who.int/news-room/fact-sheets/detail/hypertension> (Accessed on 19/09/2022) [↩](https://docs.dhis2.org/en/implement/health/non-communicable-diseases/hypertension-control/design.html#fnref:first)
 [^2]: Global Burden of Disease 2021: Findings from the GBD 2021 Study. Retrieved from: <https://www.healthdata.org/research-analysis/library/global-burden-disease-2021-findings-gbd-2021-study> (Accessed on 02/07/2024)
