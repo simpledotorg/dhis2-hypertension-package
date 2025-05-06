@@ -558,7 +558,7 @@ BEGIN
     CREATE TEMP TABLE temp_period_map AS
     SELECT TO_CHAR(startdate, 'YYYYMM') AS period_iso, periodid
     FROM period
-    WHERE periodtypeid = 10; -- 10 is Monthly
+    WHERE periodtypeid = (SELECT periodtypeid FROM periodtype WHERE name = 'Monthly')
 
     -- Get the static values for categoryoptioncomboid
     SELECT categoryoptioncomboid INTO v_attributeoptioncomboid FROM categoryoptioncombo WHERE code = 'default';
