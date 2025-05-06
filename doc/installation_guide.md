@@ -611,6 +611,8 @@ In the current DHIS2 setup, using Program Indicators directly in the dashboards,
   
    Save and close the file. The cron job is now installed and will run automatically at 8:25 PM every night on the database.
 
+For more details about the script, read [SQL Agg Calculate and Store](./sql_agg_calculate_and_store.md)
+
 
 ### Aggregate Data Exchange
 
