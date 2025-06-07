@@ -16,7 +16,6 @@ Feature: Audit HTN - Cumulative registrations
       | HTN - Does patient have diabetes?     | YES          |
       | GEN - Date of birth                   | 32           |
       | Address (current)                     | Rose Gardens |
-      | District                              | KOLARA       |
       | HTN - Consent to record data          | true         |
       | HTN - NCD Patient Status              | ACTIVE       |
     And That TEI has a "Hypertension & Diabetes visit" event on "7_MonthsAgo" with following data
@@ -42,7 +41,6 @@ Feature: Audit HTN - Cumulative registrations
       | DM diagnosis       | YES          |
       | Date of birth      | 32           |
       | Address            | Rose Gardens |
-      | District           | KOLARA       |
       | Data consent       | true         |
       | NCD Patient Status | ACTIVE       |
     And That TEI has a "Hypertension & Diabetes visit" event on "7_MonthsAgo" with following data
@@ -61,7 +59,6 @@ Feature: Audit HTN - Cumulative registrations
       | v4DnYfXn9Mu        | YES          |
       | NI0QRzJvQ0k        | 32           |
       | Address            | Rose Gardens |
-      | District           | KOLARA       |
       | Data consent       | true         |
       | NCD Patient Status | ACTIVE       |
     And That TEI has a "Hypertension & Diabetes visit" event on "9_MonthsAgo" with following data
@@ -91,7 +88,6 @@ Feature: Audit HTN - Cumulative registrations
       | v4DnYfXn9Mu        | YES          |
       | NI0QRzJvQ0k        | 32           |
       | Address            | Rose Gardens |
-      | District           | KOLARA       |
       | Data consent       | true         |
       | NCD Patient Status | ACTIVE       |
     And That TEI has a "Hypertension & Diabetes visit" event on "9_MonthsAgo" with following data
@@ -159,7 +155,6 @@ Feature: Audit HTN - Cumulative registrations
       | DM diagnosis       | YES          |
       | Date of birth      | 32           |
       | Address            | Rose Gardens |
-      | District           | KOLARA       |
       | Data consent       | true         |
       | NCD Patient Status | ACTIVE       |
     And That TEI has a "Hypertension & Diabetes visit" event on "7_MonthsAgo" with following data
@@ -178,7 +173,6 @@ Feature: Audit HTN - Cumulative registrations
       | v4DnYfXn9Mu        | YES          |
       | NI0QRzJvQ0k        | 32           |
       | Address            | Rose Gardens |
-      | District           | KOLARA       |
       | Data consent       | true         |
       | NCD Patient Status | ACTIVE       |
     And That TEI has a "Hypertension & Diabetes visit" event on "10_MonthsAgo" with following data
@@ -208,7 +202,6 @@ Feature: Audit HTN - Cumulative registrations
       | v4DnYfXn9Mu        | YES          |
       | NI0QRzJvQ0k        | 32           |
       | Address            | Rose Gardens |
-      | District           | KOLARA       |
       | Data consent       | true         |
       | NCD Patient Status | ACTIVE       |
     And That TEI has a "Hypertension & Diabetes visit" event on "10_MonthsAgo" with following data
@@ -262,7 +255,6 @@ Feature: Audit HTN - Cumulative registrations
       | HTN - Does patient have diabetes?     | YES          |
       | GEN - Date of birth                   | 32           |
       | Address (current)                     | Rose Gardens |
-      | District                              | KOLARA       |
       | HTN - Consent to record data          | true         |
       | HTN - NCD Patient Status              | ACTIVE       |
 
@@ -287,7 +279,6 @@ Feature: Audit HTN - Cumulative registrations
       | v4DnYfXn9Mu        | YES          |
       | NI0QRzJvQ0k        | 32           |
       | Address            | Rose Gardens |
-      | District           | KOLARA       |
       | Data consent       | true         |
       | NCD Patient Status | ACTIVE       |
     And That TEI has a "Hypertension & Diabetes visit" event on "8_MonthsAgo" with following data
@@ -319,7 +310,6 @@ Feature: Audit HTN - Cumulative registrations
       | v4DnYfXn9Mu        | YES          |
       | NI0QRzJvQ0k        | 32           |
       | Address            | Rose Gardens |
-      | District           | KOLARA       |
       | Data consent       | true         |
       | NCD Patient Status | ACTIVE       |
     And That TEI has a "Hypertension & Diabetes visit" event on "10_MonthsAgo" with following data
