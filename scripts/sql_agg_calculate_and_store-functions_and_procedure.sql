@@ -4,7 +4,7 @@ RETURNS TABLE (
     facility_uid VARCHAR,
     facility_name VARCHAR,
     tei_uid VARCHAR,
-    programinstanceid BIGINT,
+    enrollment_id BIGINT, -- 2.41 Update: Was programinstanceid
     enrollment_uid VARCHAR
 ) AS $$
 DECLARE
@@ -27,59 +27,59 @@ BEGIN
     RETURN QUERY
     WITH last_htn_visit AS (
         SELECT 
-            psi.programinstanceid,
-            MAX(psi.executiondate) AS last_htn_visit_date
+            ev.enrollmentid,
+            MAX(ev.occurreddate) AS last_htn_visit_date -- 2.41 Update: executiondate -> occurreddate
         FROM 
-            programstageinstance psi
+            event ev -- 2.41 Update: programstageinstance -> event
         JOIN 
-            programinstance pi ON psi.programinstanceid = pi.programinstanceid
+            enrollment en ON ev.enrollmentid = en.enrollmentid -- 2.41 Update: programinstance -> enrollment
         WHERE 
-            psi.programstageid = (SELECT programstageid FROM programstage WHERE uid = 'anb2cjLx3WM')
-            AND psi.executiondate IS NOT NULL
-            AND psi.executiondate <= report_end_date
-            AND psi.deleted = false
+            ev.programstageid = (SELECT programstageid FROM programstage WHERE uid = 'anb2cjLx3WM')
+            AND ev.occurreddate IS NOT NULL
+            AND ev.occurreddate <= report_end_date
+            AND ev.deleted = false
         GROUP BY 
-            psi.programinstanceid
+            ev.enrollmentid
     ),
     eligible_patients AS (
         SELECT 
-            pi.programinstanceid,
-            pi.trackedentityinstanceid,
-            pi.enrollmentdate,
-            pi.uid AS enrollment_uid,
+            en.enrollmentid,
+            en.trackedentityid, -- 2.41 Update: trackedentityinstanceid -> trackedentityid
+            en.enrolledat, -- 2.41 Update: enrollmentdate -> enrolledat
+            en.uid AS enrollment_uid,
             last_htn_visit.last_htn_visit_date,
             teav_htn.value AS htn_status,
             teav_alive.value AS alive_status,
             tpo.organisationunitid AS facility_id
         FROM 
-            programinstance pi
+            enrollment en
         JOIN 
-            last_htn_visit ON pi.programinstanceid = last_htn_visit.programinstanceid
+            last_htn_visit ON en.enrollmentid = last_htn_visit.enrollmentid
         JOIN 
-            trackedentityattributevalue teav_htn ON pi.trackedentityinstanceid = teav_htn.trackedentityinstanceid
+            trackedentityattributevalue teav_htn ON en.trackedentityid = teav_htn.trackedentityid
         JOIN 
-            trackedentityattributevalue teav_alive ON pi.trackedentityinstanceid = teav_alive.trackedentityinstanceid
+            trackedentityattributevalue teav_alive ON en.trackedentityid = teav_alive.trackedentityid
         JOIN 
-            trackedentityprogramowner tpo ON pi.trackedentityinstanceid = tpo.trackedentityinstanceid
+            trackedentityprogramowner tpo ON en.trackedentityid = tpo.trackedentityid
         WHERE 
             teav_htn.trackedentityattributeid = (SELECT trackedentityattributeid FROM trackedentityattribute WHERE uid = 'jCRIT4GMMOS')
             AND teav_htn.value = 'YES'
             AND teav_alive.trackedentityattributeid = (SELECT trackedentityattributeid FROM trackedentityattribute WHERE uid = 'fI1P3Mg1zOZ')
             AND teav_alive.value NOT IN ('DIED', 'TRANSFER')
-            AND pi.deleted = false
+            AND en.deleted = false
     )
     SELECT 
         ou.uid AS facility_uid,
         ou.name AS facility_name,
-        tei.uid AS tei_uid,
-        ep.programinstanceid,
+        te.uid AS tei_uid,
+        ep.enrollmentid,
         ep.enrollment_uid
     FROM 
         eligible_patients ep
     JOIN 
         organisationunit ou ON ep.facility_id = ou.organisationunitid
     JOIN
-        trackedentityinstance tei ON tei.trackedentityinstanceid = ep.trackedentityinstanceid
+        trackedentity te ON te.trackedentityid = ep.trackedentityid -- 2.41 Update: trackedentityinstance -> trackedentity
     WHERE 
         ep.last_htn_visit_date BETWEEN twelve_months_ago AND report_end_date
     ORDER BY 
@@ -99,8 +99,6 @@ RETURNS TABLE (
 DECLARE
     report_start_date DATE;
     report_end_date DATE;
-    period_query TEXT;
-    period_record RECORD;
 BEGIN
     -- Fetch period start and end dates
     EXECUTE format(
@@ -117,48 +115,48 @@ BEGIN
         SELECT
             facility_uid,
             facility_name,
-            programinstanceid
+            enrollment_id
         FROM 
             puc(period_type, period_value)
     ),
     overdue_patients AS (
         SELECT 
-            psi.programinstanceid
+            ev.enrollmentid
         FROM 
-            programstageinstance psi
+            event ev
         JOIN 
-            programinstance pi ON psi.programinstanceid = pi.programinstanceid
+            enrollment en ON ev.enrollmentid = en.enrollmentid
         JOIN
-            trackedentityattributevalue teav_phone ON pi.trackedentityinstanceid = teav_phone.trackedentityinstanceid
+            trackedentityattributevalue teav_phone ON en.trackedentityid = teav_phone.trackedentityid
         WHERE 
-            psi.programstageid = (SELECT programstageid FROM programstage WHERE uid = 'anb2cjLx3WM') -- HTN Visit
+            ev.programstageid = (SELECT programstageid FROM programstage WHERE uid = 'anb2cjLx3WM') -- HTN Visit
             AND teav_phone.trackedentityattributeid = (SELECT trackedentityattributeid FROM trackedentityattribute WHERE uid = 'YRDy9xy9jD0')
             AND (teav_phone.value IS NOT NULL OR teav_phone.value != '') -- Have a phone number -> Contactable
-            AND psi.deleted = FALSE
-            AND pi.enrollmentdate < report_end_date -- Ensure enrolled before period
+            AND ev.deleted = FALSE
+            AND en.enrolledat < report_end_date -- Ensure enrolled before period
             AND (
                 -- Condition 1: SCHEDULE or OVERDUE, duedate is overdue at period start
-                (psi.status IN ('SCHEDULE', 'OVERDUE') 
-                 AND psi.duedate IS NOT NULL 
-                 AND psi.duedate < report_start_date)
+                (ev.status IN ('SCHEDULE', 'OVERDUE') 
+                 AND ev.duedate IS NOT NULL 
+                 AND ev.duedate < report_start_date)
                 OR
-                -- Condition 2: COMPLETED or ACTIVE, duedate < executiondate, executiondate in period
-                (psi.status IN ('COMPLETED', 'ACTIVE') 
-                 AND psi.duedate IS NOT NULL 
-                 AND psi.duedate < report_start_date
-                 AND psi.executiondate IS NOT NULL 
-                 AND psi.executiondate >= report_start_date
-                 AND psi.duedate < psi.executiondate)
+                -- Condition 2: COMPLETED or ACTIVE, duedate < occurreddate, occurreddate in period
+                (ev.status IN ('COMPLETED', 'ACTIVE') 
+                 AND ev.duedate IS NOT NULL 
+                 AND ev.duedate < report_start_date
+                 AND ev.occurreddate IS NOT NULL 
+                 AND ev.occurreddate >= report_start_date
+                 AND ev.duedate < ev.occurreddate)
             )
     )
     SELECT 
         puc.facility_uid ou_uid,
         puc.facility_name ou_name,
-        COUNT(DISTINCT puc.programinstanceid)::INTEGER AS patient_count
+        COUNT(DISTINCT puc.enrollment_id)::INTEGER AS patient_count
     FROM 
         puc_patients puc
     JOIN 
-        overdue_patients ov ON puc.programinstanceid = ov.programinstanceid
+        overdue_patients ov ON puc.enrollment_id = ov.enrollmentid
     GROUP BY 
         ou_name, ou_uid
     ORDER BY 
@@ -177,8 +175,6 @@ RETURNS TABLE (
 DECLARE
     report_start_date DATE;
     report_end_date DATE;
-    period_query TEXT;
-    period_record RECORD;
 BEGIN
     -- Fetch period start and end dates
     EXECUTE format(
@@ -195,7 +191,7 @@ BEGIN
         SELECT 
             facility_uid,
             facility_name,
-            programinstanceid
+            enrollment_id
         FROM 
             puc(period_type, period_value) pp
     ),
@@ -204,28 +200,28 @@ BEGIN
         SELECT 
             pp.facility_uid,                   
             pp.facility_name,
-            pp.programinstanceid,
-            call.executiondate AS first_call_date,
+            pp.enrollment_id,
+            call.occurreddate AS first_call_date,
             COALESCE(NULLIF((call.eventdatavalues->'q362A7evMYt'->>'value')::VARCHAR, ''), 'UNKNOWN') AS call_result, -- Replaces empty string with 'UNKNOWN'
             ROW_NUMBER() OVER (
-                PARTITION BY pp.programinstanceid 
-                ORDER BY call.executiondate ASC
+                PARTITION BY pp.enrollment_id 
+                ORDER BY call.occurreddate ASC
             ) AS row_num
         FROM 
             puc_patients pp
         JOIN 
-            programstageinstance call ON pp.programinstanceid = call.programinstanceid
+            event call ON pp.enrollment_id = call.enrollmentid
         WHERE 
             call.programstageid = (SELECT programstageid FROM programstage WHERE uid = 'W7BCOaSquMd') -- Calling Report
-            AND call.executiondate IS NOT NULL
-            AND call.executiondate BETWEEN report_start_date AND report_end_date -- First call in reporting period
+            AND call.occurreddate IS NOT NULL
+            AND call.occurreddate BETWEEN report_start_date AND report_end_date -- First call in reporting period
             AND call.deleted = FALSE
     )
     SELECT
         fc.facility_uid AS ou_uid,
         fc.facility_name AS ou_name,
         fc.call_result::VARCHAR,
-        COUNT(DISTINCT fc.programinstanceid)::INTEGER AS patient_count
+        COUNT(DISTINCT fc.enrollment_id)::INTEGER AS patient_count
     FROM 
         first_call fc
     WHERE 
@@ -327,8 +323,6 @@ RETURNS TABLE (
 DECLARE
     report_start_date DATE;
     report_end_date DATE;
-    period_query TEXT;
-    period_record RECORD;
 BEGIN
     -- Fetch period start and end dates
     EXECUTE format(
@@ -345,7 +339,7 @@ BEGIN
         SELECT 
             facility_uid,
             facility_name,
-            programinstanceid
+            enrollment_id
         FROM 
             puc(period_type, period_value) pp
     ),
@@ -354,21 +348,21 @@ BEGIN
         SELECT 
             pp.facility_uid,                   
             pp.facility_name,
-            pp.programinstanceid,
-            call.executiondate AS first_call_date,
+            pp.enrollment_id,
+            call.occurreddate AS first_call_date,
             COALESCE(NULLIF((call.eventdatavalues->'q362A7evMYt'->>'value')::VARCHAR, ''), 'UNKNOWN') AS call_result, -- Replaces empty string with 'UNKNOWN'
             ROW_NUMBER() OVER (
-                PARTITION BY pp.programinstanceid 
-                ORDER BY call.executiondate ASC
+                PARTITION BY pp.enrollment_id 
+                ORDER BY call.occurreddate ASC
             ) AS row_num
         FROM 
             puc_patients pp
         JOIN 
-            programstageinstance call ON pp.programinstanceid = call.programinstanceid
+            event call ON pp.enrollment_id = call.enrollmentid
         WHERE 
             call.programstageid = (SELECT programstageid FROM programstage WHERE uid = 'W7BCOaSquMd') -- Calling Report
-            AND call.executiondate IS NOT NULL
-            AND call.executiondate BETWEEN report_start_date AND report_end_date -- First call in reporting period
+            AND call.occurreddate IS NOT NULL
+            AND call.occurreddate BETWEEN report_start_date AND report_end_date -- First call in reporting period
             AND call.deleted = FALSE
     ),
     htn_visits_after_call AS (
@@ -377,17 +371,17 @@ BEGIN
             fc.facility_uid,             
             fc.facility_name,
             fc.call_result,
-            fc.programinstanceid
+            fc.enrollment_id
         FROM 
             first_call fc
         JOIN 
-            programstageinstance visit ON fc.programinstanceid = visit.programinstanceid
+            event visit ON fc.enrollment_id = visit.enrollmentid
         WHERE 
             visit.programstageid = (SELECT programstageid FROM programstage WHERE uid = 'anb2cjLx3WM') -- HTN Visit
-            AND visit.executiondate BETWEEN fc.first_call_date AND (fc.first_call_date + INTERVAL '15 days') -- Visit within 15 days of first call
-            AND visit.duedate < visit.executiondate -- Visit was overdue
+            AND visit.occurreddate BETWEEN fc.first_call_date AND (fc.first_call_date + INTERVAL '15 days') -- Visit within 15 days of first call
+            AND visit.duedate < visit.occurreddate -- Visit was overdue
             AND visit.status IN ('ACTIVE', 'COMPLETED') -- Valid visit statuses
-            AND visit.executiondate BETWEEN report_start_date AND (report_end_date + INTERVAL '15 days')
+            AND visit.occurreddate BETWEEN report_start_date AND (report_end_date + INTERVAL '15 days')
             AND visit.deleted = FALSE
             AND fc.row_num = 1 -- Ensures only the first call per patient is used
     )
@@ -396,7 +390,7 @@ BEGIN
         hv.facility_uid AS ou_uid,
         hv.facility_name AS ou_name,
         hv.call_result::VARCHAR,
-        COUNT(DISTINCT hv.programinstanceid)::INTEGER AS patient_count
+        COUNT(DISTINCT hv.enrollment_id)::INTEGER AS patient_count
     FROM 
         htn_visits_after_call hv
     GROUP BY 
@@ -558,7 +552,7 @@ BEGIN
     CREATE TEMP TABLE temp_period_map AS
     SELECT TO_CHAR(startdate, 'YYYYMM') AS period_iso, periodid
     FROM period
-    WHERE periodtypeid = (SELECT periodtypeid FROM periodtype WHERE name = 'Monthly')
+    WHERE periodtypeid = (SELECT periodtypeid FROM periodtype WHERE name = 'Monthly');
 
     -- Get the static values for categoryoptioncomboid
     SELECT categoryoptioncomboid INTO v_attributeoptioncomboid FROM categoryoptioncombo WHERE code = 'default';
@@ -669,4 +663,3 @@ EXCEPTION
         RAISE;
 END;
 $$;
-
