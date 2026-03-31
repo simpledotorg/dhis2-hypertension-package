@@ -1,38 +1,38 @@
 CREATE OR REPLACE FUNCTION shift_tei_dates_to_present() RETURNS VOID AS $$
 DECLARE
-    max_executiondate DATE;
+    max_occurreddate DATE;
     days_difference INTEGER;
 BEGIN
-    -- Get the maximum execution date from the programstageinstance table
-    SELECT MAX(executiondate) INTO max_executiondate FROM public.programstageinstance;
+    -- 1. Get the maximum occurred date from the event table (formerly programstageinstance)
+    SELECT MAX(occurreddate) INTO max_occurreddate FROM public.event;
 
-    -- Calculate the difference in days between today's date and the maximum execution date
-    IF max_executiondate IS NOT NULL THEN
-        -- Use AGE function to get the interval and EXTRACT to get the days part
-        SELECT EXTRACT(DAY FROM AGE(CURRENT_DATE, max_executiondate)) INTO days_difference;
+    -- 2. Calculate the difference in days
+    IF max_occurreddate IS NOT NULL THEN
+        -- Using simple date subtraction is often cleaner for day counts in Postgres
+        days_difference := (CURRENT_DATE - max_occurreddate)::INTEGER;
     ELSE
-        days_difference := 0; -- If there is no max execution date, no days difference
+        days_difference := 0;
     END IF;
 
-    -- Update dates in programinstance table
-    UPDATE public.programinstance
+    -- 3. Update dates in enrollment table (formerly programinstance)
+    UPDATE public.enrollment
     SET
-        enrollmentdate = CASE WHEN enrollmentdate IS NOT NULL THEN enrollmentdate + INTERVAL '1 day' * days_difference ELSE enrollmentdate END,
-        incidentdate = CASE WHEN incidentdate IS NOT NULL THEN incidentdate + INTERVAL '1 day' * days_difference ELSE incidentdate END,
-        enddate = CASE WHEN enddate IS NOT NULL THEN enddate + INTERVAL '1 day' * days_difference ELSE enddate END
+        enrolledat = CASE WHEN enrolledat IS NOT NULL THEN enrolledat + (INTERVAL '1 day' * days_difference) ELSE enrolledat END,
+        occurredat = CASE WHEN occurredat IS NOT NULL THEN occurredat + (INTERVAL '1 day' * days_difference) ELSE occurredat END,
+        enddate = CASE WHEN enddate IS NOT NULL THEN enddate + (INTERVAL '1 day' * days_difference) ELSE enddate END
     WHERE 
-        enrollmentdate IS NOT NULL
-        OR incidentdate IS NOT NULL
+        enrolledat IS NOT NULL
+        OR occurredat IS NOT NULL
         OR enddate IS NOT NULL;
 
-    -- Update dates in programstageinstance table
-    UPDATE public.programstageinstance
+    -- 4. Update dates in event table (formerly programstageinstance)
+    UPDATE public.event
     SET
-        executiondate = CASE WHEN executiondate IS NOT NULL THEN executiondate + INTERVAL '1 day' * days_difference ELSE executiondate END,
-        duedate = CASE WHEN duedate IS NOT NULL THEN duedate + INTERVAL '1 day' * days_difference ELSE duedate END,
-        completeddate = CASE WHEN completeddate IS NOT NULL THEN completeddate + INTERVAL '1 day' * days_difference ELSE completeddate END
+        occurreddate = CASE WHEN occurreddate IS NOT NULL THEN occurreddate + (INTERVAL '1 day' * days_difference) ELSE occurreddate END,
+        duedate = CASE WHEN duedate IS NOT NULL THEN duedate + (INTERVAL '1 day' * days_difference) ELSE duedate END,
+        completeddate = CASE WHEN completeddate IS NOT NULL THEN completeddate + (INTERVAL '1 day' * days_difference) ELSE completeddate END
     WHERE 
-        executiondate IS NOT NULL
+        occurreddate IS NOT NULL
         OR duedate IS NOT NULL
         OR completeddate IS NOT NULL;
 END;
