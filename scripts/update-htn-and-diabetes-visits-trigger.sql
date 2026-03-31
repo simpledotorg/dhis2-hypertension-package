@@ -1,4 +1,4 @@
-CREATE OR REPLACE FUNCTION update_ncd_patient_status (program_instance_id bigint, remove_reason text)
+CREATE OR REPLACE FUNCTION update_ncd_patient_status (p_enrollment_id bigint, remove_reason text)
     RETURNS VOID
     AS $$
 DECLARE
@@ -26,16 +26,16 @@ BEGIN
                 trackedentityattribute
             WHERE
                 uid = ncd_patient_status_tea_uid)
-        AND trackedentityinstanceid = (
+        AND trackedentityid = ( -- 2.41 Update: trackedentityinstanceid -> trackedentityid
             SELECT
-                trackedentityinstanceid
+                trackedentityid
             FROM
-                programinstance
+                enrollment -- 2.41 Update: programinstance -> enrollment
             WHERE
-                programinstanceid = program_instance_id);
+                enrollmentid = p_enrollment_id); -- 2.41 Update: programinstanceid -> enrollmentid
 EXCEPTION
     WHEN OTHERS THEN
-        RAISE WARNING '[source: update-htn-and-diabetes-visits-trigger.sql] Error updating patient status: %', SQLERRM;
+        RAISE WARNING 'Error updating patient status: %', SQLERRM;
 END;
 
 $$
@@ -80,7 +80,7 @@ BEGIN
             uid = calling_report_program_stage_uid) THEN
         IF (NEW.eventdatavalues -> result_of_call_data_element_uid ->> 'value') = 'REMOVE_FROM_OVERDUE' THEN
             PERFORM
-                update_ncd_patient_status (NEW.programinstanceid, NEW.eventdatavalues -> remove_from_overdue_reason_data_element_uid ->> 'value');
+                update_ncd_patient_status (NEW.enrollmentid, NEW.eventdatavalues -> remove_from_overdue_reason_data_element_uid ->> 'value'); -- 2.41 Update: NEW.programinstanceid -> NEW.enrollmentid
         END IF;
         -- Check if the newly inserted row corresponds to the visit program stage
         -- **Note** If the health worker skips a scheduled event after or before creating
@@ -94,68 +94,69 @@ BEGIN
                 WHERE
                     uid = htn_diabetes_program_stage_uid)
             AND NEW.status IN ('ACTIVE', 'COMPLETED')) THEN
-        -- Find the execution date of the previous visit
+        -- Find the occurred date of the previous visit
         SELECT
-            MAX(psi.executiondate) INTO previous_visit_date
+            MAX(ev.occurreddate) INTO previous_visit_date -- 2.41 Update: executiondate -> occurreddate
         FROM
-            programstageinstance psi
-            JOIN programstage ps ON psi.programstageid = ps.programstageid
+            event ev -- 2.41 Update: programstageinstance -> event
+            JOIN programstage ps ON ev.programstageid = ps.programstageid
         WHERE
-            psi.programinstanceid = NEW.programinstanceid
-            AND psi.executiondate < NEW.executiondate
+            ev.enrollmentid = NEW.enrollmentid
+            AND ev.occurreddate < NEW.occurreddate
             AND ps.uid = htn_diabetes_program_stage_uid;
-        -- Find the execution date of the first calling report of the month between the previous visit and the current visit
+            
+        -- Find the occurred date of the first calling report of the month between the previous visit and the current visit
         IF previous_visit_date IS NOT NULL THEN
             SELECT
-                executiondate,
-                programstageinstanceid,
+                occurreddate,
+                eventid, -- 2.41 Update: programstageinstanceid -> eventid
                 eventdatavalues INTO first_calling_report_date,
                 first_calling_report_id,
                 first_calling_report_data
             FROM (
                 SELECT
                     *,
-                    ROW_NUMBER() OVER (PARTITION BY psi.programinstanceid, DATE_TRUNC('month', psi.executiondate) ORDER BY psi.executiondate) AS call_number
+                    ROW_NUMBER() OVER (PARTITION BY ev.enrollmentid, DATE_TRUNC('month', ev.occurreddate) ORDER BY ev.occurreddate) AS call_number
                 FROM
-                    programstageinstance psi
-                    JOIN programstage ps ON psi.programstageid = ps.programstageid
+                    event ev
+                    JOIN programstage ps ON ev.programstageid = ps.programstageid
                 WHERE
-                    psi.programinstanceid = NEW.programinstanceid
-                    AND psi.executiondate >= previous_visit_date
-                    AND psi.executiondate <= NEW.executiondate
+                    ev.enrollmentid = NEW.enrollmentid
+                    AND ev.occurreddate >= previous_visit_date
+                    AND ev.occurreddate <= NEW.occurreddate
                     AND ps.uid = calling_report_program_stage_uid) AS first_call_report_of_month
         WHERE
             call_number = 1
         ORDER BY
-            executiondate DESC
+            occurreddate DESC
         LIMIT 1;
             IF first_calling_report_data IS NULL THEN
-                RAISE INFO '[source: update-htn-and-diabetes-visits-trigger.sql] No previous call data';
+                RAISE INFO 'No previous call data';
                 RETURN NEW;
             END IF;
             first_calling_report_data = COALESCE(NEW.eventdatavalues, '{}'::jsonb) || first_calling_report_data || JSONB_BUILD_OBJECT(first_call_date_data_element_uid, JSONB_BUILD_OBJECT('value', first_calling_report_date, 'created', (
                         SELECT
                             created
-                        FROM programstageinstance
+                        FROM event
                         WHERE
-                            programstageinstanceid = first_calling_report_id), 'lastUpdated', (
+                            eventid = first_calling_report_id), 'lastUpdated', (
                         SELECT
                             lastupdated
-                        FROM programstageinstance
+                        FROM event
                         WHERE
-                            programstageinstanceid = first_calling_report_id), 'providedElsewhere', FALSE));
+                            eventid = first_calling_report_id), 'providedElsewhere', FALSE));
             NEW.eventdatavalues := first_calling_report_data;
         END IF;
     END IF;
     -- Record the end time
     end_time := clock_timestamp();
     -- Log performance statistics
-    RAISE WARNING '[source: update-htn-and-diabetes-visits-trigger.sql] Function execution time: %', end_time - start_time;
+    RAISE WARNING 'Function execution time: %', end_time - start_time;
     RETURN NEW;
 EXCEPTION
     WHEN OTHERS THEN
         -- Log the error message
-        RAISE WARNING '[source: update-htn-and-diabetes-visits-trigger.sql] Failed to update HTN & Diabetes visit event with call report event details: %', SQLERRM;
+        RAISE WARNING 'Failed to update HTN & Diabetes visit event with call report event details: %', SQLERRM;
     RETURN NEW;
 END;
 
@@ -163,8 +164,12 @@ $$
 LANGUAGE plpgsql;
 
 --------------------------------------------------------------------------------------------------------------------------------------------------------
-CREATE OR REPLACE TRIGGER insert_or_update_programstageinstance
-    BEFORE INSERT OR UPDATE ON programstageinstance
+-- Clean up old trigger if it still exists
+DROP TRIGGER IF EXISTS insert_or_update_programstageinstance ON programstageinstance;
+
+-- Create the new trigger on the 'event' table
+CREATE OR REPLACE TRIGGER insert_or_update_event
+    BEFORE INSERT OR UPDATE ON event
     FOR EACH ROW
     WHEN (PG_TRIGGER_DEPTH() = 0)
     EXECUTE FUNCTION update_htn_and_diabetes_visits_trigger ();
