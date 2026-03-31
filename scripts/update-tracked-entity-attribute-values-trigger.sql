@@ -1,23 +1,23 @@
-DROP TRIGGER IF EXISTS update_teav_OVERDUE_PENDING_CALL_trigger_function ON programstageinstance;
-
+-----------------------------------------------------------------------------------------------------------
+-- 1. OVERDUE PENDING CALL TRIGGER
+-----------------------------------------------------------------------------------------------------------
+DROP TRIGGER IF EXISTS update_teav_OVERDUE_PENDING_CALL_trigger_function ON event;
 DROP FUNCTION IF EXISTS update_teav_OVERDUE_PENDING_CALL_trigger_function ();
 
 CREATE OR REPLACE FUNCTION update_teav_OVERDUE_PENDING_CALL_trigger_function ()
     RETURNS TRIGGER
     AS $$
 BEGIN
-    -- Check if the status column is being updated to 'OVERDUE'
     IF NEW.status = 'OVERDUE' AND OLD.status <> NEW.status THEN
-        -- Update or insert a row in the trackedentityattributevalue with value OVERDUE_PENDING_CALL
         BEGIN
-            INSERT INTO trackedentityattributevalue (trackedentityinstanceid, trackedentityattributeid, value, created, lastupdated, storedby)
+            INSERT INTO trackedentityattributevalue (trackedentityid, trackedentityattributeid, value, created, lastupdated, storedby)
                 VALUES ((
                         SELECT
-                            trackedentityinstanceid
+                            trackedentityid
                         FROM
-                            programinstance
+                            enrollment
                         WHERE
-                            programinstanceid = NEW.programinstanceid), (
+                            enrollmentid = NEW.enrollmentid), (
                             SELECT
                                 trackedentityattributeid
                             FROM
@@ -27,9 +27,9 @@ BEGIN
                                 SELECT
                                     created
                                 FROM
-                                    programinstance
+                                    enrollment
                                 WHERE
-                                    programinstanceid = NEW.programinstanceid), CURRENT_TIMESTAMP, -- Use current date and time
+                                    enrollmentid = NEW.enrollmentid), CURRENT_TIMESTAMP, 
                                 'trigger');
         EXCEPTION
             WHEN unique_violation THEN
@@ -37,16 +37,16 @@ BEGIN
                     trackedentityattributevalue
                 SET
                     value = 'OVERDUE_PENDING_CALL',
-                    lastupdated = CURRENT_TIMESTAMP, -- Use current date and time
+                    lastupdated = CURRENT_TIMESTAMP,
                     storedby = 'trigger'
                 WHERE
-                    trackedentityinstanceid = (
+                    trackedentityid = (
                         SELECT
-                            trackedentityinstanceid
+                            trackedentityid
                         FROM
-                            programinstance
+                            enrollment
                         WHERE
-                            programinstanceid = NEW.programinstanceid)
+                            enrollmentid = NEW.enrollmentid)
                     AND trackedentityattributeid = (
                         SELECT
                             trackedentityattributeid
@@ -58,26 +58,24 @@ BEGIN
     END IF;
     RETURN NEW;
 END;
-
-$$
-LANGUAGE plpgsql;
+$$ LANGUAGE plpgsql;
 
 CREATE TRIGGER update_teav_OVERDUE_PENDING_CALL_trigger_function
-    AFTER UPDATE ON programstageinstance
+    AFTER UPDATE ON event
     FOR EACH ROW
     WHEN (NEW.status IS DISTINCT FROM OLD.status)
     EXECUTE FUNCTION update_teav_OVERDUE_PENDING_CALL_trigger_function ();
 
 -----------------------------------------------------------------------------------------------------------
-DROP TRIGGER IF EXISTS update_teav_UPCOMING_VISIT_trigger_function ON programstageinstance;
-
+-- 2. UPCOMING VISIT TRIGGER
+-----------------------------------------------------------------------------------------------------------
+DROP TRIGGER IF EXISTS update_teav_UPCOMING_VISIT_trigger_function ON event;
 DROP FUNCTION IF EXISTS update_teav_UPCOMING_VISIT_trigger_function ();
 
 CREATE OR REPLACE FUNCTION update_teav_UPCOMING_VISIT_trigger_function ()
     RETURNS TRIGGER
     AS $$
 BEGIN
-    -- Check if the newly inserted row has programstageid equal to the given programstage uid
     IF NEW.programstageid = (
         SELECT
             programstageid
@@ -85,16 +83,15 @@ BEGIN
             programstage
         WHERE
             uid = 'anb2cjLx3WM') AND NEW.status = 'SCHEDULE' THEN
-        -- Update or insert a row in the trackedentityattributevalue with value UPCOMING_VISIT
         BEGIN
-            INSERT INTO trackedentityattributevalue (trackedentityinstanceid, trackedentityattributeid, value, created, lastupdated, storedby)
+            INSERT INTO trackedentityattributevalue (trackedentityid, trackedentityattributeid, value, created, lastupdated, storedby)
                 VALUES ((
                         SELECT
-                            trackedentityinstanceid
+                            trackedentityid
                         FROM
-                            programinstance
+                            enrollment
                         WHERE
-                            programinstanceid = NEW.programinstanceid), (
+                            enrollmentid = NEW.enrollmentid), (
                             SELECT
                                 trackedentityattributeid
                             FROM
@@ -104,9 +101,9 @@ BEGIN
                                 SELECT
                                     created
                                 FROM
-                                    programinstance
+                                    enrollment
                                 WHERE
-                                    programinstanceid = NEW.programinstanceid), CURRENT_TIMESTAMP, -- Use current date and time
+                                    enrollmentid = NEW.enrollmentid), CURRENT_TIMESTAMP, 
                                 'trigger');
         EXCEPTION
             WHEN unique_violation THEN
@@ -114,16 +111,16 @@ BEGIN
                     trackedentityattributevalue
                 SET
                     value = 'UPCOMING_VISIT',
-                    lastupdated = CURRENT_TIMESTAMP, -- Use current date and time
+                    lastupdated = CURRENT_TIMESTAMP,
                     storedby = 'trigger'
                 WHERE
-                    trackedentityinstanceid = (
+                    trackedentityid = (
                         SELECT
-                            trackedentityinstanceid
+                            trackedentityid
                         FROM
-                            programinstance
+                            enrollment
                         WHERE
-                            programinstanceid = NEW.programinstanceid)
+                            enrollmentid = NEW.enrollmentid)
                     AND trackedentityattributeid = (
                         SELECT
                             trackedentityattributeid
@@ -135,25 +132,23 @@ BEGIN
     END IF;
     RETURN NEW;
 END;
-
-$$
-LANGUAGE plpgsql;
+$$ LANGUAGE plpgsql;
 
 CREATE TRIGGER update_teav_UPCOMING_VISIT_trigger_function
-    AFTER INSERT ON programstageinstance
+    AFTER INSERT ON event
     FOR EACH ROW
     EXECUTE FUNCTION update_teav_UPCOMING_VISIT_trigger_function ();
 
 -----------------------------------------------------------------------------------------------------------
-DROP TRIGGER IF EXISTS update_teav_CALLED_trigger_function ON programstageinstance;
-
+-- 3. CALLED TRIGGER
+-----------------------------------------------------------------------------------------------------------
+DROP TRIGGER IF EXISTS update_teav_CALLED_trigger_function ON event;
 DROP FUNCTION IF EXISTS update_teav_CALLED_trigger_function ();
 
 CREATE OR REPLACE FUNCTION update_teav_CALLED_trigger_function ()
     RETURNS TRIGGER
     AS $$
 BEGIN
-    -- Check if the newly inserted row has programstageid equal to the given programstage uid
     IF NEW.programstageid = (
         SELECT
             programstageid
@@ -161,16 +156,15 @@ BEGIN
             programstage
         WHERE
             uid = 'W7BCOaSquMd') THEN
-        -- Update or insert a row in the trackedentityattributevalue with value CALLED
         BEGIN
-            INSERT INTO trackedentityattributevalue (trackedentityinstanceid, trackedentityattributeid, value, created, lastupdated, storedby)
+            INSERT INTO trackedentityattributevalue (trackedentityid, trackedentityattributeid, value, created, lastupdated, storedby)
                 VALUES ((
                         SELECT
-                            trackedentityinstanceid
+                            trackedentityid
                         FROM
-                            programinstance
+                            enrollment
                         WHERE
-                            programinstanceid = NEW.programinstanceid), (
+                            enrollmentid = NEW.enrollmentid), (
                             SELECT
                                 trackedentityattributeid
                             FROM
@@ -180,9 +174,9 @@ BEGIN
                                 SELECT
                                     created
                                 FROM
-                                    programinstance
+                                    enrollment
                                 WHERE
-                                    programinstanceid = NEW.programinstanceid), CURRENT_TIMESTAMP, -- Use current date and time
+                                    enrollmentid = NEW.enrollmentid), CURRENT_TIMESTAMP, 
                                 'trigger');
         EXCEPTION
             WHEN unique_violation THEN
@@ -190,16 +184,16 @@ BEGIN
                     trackedentityattributevalue
                 SET
                     value = 'CALLED',
-                    lastupdated = CURRENT_TIMESTAMP, -- Use current date and time
+                    lastupdated = CURRENT_TIMESTAMP,
                     storedby = 'trigger'
                 WHERE
-                    trackedentityinstanceid = (
+                    trackedentityid = (
                         SELECT
-                            trackedentityinstanceid
+                            trackedentityid
                         FROM
-                            programinstance
+                            enrollment
                         WHERE
-                            programinstanceid = NEW.programinstanceid)
+                            enrollmentid = NEW.enrollmentid)
                     AND trackedentityattributeid = (
                         SELECT
                             trackedentityattributeid
@@ -211,42 +205,40 @@ BEGIN
     END IF;
     RETURN NEW;
 END;
-
-$$
-LANGUAGE plpgsql;
+$$ LANGUAGE plpgsql;
 
 CREATE TRIGGER update_teav_CALLED_trigger_function
-    AFTER INSERT ON programstageinstance
+    AFTER INSERT ON event
     FOR EACH ROW
     EXECUTE FUNCTION update_teav_CALLED_trigger_function ();
 
+-----------------------------------------------------------------------------------------------------------
+-- 4. OVERDUE PENDING CALL GENERAL FUNCTION
 -----------------------------------------------------------------------------------------------------------
 CREATE OR REPLACE FUNCTION update_overdue_pending_call_trigger_function ()
     RETURNS VOID
     AS $$
 DECLARE
     overdue_row RECORD;
-    tracked_entity_uid text;
-    -- Variable to store trackedentityinstance UID
+    tracked_entity_id bigint; -- Changed to match bigint type and naming convention
 BEGIN
-    -- Loop through each program instance with upcoming visits
     FOR overdue_row IN
     SELECT
-        psi.programinstanceid,
-        MAX(psi.duedate) AS max_duedate
+        ev.enrollmentid,
+        MAX(ev.duedate) AS max_duedate
     FROM
-        programstageinstance AS psi
+        event AS ev
     WHERE
-        psi.deleted = false AND
+        ev.deleted = false AND
         EXISTS (
             SELECT
                 1
             FROM
-                programinstance AS pi
-                JOIN trackedentityattributevalue AS teav ON pi.trackedentityinstanceid = teav.trackedentityinstanceid
+                enrollment AS en
+                JOIN trackedentityattributevalue AS teav ON en.trackedentityid = teav.trackedentityid
             WHERE
-                psi.programinstanceid = pi.programinstanceid
-                AND psi.status IN ('SCHEDULE', 'OVERDUE')
+                ev.enrollmentid = en.enrollmentid
+                AND ev.status IN ('SCHEDULE', 'OVERDUE')
                 AND teav.trackedentityattributeid = (
                     SELECT
                         trackedentityattributeid
@@ -255,19 +247,17 @@ BEGIN
                     WHERE
                         uid = 'rgeuEnAI0nj'))
         GROUP BY
-            psi.programinstanceid LOOP
-                -- Check if current timestamp plus 2 hours is greater than the max_duedate
+            ev.enrollmentid LOOP
+                
                 IF CURRENT_TIMESTAMP + INTERVAL '2 hours' > overdue_row.max_duedate THEN
-                    -- Fetch trackedentityinstance UID corresponding to programinstanceid
                     SELECT
-                        trackedentityinstanceid INTO tracked_entity_uid
+                        trackedentityid INTO tracked_entity_id
                     FROM
-                        programinstance
+                        enrollment
                     WHERE
-                        programinstanceid = overdue_row.programinstanceid;
-                    -- Attempt to update the trackedentityattributevalue with value OVERDUE_PENDING_CALL
+                        enrollmentid = overdue_row.enrollmentid;
+
                     BEGIN
-                        -- Update the trackedentityattributevalue
                         UPDATE
                             trackedentityattributevalue
                         SET
@@ -275,13 +265,7 @@ BEGIN
                             lastupdated = CURRENT_TIMESTAMP,
                             storedby = 'trigger'
                         WHERE
-                            trackedentityinstanceid = (
-                                SELECT
-                                    trackedentityinstanceid
-                                FROM
-                                    programinstance
-                                WHERE
-                                    programinstanceid = overdue_row.programinstanceid)
+                            trackedentityid = tracked_entity_id
                             AND trackedentityattributeid = (
                                 SELECT
                                     trackedentityattributeid
@@ -289,17 +273,13 @@ BEGIN
                                     trackedentityattribute
                                 WHERE
                                     uid = 'rgeuEnAI0nj');
-                        -- Log successful update
-                        RAISE INFO 'Updated trackedentityattributevalue for program instance %', overdue_row.programinstanceid;
+                        
+                        RAISE INFO 'Updated trackedentityattributevalue for enrollment %', overdue_row.enrollmentid;
                     EXCEPTION
                         WHEN OTHERS THEN
-                            -- Log error if update fails
-                            RAISE EXCEPTION 'Error updating trackedentityattributevalue for program instance %', overdue_row.programinstanceid;
+                            RAISE EXCEPTION 'Error updating trackedentityattributevalue for enrollment %', overdue_row.enrollmentid;
                     END;
                 END IF;
     END LOOP;
 END;
-
-$$
-LANGUAGE plpgsql;
-
+$$ LANGUAGE plpgsql;
