@@ -165,7 +165,7 @@ LANGUAGE plpgsql;
 
 --------------------------------------------------------------------------------------------------------------------------------------------------------
 -- Clean up old trigger if it still exists
-DROP TRIGGER IF EXISTS insert_or_update_programstageinstance ON programstageinstance;
+DROP TRIGGER IF EXISTS insert_or_update_programstageinstance ON event;
 
 -- Create the new trigger on the 'event' table
 CREATE OR REPLACE TRIGGER insert_or_update_event
