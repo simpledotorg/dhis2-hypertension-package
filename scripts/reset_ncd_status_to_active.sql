@@ -74,7 +74,7 @@ $$;
 
 -- Step 2: Create the trigger
 CREATE TRIGGER trg_set_ncd_status_to_active
-BEFORE INSERT OR UPDATE ON programstageinstance
+BEFORE INSERT OR UPDATE ON event
 FOR EACH ROW
 WHEN (pg_trigger_depth() = 0)
 EXECUTE FUNCTION set_ncd_status_to_active();
