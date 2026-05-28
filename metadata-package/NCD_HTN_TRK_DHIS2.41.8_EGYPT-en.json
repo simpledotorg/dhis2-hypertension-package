@@ -43,7 +43,7 @@
                         "inputIdScheme": "UID",
                         "name": "HTN Monthly indicators",
                         "ou": [
-                            "LEVEL-xsXGrFxHbCN"
+                            "LEVEL-Lvl00000004"
                         ],
                         "outputDataElementIdScheme": "UID",
                         "outputIdScheme": "ATTRIBUTE:vudyDP7jUy5",
@@ -63,7 +63,7 @@
                         "inputIdScheme": "UID",
                         "name": "HTN Quarterly indicators",
                         "ou": [
-                            "LEVEL-xsXGrFxHbCN"
+                            "LEVEL-Lvl00000004"
                         ],
                         "outputDataElementIdScheme": "UID",
                         "outputIdScheme": "ATTRIBUTE:vudyDP7jUy5",
@@ -91,7 +91,7 @@
                         "inputIdScheme": "UID",
                         "name": "DM Monthly indicators",
                         "ou": [
-                            "LEVEL-xsXGrFxHbCN"
+                            "LEVEL-Lvl00000004"
                         ],
                         "outputDataElementIdScheme": "UID",
                         "outputIdScheme": "ATTRIBUTE:vudyDP7jUy5",
@@ -111,146 +111,13 @@
                         "inputIdScheme": "UID",
                         "name": "DM Quarterly indicators",
                         "ou": [
-                            "LEVEL-xsXGrFxHbCN"
+                            "LEVEL-Lvl00000004"
                         ],
                         "outputDataElementIdScheme": "UID",
                         "outputIdScheme": "ATTRIBUTE:vudyDP7jUy5",
                         "outputOrgUnitIdScheme": "UID",
                         "pe": [
                             "THIS_QUARTER"
-                        ]
-                    }
-                ]
-            },
-            "target": {
-                "request": {
-                    "categoryOptionComboIdScheme": "UID",
-                    "dataElementIdScheme": "UID",
-                    "idScheme": "UID",
-                    "orgUnitIdScheme": "UID"
-                },
-                "type": "INTERNAL"
-            },
-            "translations": []
-        },
-        {
-            "attributeValues": [],
-            "code": "NCD_HTN_PREVIOUS_PERIOD",
-            "id": "ty6LYIC2aE5",
-            "name": "ADEX - HTN DM - Previous periods",
-            "sharing": {
-                "external": false,
-                "owner": "vUeLeQMSwhN",
-                "public": "r-------",
-                "userGroups": {
-                    "no2QanpZgiI": {
-                        "access": "r-------",
-                        "id": "no2QanpZgiI"
-                    },
-                    "olmLfefTfPQ": {
-                        "access": "rw------",
-                        "id": "olmLfefTfPQ"
-                    },
-                    "qSSuhs65xMP": {
-                        "access": "r-------",
-                        "id": "qSSuhs65xMP"
-                    }
-                },
-                "users": {}
-            },
-            "source": {
-                "requests": [
-                    {
-                        "dx": [
-                            "JycuigrwOA0",
-                            "w1OIAqhocAx",
-                            "lsUw32leiJX",
-                            "EWpkCPCuJf3",
-                            "bLiMzdg6ZHz",
-                            "ApG3MF1VmOL",
-                            "kqKZiGQ5DW6",
-                            "HEhrrdabdGQ",
-                            "AoqqjFOJGmS"
-                        ],
-                        "filters": [],
-                        "inputIdScheme": "UID",
-                        "name": "HTN Monthly indicators",
-                        "ou": [
-                            "LEVEL-xsXGrFxHbCN"
-                        ],
-                        "outputDataElementIdScheme": "UID",
-                        "outputIdScheme": "ATTRIBUTE:vudyDP7jUy5",
-                        "outputOrgUnitIdScheme": "UID",
-                        "pe": [
-                            "LAST_12_MONTHS"
-                        ]
-                    },
-                    {
-                        "dx": [
-                            "oViVMFZbHsC",
-                            "qi9pE262Xhm",
-                            "M4XY1lxHewG",
-                            "ZOEEN8WKTFa"
-                        ],
-                        "filters": [],
-                        "inputIdScheme": "UID",
-                        "name": "HTN Quarterly indicators",
-                        "ou": [
-                            "LEVEL-xsXGrFxHbCN"
-                        ],
-                        "outputDataElementIdScheme": "UID",
-                        "outputIdScheme": "ATTRIBUTE:vudyDP7jUy5",
-                        "outputOrgUnitIdScheme": "UID",
-                        "pe": [
-                            "LAST_4_QUARTERS"
-                        ]
-                    },
-                    {
-                        "dx": [
-                            "rjBIKw5Ydpb",
-                            "fNGOfOPo2p6",
-                            "rc9nx31qyTL",
-                            "rrWB0we6eFL",
-                            "i1b1YVeexfC",
-                            "KDBhJiMyq19",
-                            "GuVvSdUEUjS",
-                            "thoTnZfrjsP",
-                            "vP3OrhwjMHp",
-                            "zTLkufz2LHb",
-                            "VfiZtajVST3",
-                            "zD508XWfDis"
-                        ],
-                        "filters": [],
-                        "inputIdScheme": "UID",
-                        "name": "DM Monthly indicators",
-                        "ou": [
-                            "LEVEL-xsXGrFxHbCN"
-                        ],
-                        "outputDataElementIdScheme": "UID",
-                        "outputIdScheme": "ATTRIBUTE:vudyDP7jUy5",
-                        "outputOrgUnitIdScheme": "UID",
-                        "pe": [
-                            "LAST_12_MONTHS"
-                        ]
-                    },
-                    {
-                        "dx": [
-                            "gCkPPFQvWVT",
-                            "iJOng6lGYE6",
-                            "GEzyNBxdmeD",
-                            "SMtCq1z3HbK"
-                        ],
-                        "filters": [],
-                        "inputIdScheme": "UID",
-                        "name": "DM Quarterly indicators",
-                        "ou": [
-                            "LEVEL-xsXGrFxHbCN"
-                        ],
-                        "outputDataElementIdScheme": "UID",
-                        "outputIdScheme": "ATTRIBUTE:vudyDP7jUy5",
-                        "outputOrgUnitIdScheme": "UID",
-                        "pe": [
-                            "LAST_4_QUARTERS"
                         ]
                     }
                 ]
@@ -4261,6 +4128,9 @@
                     "id": "iRgb6hOfzEk"
                 },
                 {
+                    "id": "Ju7l4fz6YTm"
+                },
+                {
                     "id": "CyhqB3L1Vo8"
                 },
                 {
@@ -5279,6 +5149,45 @@
                 "id": "bjDvmb4bfuf"
             },
             "domainType": "AGGREGATE",
+            "formName": "Patients under care with uncontrolled Blood Sugar at latest visit in past 3 months registered before the past 3 months ",
+            "id": "Ju7l4fz6YTm",
+            "legendSets": [],
+            "name": "DM - Patients under care with uncontrolled blood sugar at latest visit in past 3 months registered before the past 3 months ",
+            "sharing": {
+                "external": false,
+                "owner": "vUeLeQMSwhN",
+                "public": "r-------",
+                "userGroups": {
+                    "no2QanpZgiI": {
+                        "access": "r-------",
+                        "id": "no2QanpZgiI"
+                    },
+                    "olmLfefTfPQ": {
+                        "access": "rw------",
+                        "id": "olmLfefTfPQ"
+                    },
+                    "qSSuhs65xMP": {
+                        "access": "r-------",
+                        "id": "qSSuhs65xMP"
+                    }
+                },
+                "users": {}
+            },
+            "shortName": "DM PUC registered with uncontrolled Blood Sugar",
+            "translations": [],
+            "valueType": "INTEGER_ZERO_OR_POSITIVE",
+            "zeroIsSignificant": false
+        },
+        {
+            "aggregationLevels": [
+                5
+            ],
+            "aggregationType": "SUM",
+            "attributeValues": [],
+            "categoryCombo": {
+                "id": "bjDvmb4bfuf"
+            },
+            "domainType": "AGGREGATE",
             "formName": "Patients with controlled Blood Sugar at latest visit in this quarter",
             "id": "VWEpiY9pWia",
             "legendSets": [],
@@ -5565,43 +5474,6 @@
                 "users": {}
             },
             "shortName": "roundedDiastole",
-            "translations": [],
-            "valueType": "TEXT",
-            "zeroIsSignificant": false
-        },
-        {
-            "aggregationLevels": [],
-            "aggregationType": "NONE",
-            "attributeValues": [],
-            "categoryCombo": {
-                "id": "bjDvmb4bfuf"
-            },
-            "domainType": "TRACKER",
-            "formName": "BP Systolic",
-            "id": "Ar77Gso4XEb",
-            "legendSets": [],
-            "name": "HTN - BP rounded systole (mmHg)",
-            "sharing": {
-                "external": false,
-                "owner": "vUeLeQMSwhN",
-                "public": "r-------",
-                "userGroups": {
-                    "no2QanpZgiI": {
-                        "access": "r-------",
-                        "id": "no2QanpZgiI"
-                    },
-                    "olmLfefTfPQ": {
-                        "access": "rw------",
-                        "id": "olmLfefTfPQ"
-                    },
-                    "qSSuhs65xMP": {
-                        "access": "r-------",
-                        "id": "qSSuhs65xMP"
-                    }
-                },
-                "users": {}
-            },
-            "shortName": "roundedSystole",
             "translations": [],
             "valueType": "TEXT",
             "zeroIsSignificant": false
@@ -7995,6 +7867,43 @@
             },
             "domainType": "TRACKER",
             "formName": "BP Systolic",
+            "id": "Ar77Gso4XEb",
+            "legendSets": [],
+            "name": "HTN - BP rounded systole (mmHg)",
+            "sharing": {
+                "external": false,
+                "owner": "vUeLeQMSwhN",
+                "public": "r-------",
+                "userGroups": {
+                    "no2QanpZgiI": {
+                        "access": "r-------",
+                        "id": "no2QanpZgiI"
+                    },
+                    "olmLfefTfPQ": {
+                        "access": "rw------",
+                        "id": "olmLfefTfPQ"
+                    },
+                    "qSSuhs65xMP": {
+                        "access": "r-------",
+                        "id": "qSSuhs65xMP"
+                    }
+                },
+                "users": {}
+            },
+            "shortName": "roundedSystole",
+            "translations": [],
+            "valueType": "TEXT",
+            "zeroIsSignificant": false
+        },
+        {
+            "aggregationLevels": [],
+            "aggregationType": "NONE",
+            "attributeValues": [],
+            "categoryCombo": {
+                "id": "bjDvmb4bfuf"
+            },
+            "domainType": "TRACKER",
+            "formName": "BP Systolic",
             "id": "IxEwYiq1FTq",
             "legendSets": [],
             "name": "HTN - BP systole (mmHg)",
@@ -9157,47 +9066,7 @@
             "dataSetElements": [
                 {
                     "dataElement": {
-                        "id": "KgkZXNMJtQt"
-                    },
-                    "dataSet": {
-                        "id": "ruV1VUeYUBB"
-                    }
-                },
-                {
-                    "dataElement": {
-                        "id": "SVoFNNNHtk9"
-                    },
-                    "dataSet": {
-                        "id": "ruV1VUeYUBB"
-                    }
-                },
-                {
-                    "dataElement": {
-                        "id": "rKE1hfKYtXI"
-                    },
-                    "dataSet": {
-                        "id": "ruV1VUeYUBB"
-                    }
-                },
-                {
-                    "dataElement": {
-                        "id": "JSH2DhI7IA7"
-                    },
-                    "dataSet": {
-                        "id": "ruV1VUeYUBB"
-                    }
-                },
-                {
-                    "dataElement": {
-                        "id": "XpkHG4SfL1a"
-                    },
-                    "dataSet": {
-                        "id": "ruV1VUeYUBB"
-                    }
-                },
-                {
-                    "dataElement": {
-                        "id": "rIPULGoGRT3"
+                        "id": "I2NnM0BfObz"
                     },
                     "dataSet": {
                         "id": "ruV1VUeYUBB"
@@ -9213,7 +9082,7 @@
                 },
                 {
                     "dataElement": {
-                        "id": "hxbX9BZmrRm"
+                        "id": "SVoFNNNHtk9"
                     },
                     "dataSet": {
                         "id": "ruV1VUeYUBB"
@@ -9221,7 +9090,15 @@
                 },
                 {
                     "dataElement": {
-                        "id": "I2NnM0BfObz"
+                        "id": "rIPULGoGRT3"
+                    },
+                    "dataSet": {
+                        "id": "ruV1VUeYUBB"
+                    }
+                },
+                {
+                    "dataElement": {
+                        "id": "KgkZXNMJtQt"
                     },
                     "dataSet": {
                         "id": "ruV1VUeYUBB"
@@ -9230,6 +9107,38 @@
                 {
                     "dataElement": {
                         "id": "c4CWs8P5amK"
+                    },
+                    "dataSet": {
+                        "id": "ruV1VUeYUBB"
+                    }
+                },
+                {
+                    "dataElement": {
+                        "id": "JSH2DhI7IA7"
+                    },
+                    "dataSet": {
+                        "id": "ruV1VUeYUBB"
+                    }
+                },
+                {
+                    "dataElement": {
+                        "id": "hxbX9BZmrRm"
+                    },
+                    "dataSet": {
+                        "id": "ruV1VUeYUBB"
+                    }
+                },
+                {
+                    "dataElement": {
+                        "id": "XpkHG4SfL1a"
+                    },
+                    "dataSet": {
+                        "id": "ruV1VUeYUBB"
+                    }
+                },
+                {
+                    "dataElement": {
+                        "id": "rKE1hfKYtXI"
                     },
                     "dataSet": {
                         "id": "ruV1VUeYUBB"
@@ -13500,22 +13409,22 @@
             },
             "options": [
                 {
-                    "id": "PHZWx1KeMcH"
+                    "id": "qVlEjJMRys6"
                 },
                 {
-                    "id": "qVlEjJMRys6"
+                    "id": "nSC8fs8A9qg"
                 },
                 {
                     "id": "Y29kuXaqtt1"
                 },
                 {
-                    "id": "AqNli9iNbUu"
+                    "id": "PHZWx1KeMcH"
                 },
                 {
                     "id": "vuEZxYvcZN1"
                 },
                 {
-                    "id": "nSC8fs8A9qg"
+                    "id": "AqNli9iNbUu"
                 }
             ],
             "sharing": {
@@ -24169,7 +24078,7 @@
         "description": "",
         "healthAreaCode": null,
         "healthAreaName": null,
-        "lastUpdated": "20260513T141910",
+        "lastUpdated": "20260528T092201",
         "locale": "en",
         "name": "NCD_HTN_TRK_DHIS2.42.4.1-en",
         "type": "TRK",
@@ -33766,9 +33675,6 @@
             "sortOrder": 0,
             "trackedEntityAttributes": [
                 {
-                    "id": "sOpP7Czrt7H"
-                },
-                {
                     "id": "a1N4sJukutU"
                 },
                 {
@@ -35391,36 +35297,6 @@
                     "displayInList": false,
                     "favorite": false,
                     "favorites": [],
-                    "id": "Wwjhr20DHtv",
-                    "mandatory": false,
-                    "program": {
-                        "id": "pMIglSEqPGS"
-                    },
-                    "renderOptionsAsRadio": false,
-                    "renderType": {
-                        "MOBILE": {
-                            "type": "QR_CODE"
-                        }
-                    },
-                    "searchable": true,
-                    "sharing": {
-                        "external": false,
-                        "userGroups": {},
-                        "users": {}
-                    },
-                    "skipIndividualAnalytics": false,
-                    "sortOrder": 1,
-                    "trackedEntityAttribute": {
-                        "id": "sOpP7Czrt7H"
-                    },
-                    "translations": [],
-                    "valueType": "TEXT"
-                },
-                {
-                    "attributeValues": [],
-                    "displayInList": false,
-                    "favorite": false,
-                    "favorites": [],
                     "id": "SZESaf4NiAk",
                     "mandatory": true,
                     "program": {
@@ -35434,7 +35310,7 @@
                         "users": {}
                     },
                     "skipIndividualAnalytics": false,
-                    "sortOrder": 2,
+                    "sortOrder": 1,
                     "trackedEntityAttribute": {
                         "id": "a1N4sJukutU"
                     },
@@ -35459,7 +35335,7 @@
                         "users": {}
                     },
                     "skipIndividualAnalytics": false,
-                    "sortOrder": 3,
+                    "sortOrder": 2,
                     "trackedEntityAttribute": {
                         "id": "sB1IHYu2xQT"
                     },
@@ -35484,7 +35360,7 @@
                         "users": {}
                     },
                     "skipIndividualAnalytics": false,
-                    "sortOrder": 4,
+                    "sortOrder": 3,
                     "trackedEntityAttribute": {
                         "id": "wS7QQnuWCtc"
                     },
@@ -35509,7 +35385,7 @@
                         "users": {}
                     },
                     "skipIndividualAnalytics": false,
-                    "sortOrder": 5,
+                    "sortOrder": 4,
                     "trackedEntityAttribute": {
                         "id": "ENRjVGxVL6l"
                     },
@@ -35534,7 +35410,7 @@
                         "users": {}
                     },
                     "skipIndividualAnalytics": false,
-                    "sortOrder": 6,
+                    "sortOrder": 5,
                     "trackedEntityAttribute": {
                         "id": "YRDy9xy9jD0"
                     },
@@ -35559,7 +35435,7 @@
                         "users": {}
                     },
                     "skipIndividualAnalytics": false,
-                    "sortOrder": 7,
+                    "sortOrder": 6,
                     "trackedEntityAttribute": {
                         "id": "NI0QRzJvQ0k"
                     },
@@ -35584,7 +35460,7 @@
                         "users": {}
                     },
                     "skipIndividualAnalytics": false,
-                    "sortOrder": 8,
+                    "sortOrder": 7,
                     "trackedEntityAttribute": {
                         "id": "A6Hb0Kvg4vb"
                     },
@@ -35609,7 +35485,7 @@
                         "users": {}
                     },
                     "skipIndividualAnalytics": false,
-                    "sortOrder": 9,
+                    "sortOrder": 8,
                     "trackedEntityAttribute": {
                         "id": "oindugucx72"
                     },
@@ -35634,7 +35510,7 @@
                         "users": {}
                     },
                     "skipIndividualAnalytics": false,
-                    "sortOrder": 10,
+                    "sortOrder": 9,
                     "trackedEntityAttribute": {
                         "id": "jCRIT4GMMOS"
                     },
@@ -35659,7 +35535,7 @@
                         "users": {}
                     },
                     "skipIndividualAnalytics": false,
-                    "sortOrder": 11,
+                    "sortOrder": 10,
                     "trackedEntityAttribute": {
                         "id": "l5yxkxHgTw9"
                     },
@@ -35684,7 +35560,7 @@
                         "users": {}
                     },
                     "skipIndividualAnalytics": false,
-                    "sortOrder": 12,
+                    "sortOrder": 11,
                     "trackedEntityAttribute": {
                         "id": "v4DnYfXn9Mu"
                     },
@@ -35709,7 +35585,7 @@
                         "users": {}
                     },
                     "skipIndividualAnalytics": false,
-                    "sortOrder": 13,
+                    "sortOrder": 12,
                     "trackedEntityAttribute": {
                         "id": "Xij8fyJKRX7"
                     },
@@ -35734,7 +35610,7 @@
                         "users": {}
                     },
                     "skipIndividualAnalytics": false,
-                    "sortOrder": 14,
+                    "sortOrder": 13,
                     "trackedEntityAttribute": {
                         "id": "oklF6MuAGaq"
                     },
@@ -35759,7 +35635,7 @@
                         "users": {}
                     },
                     "skipIndividualAnalytics": false,
-                    "sortOrder": 15,
+                    "sortOrder": 14,
                     "trackedEntityAttribute": {
                         "id": "bANIHEeQqEZ"
                     },
@@ -35784,7 +35660,7 @@
                         "users": {}
                     },
                     "skipIndividualAnalytics": false,
-                    "sortOrder": 16,
+                    "sortOrder": 15,
                     "trackedEntityAttribute": {
                         "id": "S4Pcuj5Eua7"
                     },
@@ -35809,7 +35685,7 @@
                         "users": {}
                     },
                     "skipIndividualAnalytics": false,
-                    "sortOrder": 17,
+                    "sortOrder": 16,
                     "trackedEntityAttribute": {
                         "id": "fI1P3Mg1zOZ"
                     },
@@ -35834,7 +35710,7 @@
                         "users": {}
                     },
                     "skipIndividualAnalytics": false,
-                    "sortOrder": 18,
+                    "sortOrder": 17,
                     "trackedEntityAttribute": {
                         "id": "YJGACwhN0St"
                     },
@@ -35859,7 +35735,7 @@
                         "users": {}
                     },
                     "skipIndividualAnalytics": false,
-                    "sortOrder": 19,
+                    "sortOrder": 18,
                     "trackedEntityAttribute": {
                         "id": "rgeuEnAI0nj"
                     },
@@ -35884,7 +35760,7 @@
                         "users": {}
                     },
                     "skipIndividualAnalytics": false,
-                    "sortOrder": 20,
+                    "sortOrder": 19,
                     "trackedEntityAttribute": {
                         "id": "hTARCBirVLi"
                     },
@@ -35909,7 +35785,7 @@
                         "users": {}
                     },
                     "skipIndividualAnalytics": false,
-                    "sortOrder": 21,
+                    "sortOrder": 20,
                     "trackedEntityAttribute": {
                         "id": "hXU9UgIMQes"
                     },
@@ -35934,7 +35810,7 @@
                         "users": {}
                     },
                     "skipIndividualAnalytics": false,
-                    "sortOrder": 22,
+                    "sortOrder": 21,
                     "trackedEntityAttribute": {
                         "id": "InXHTXWxKR2"
                     },
@@ -35959,7 +35835,7 @@
                         "users": {}
                     },
                     "skipIndividualAnalytics": false,
-                    "sortOrder": 23,
+                    "sortOrder": 22,
                     "trackedEntityAttribute": {
                         "id": "mAWWEdw00l7"
                     },
@@ -35984,7 +35860,7 @@
                         "users": {}
                     },
                     "skipIndividualAnalytics": false,
-                    "sortOrder": 24,
+                    "sortOrder": 23,
                     "trackedEntityAttribute": {
                         "id": "nDH0qmLk5xE"
                     },
@@ -36009,7 +35885,7 @@
                         "users": {}
                     },
                     "skipIndividualAnalytics": false,
-                    "sortOrder": 25,
+                    "sortOrder": 24,
                     "trackedEntityAttribute": {
                         "id": "r7EHikpEWkh"
                     },
@@ -36034,7 +35910,7 @@
                         "users": {}
                     },
                     "skipIndividualAnalytics": false,
-                    "sortOrder": 26,
+                    "sortOrder": 25,
                     "trackedEntityAttribute": {
                         "id": "ea5w3mkinZo"
                     },
@@ -36059,7 +35935,7 @@
                         "users": {}
                     },
                     "skipIndividualAnalytics": false,
-                    "sortOrder": 27,
+                    "sortOrder": 26,
                     "trackedEntityAttribute": {
                         "id": "xeeayVAQ9K5"
                     },
@@ -36084,7 +35960,7 @@
                         "users": {}
                     },
                     "skipIndividualAnalytics": false,
-                    "sortOrder": 28,
+                    "sortOrder": 27,
                     "trackedEntityAttribute": {
                         "id": "uTZ8FzaioDI"
                     },
@@ -36109,7 +35985,7 @@
                         "users": {}
                     },
                     "skipIndividualAnalytics": false,
-                    "sortOrder": 29,
+                    "sortOrder": 28,
                     "trackedEntityAttribute": {
                         "id": "OEG2DI4G2RG"
                     },
@@ -36134,7 +36010,7 @@
                         "users": {}
                     },
                     "skipIndividualAnalytics": false,
-                    "sortOrder": 30,
+                    "sortOrder": 29,
                     "trackedEntityAttribute": {
                         "id": "H35mkQTlqAY"
                     },
@@ -36207,7 +36083,7 @@
                 }
             ],
             "useFirstStageDuringRegistration": false,
-            "version": 230
+            "version": 231
         }
     ],
     "reports": [],
@@ -38438,67 +38314,6 @@
             "confidential": false,
             "displayInListNoProgram": false,
             "displayOnVisitSchedule": false,
-            "formName": "Scan QR code",
-            "generated": false,
-            "id": "sOpP7Czrt7H",
-            "inherit": false,
-            "legendSets": [],
-            "name": "QR code",
-            "orgunitScope": false,
-            "pattern": "",
-            "sharing": {
-                "external": false,
-                "owner": "vUeLeQMSwhN",
-                "public": "r-------",
-                "userGroups": {
-                    "no2QanpZgiI": {
-                        "access": "r-------",
-                        "id": "no2QanpZgiI"
-                    },
-                    "olmLfefTfPQ": {
-                        "access": "rw------",
-                        "id": "olmLfefTfPQ"
-                    },
-                    "qSSuhs65xMP": {
-                        "access": "r-------",
-                        "id": "qSSuhs65xMP"
-                    }
-                },
-                "users": {}
-            },
-            "shortName": "QR code",
-            "skipSynchronization": false,
-            "translations": [
-                {
-                    "locale": "fr",
-                    "property": "FORM_NAME",
-                    "value": "QR Code"
-                },
-                {
-                    "locale": "fr",
-                    "property": "DESCRIPTION",
-                    "value": "QR Code"
-                },
-                {
-                    "locale": "fr",
-                    "property": "SHORT_NAME",
-                    "value": "QR Code"
-                },
-                {
-                    "locale": "fr",
-                    "property": "NAME",
-                    "value": "QR Code"
-                }
-            ],
-            "unique": false,
-            "valueType": "TEXT"
-        },
-        {
-            "aggregationType": "NONE",
-            "attributeValues": [],
-            "confidential": false,
-            "displayInListNoProgram": false,
-            "displayOnVisitSchedule": false,
             "formName": "Smoking",
             "generated": false,
             "id": "hXU9UgIMQes",
@@ -38617,8 +38432,8 @@
                     "displayInList": false,
                     "favorite": false,
                     "favorites": [],
-                    "id": "Sb8xKZIbN9m",
-                    "name": "Person QR code",
+                    "id": "BZuz9eQygnw",
+                    "name": "Person National ID Number",
                     "searchable": false,
                     "sharing": {
                         "external": false,
@@ -38626,7 +38441,7 @@
                         "users": {}
                     },
                     "trackedEntityAttribute": {
-                        "id": "sOpP7Czrt7H"
+                        "id": "a1N4sJukutU"
                     },
                     "trackedEntityType": {
                         "id": "MCPQUTHX1Ze"
