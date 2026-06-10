@@ -132,6 +132,139 @@
                 "type": "INTERNAL"
             },
             "translations": []
+        },
+        {
+            "attributeValues": [],
+            "code": "NCD_HTN_PREVIOUS_PERIOD",
+            "id": "ty6LYIC2aE5",
+            "name": "ADEX - HTN DM - Previous periods",
+            "sharing": {
+                "external": false,
+                "owner": "vUeLeQMSwhN",
+                "public": "r-------",
+                "userGroups": {
+                    "no2QanpZgiI": {
+                        "access": "r-------",
+                        "id": "no2QanpZgiI"
+                    },
+                    "olmLfefTfPQ": {
+                        "access": "rw------",
+                        "id": "olmLfefTfPQ"
+                    },
+                    "qSSuhs65xMP": {
+                        "access": "r-------",
+                        "id": "qSSuhs65xMP"
+                    }
+                },
+                "users": {}
+            },
+            "source": {
+                "requests": [
+                    {
+                        "dx": [
+                            "JycuigrwOA0",
+                            "w1OIAqhocAx",
+                            "lsUw32leiJX",
+                            "EWpkCPCuJf3",
+                            "bLiMzdg6ZHz",
+                            "ApG3MF1VmOL",
+                            "kqKZiGQ5DW6",
+                            "HEhrrdabdGQ",
+                            "AoqqjFOJGmS"
+                        ],
+                        "filters": [],
+                        "inputIdScheme": "UID",
+                        "name": "HTN Monthly indicators",
+                        "ou": [
+                            "LEVEL-Lvl00000004"
+                        ],
+                        "outputDataElementIdScheme": "UID",
+                        "outputIdScheme": "ATTRIBUTE:vudyDP7jUy5",
+                        "outputOrgUnitIdScheme": "UID",
+                        "pe": [
+                            "LAST_12_MONTHS"
+                        ]
+                    },
+                    {
+                        "dx": [
+                            "oViVMFZbHsC",
+                            "qi9pE262Xhm",
+                            "M4XY1lxHewG",
+                            "ZOEEN8WKTFa"
+                        ],
+                        "filters": [],
+                        "inputIdScheme": "UID",
+                        "name": "HTN Quarterly indicators",
+                        "ou": [
+                            "LEVEL-Lvl00000004"
+                        ],
+                        "outputDataElementIdScheme": "UID",
+                        "outputIdScheme": "ATTRIBUTE:vudyDP7jUy5",
+                        "outputOrgUnitIdScheme": "UID",
+                        "pe": [
+                            "LAST_4_QUARTERS"
+                        ]
+                    },
+                    {
+                        "dx": [
+                            "rjBIKw5Ydpb",
+                            "fNGOfOPo2p6",
+                            "rc9nx31qyTL",
+                            "rrWB0we6eFL",
+                            "i1b1YVeexfC",
+                            "KDBhJiMyq19",
+                            "GuVvSdUEUjS",
+                            "thoTnZfrjsP",
+                            "vP3OrhwjMHp",
+                            "zTLkufz2LHb",
+                            "VfiZtajVST3",
+                            "zD508XWfDis"
+                        ],
+                        "filters": [],
+                        "inputIdScheme": "UID",
+                        "name": "DM Monthly indicators",
+                        "ou": [
+                            "LEVEL-Lvl00000004"
+                        ],
+                        "outputDataElementIdScheme": "UID",
+                        "outputIdScheme": "ATTRIBUTE:vudyDP7jUy5",
+                        "outputOrgUnitIdScheme": "UID",
+                        "pe": [
+                            "LAST_12_MONTHS"
+                        ]
+                    },
+                    {
+                        "dx": [
+                            "gCkPPFQvWVT",
+                            "iJOng6lGYE6",
+                            "GEzyNBxdmeD",
+                            "SMtCq1z3HbK"
+                        ],
+                        "filters": [],
+                        "inputIdScheme": "UID",
+                        "name": "DM Quarterly indicators",
+                        "ou": [
+                            "LEVEL-Lvl00000004"
+                        ],
+                        "outputDataElementIdScheme": "UID",
+                        "outputIdScheme": "ATTRIBUTE:vudyDP7jUy5",
+                        "outputOrgUnitIdScheme": "UID",
+                        "pe": [
+                            "LAST_4_QUARTERS"
+                        ]
+                    }
+                ]
+            },
+            "target": {
+                "request": {
+                    "categoryOptionComboIdScheme": "UID",
+                    "dataElementIdScheme": "UID",
+                    "idScheme": "UID",
+                    "orgUnitIdScheme": "UID"
+                },
+                "type": "INTERNAL"
+            },
+            "translations": []
         }
     ],
     "attributes": [
@@ -1275,10 +1408,10 @@
             },
             "categoryOptions": [
                 {
-                    "id": "cdP55aBNOyC"
+                    "id": "jeQLh8AYZj6"
                 },
                 {
-                    "id": "jeQLh8AYZj6"
+                    "id": "cdP55aBNOyC"
                 }
             ],
             "id": "KKYrj0vT5Xo",
@@ -1293,10 +1426,10 @@
             },
             "categoryOptions": [
                 {
-                    "id": "BCPsv0ciWtC"
+                    "id": "VjoL32ZeuB4"
                 },
                 {
-                    "id": "VjoL32ZeuB4"
+                    "id": "BCPsv0ciWtC"
                 }
             ],
             "id": "ZOxNy9nwmPo",
@@ -9066,14 +9199,6 @@
             "dataSetElements": [
                 {
                     "dataElement": {
-                        "id": "I2NnM0BfObz"
-                    },
-                    "dataSet": {
-                        "id": "ruV1VUeYUBB"
-                    }
-                },
-                {
-                    "dataElement": {
                         "id": "fuHs6sDnVx9"
                     },
                     "dataSet": {
@@ -9082,39 +9207,7 @@
                 },
                 {
                     "dataElement": {
-                        "id": "SVoFNNNHtk9"
-                    },
-                    "dataSet": {
-                        "id": "ruV1VUeYUBB"
-                    }
-                },
-                {
-                    "dataElement": {
-                        "id": "rIPULGoGRT3"
-                    },
-                    "dataSet": {
-                        "id": "ruV1VUeYUBB"
-                    }
-                },
-                {
-                    "dataElement": {
-                        "id": "KgkZXNMJtQt"
-                    },
-                    "dataSet": {
-                        "id": "ruV1VUeYUBB"
-                    }
-                },
-                {
-                    "dataElement": {
-                        "id": "c4CWs8P5amK"
-                    },
-                    "dataSet": {
-                        "id": "ruV1VUeYUBB"
-                    }
-                },
-                {
-                    "dataElement": {
-                        "id": "JSH2DhI7IA7"
+                        "id": "I2NnM0BfObz"
                     },
                     "dataSet": {
                         "id": "ruV1VUeYUBB"
@@ -9139,6 +9232,46 @@
                 {
                     "dataElement": {
                         "id": "rKE1hfKYtXI"
+                    },
+                    "dataSet": {
+                        "id": "ruV1VUeYUBB"
+                    }
+                },
+                {
+                    "dataElement": {
+                        "id": "SVoFNNNHtk9"
+                    },
+                    "dataSet": {
+                        "id": "ruV1VUeYUBB"
+                    }
+                },
+                {
+                    "dataElement": {
+                        "id": "rIPULGoGRT3"
+                    },
+                    "dataSet": {
+                        "id": "ruV1VUeYUBB"
+                    }
+                },
+                {
+                    "dataElement": {
+                        "id": "c4CWs8P5amK"
+                    },
+                    "dataSet": {
+                        "id": "ruV1VUeYUBB"
+                    }
+                },
+                {
+                    "dataElement": {
+                        "id": "JSH2DhI7IA7"
+                    },
+                    "dataSet": {
+                        "id": "ruV1VUeYUBB"
+                    }
+                },
+                {
+                    "dataElement": {
+                        "id": "KgkZXNMJtQt"
                     },
                     "dataSet": {
                         "id": "ruV1VUeYUBB"
@@ -12767,10 +12900,10 @@
                     "id": "oeC1XFkUUio"
                 },
                 {
-                    "id": "aBC8UJnMVWW"
+                    "id": "iy9a4mPrS6c"
                 },
                 {
-                    "id": "iy9a4mPrS6c"
+                    "id": "aBC8UJnMVWW"
                 }
             ],
             "sharing": {
@@ -12918,10 +13051,10 @@
                     "id": "uMRKjiqGmi0"
                 },
                 {
-                    "id": "HlpPILUqf3e"
+                    "id": "ureuZksTKm3"
                 },
                 {
-                    "id": "ureuZksTKm3"
+                    "id": "HlpPILUqf3e"
                 },
                 {
                     "id": "tU96vesUlzg"
@@ -13409,13 +13542,10 @@
             },
             "options": [
                 {
-                    "id": "qVlEjJMRys6"
+                    "id": "AqNli9iNbUu"
                 },
                 {
                     "id": "nSC8fs8A9qg"
-                },
-                {
-                    "id": "Y29kuXaqtt1"
                 },
                 {
                     "id": "PHZWx1KeMcH"
@@ -13424,7 +13554,10 @@
                     "id": "vuEZxYvcZN1"
                 },
                 {
-                    "id": "AqNli9iNbUu"
+                    "id": "Y29kuXaqtt1"
+                },
+                {
+                    "id": "qVlEjJMRys6"
                 }
             ],
             "sharing": {
@@ -14324,10 +14457,10 @@
                     "id": "gzWkr6n8iQ7"
                 },
                 {
-                    "id": "v4ASXK3C5v5"
+                    "id": "PFRs78hHjVw"
                 },
                 {
-                    "id": "PFRs78hHjVw"
+                    "id": "v4ASXK3C5v5"
                 },
                 {
                     "id": "N5jg5pXuqls"
@@ -16535,7 +16668,7 @@
             },
             "translations": [],
             "valueType": "TEXT",
-            "version": 3
+            "version": 4
         },
         {
             "attributeValues": [],
@@ -16623,6 +16756,9 @@
                 },
                 {
                     "id": "RKRUdTKftio"
+                },
+                {
+                    "id": "asLRgS6ZVWF"
                 }
             ],
             "sharing": {
@@ -16647,7 +16783,7 @@
             },
             "translations": [],
             "valueType": "TEXT",
-            "version": 3
+            "version": 4
         },
         {
             "attributeValues": [],
@@ -22156,6 +22292,17 @@
         },
         {
             "attributeValues": [],
+            "code": "EG88",
+            "id": "asLRgS6ZVWF",
+            "name": "Outside of the republic",
+            "optionSet": {
+                "id": "CXjVw7UgWU0"
+            },
+            "sortOrder": 27,
+            "translations": []
+        },
+        {
+            "attributeValues": [],
             "code": "OVERDUE_PENDING_CALL",
             "id": "W2H1QMvSRdr",
             "name": "Overdue Pending Call",
@@ -24078,7 +24225,7 @@
         "description": "",
         "healthAreaCode": null,
         "healthAreaName": null,
-        "lastUpdated": "20260528T092201",
+        "lastUpdated": "20260610T135815",
         "locale": "en",
         "name": "NCD_HTN_TRK_DHIS2.42.4.1-en",
         "type": "TRK",
@@ -28247,14 +28394,15 @@
             "translations": []
         },
         {
-            "dataElement": {
-                "id": "ywITVJvILBR"
-            },
-            "id": "aFTM35BIImL",
+            "data": "''",
+            "id": "aHoDXyzBt9k",
             "programRule": {
-                "id": "PPidutfuWVs"
+                "id": "qvbv2PIOxYR"
             },
-            "programRuleActionType": "HIDEFIELD",
+            "programRuleActionType": "ASSIGN",
+            "trackedEntityAttribute": {
+                "id": "InXHTXWxKR2"
+            },
             "translations": []
         },
         {
@@ -29168,6 +29316,17 @@
         },
         {
             "dataElement": {
+                "id": "ywITVJvILBR"
+            },
+            "id": "aFTM35BIImL",
+            "programRule": {
+                "id": "PPidutfuWVs"
+            },
+            "programRuleActionType": "HIDEFIELD",
+            "translations": []
+        },
+        {
+            "dataElement": {
                 "id": "zgxvIQneRRX"
             },
             "id": "aVc3xpoTcSq",
@@ -29262,18 +29421,6 @@
                 "id": "lpRzBIrj9Hr"
             },
             "programRuleActionType": "HIDEFIELD",
-            "translations": []
-        },
-        {
-            "content": "FBS in mg by dL is out of range",
-            "dataElement": {
-                "id": "oOHbZP28H2l"
-            },
-            "id": "Ehp5PKdaRNE",
-            "programRule": {
-                "id": "mkdEoDneZGn"
-            },
-            "programRuleActionType": "SHOWERROR",
             "translations": []
         },
         {
@@ -29469,19 +29616,6 @@
                 "id": "o6U9TaRVCzE"
             },
             "programRuleActionType": "ERRORONCOMPLETE",
-            "translations": []
-        },
-        {
-            "content": "#{schedulingDone}",
-            "data": "true",
-            "dataElement": {
-                "id": "Mj9jx9JLmyl"
-            },
-            "id": "LbDke5eoxl1",
-            "programRule": {
-                "id": "PH7odWwg7Bs"
-            },
-            "programRuleActionType": "ASSIGN",
             "translations": []
         },
         {
@@ -29863,6 +29997,18 @@
             "translations": []
         },
         {
+            "content": "FBS in mg by dL is out of range",
+            "dataElement": {
+                "id": "oOHbZP28H2l"
+            },
+            "id": "uZeEIt0GxhW",
+            "programRule": {
+                "id": "mkdEoDneZGn"
+            },
+            "programRuleActionType": "SHOWERROR",
+            "translations": []
+        },
+        {
             "id": "v6JwJOMCTTl",
             "optionGroup": {
                 "id": "J535sRb1s2i"
@@ -30070,6 +30216,19 @@
             "trackedEntityAttribute": {
                 "id": "InXHTXWxKR2"
             },
+            "translations": []
+        },
+        {
+            "content": "#{schedulingDone}",
+            "data": "true",
+            "dataElement": {
+                "id": "Mj9jx9JLmyl"
+            },
+            "id": "LbDke5eoxl1",
+            "programRule": {
+                "id": "PH7odWwg7Bs"
+            },
+            "programRuleActionType": "ASSIGN",
             "translations": []
         },
         {
@@ -32337,6 +32496,22 @@
             "translations": []
         },
         {
+            "condition": "d2:hasValue(A{Governorate}) && A{Governorate} == 'EG88'",
+            "description": "Filters districts for Outside of the Republic",
+            "id": "qvbv2PIOxYR",
+            "name": "Lock No Districts for Outside of the Republic",
+            "priority": 10,
+            "program": {
+                "id": "pMIglSEqPGS"
+            },
+            "programRuleActions": [
+                {
+                    "id": "aHoDXyzBt9k"
+                }
+            ],
+            "translations": []
+        },
+        {
             "condition": "!d2:hasValue(#{schedulingDone})",
             "id": "Lj7Gk1JBFtZ",
             "name": "LOCK Scheduling Checkbox",
@@ -33009,7 +33184,7 @@
             "translations": []
         },
         {
-            "condition": "d2:hasValue('FBS in mg by dL') && (#{FBS in mg by dL}  < 70|| #{FBS in mg by dL}   > 600)",
+            "condition": "d2:hasValue(#{FBS_mg-dL}) && (#{FBS_mg-dL}  < 70|| #{FBS_mg-dL}   > 600)",
             "id": "mkdEoDneZGn",
             "name": "SHOW ERROR: Validation - FBS in mg by dL",
             "program": {
@@ -33017,7 +33192,7 @@
             },
             "programRuleActions": [
                 {
-                    "id": "Ehp5PKdaRNE"
+                    "id": "uZeEIt0GxhW"
                 }
             ],
             "programStage": {
@@ -39024,8 +39199,8 @@
             "percentStackedValues": false,
             "periods": [],
             "rawPeriods": [
-                "THIS_MONTH",
-                "LAST_12_MONTHS"
+                "LAST_12_MONTHS",
+                "THIS_MONTH"
             ],
             "regression": false,
             "regressionType": "NONE",
@@ -39368,8 +39543,8 @@
             "percentStackedValues": false,
             "periods": [],
             "rawPeriods": [
-                "THIS_MONTH",
-                "LAST_12_MONTHS"
+                "LAST_12_MONTHS",
+                "THIS_MONTH"
             ],
             "regression": false,
             "regressionType": "NONE",
@@ -40825,8 +41000,8 @@
             "percentStackedValues": false,
             "periods": [],
             "rawPeriods": [
-                "THIS_MONTH",
-                "LAST_12_MONTHS"
+                "LAST_12_MONTHS",
+                "THIS_MONTH"
             ],
             "regression": false,
             "regressionType": "NONE",
@@ -41188,9 +41363,6 @@
             "fixRowHeaders": false,
             "fontSize": "NORMAL",
             "fontStyle": {
-                "legend": {
-                    "textColor": "#000000"
-                },
                 "visualizationSubtitle": {
                     "textColor": "#000000"
                 },
@@ -41221,8 +41393,8 @@
             "percentStackedValues": false,
             "periods": [],
             "rawPeriods": [
-                "THIS_MONTH",
-                "LAST_12_MONTHS"
+                "LAST_12_MONTHS",
+                "THIS_MONTH"
             ],
             "regression": false,
             "regressionType": "NONE",
@@ -43378,8 +43550,8 @@
             "percentStackedValues": false,
             "periods": [],
             "rawPeriods": [
-                "THIS_MONTH",
-                "LAST_12_MONTHS"
+                "LAST_12_MONTHS",
+                "THIS_MONTH"
             ],
             "regression": false,
             "regressionType": "NONE",
@@ -43507,8 +43679,8 @@
             "percentStackedValues": false,
             "periods": [],
             "rawPeriods": [
-                "THIS_MONTH",
-                "LAST_12_MONTHS"
+                "LAST_12_MONTHS",
+                "THIS_MONTH"
             ],
             "regression": false,
             "regressionType": "NONE",
@@ -44826,8 +44998,8 @@
             "percentStackedValues": false,
             "periods": [],
             "rawPeriods": [
-                "THIS_MONTH",
-                "LAST_12_MONTHS"
+                "LAST_12_MONTHS",
+                "THIS_MONTH"
             ],
             "regression": false,
             "regressionType": "NONE",
@@ -45024,8 +45196,8 @@
             "percentStackedValues": false,
             "periods": [],
             "rawPeriods": [
-                "THIS_MONTH",
-                "LAST_12_MONTHS"
+                "LAST_12_MONTHS",
+                "THIS_MONTH"
             ],
             "regression": false,
             "regressionType": "NONE",
@@ -46538,8 +46710,8 @@
             "percentStackedValues": false,
             "periods": [],
             "rawPeriods": [
-                "THIS_MONTH",
-                "LAST_12_MONTHS"
+                "LAST_12_MONTHS",
+                "THIS_MONTH"
             ],
             "regression": false,
             "regressionType": "NONE",
@@ -46931,8 +47103,8 @@
             "percentStackedValues": false,
             "periods": [],
             "rawPeriods": [
-                "THIS_MONTH",
-                "LAST_12_MONTHS"
+                "LAST_12_MONTHS",
+                "THIS_MONTH"
             ],
             "regression": false,
             "regressionType": "NONE",
