@@ -12,14 +12,32 @@ DECLARE
     report_end_date DATE;
     twelve_months_ago DATE;
 BEGIN
-    -- Get the start and end date for the given period
-    EXECUTE format(
-        'SELECT startdate, enddate 
-         FROM period 
-         WHERE periodtypeid = (SELECT periodtypeid FROM periodtype WHERE LOWER(name) = LOWER(%L)) 
-         AND startdate::TEXT LIKE %L',
-        period_type, LEFT(period_value, 4) || '-' || RIGHT(period_value, 2) || '%'
-    ) INTO report_start_date, report_end_date;
+    -- Determine dates directly for standard Monthly and Quarterly period values.
+    -- This avoids relying on rows being present in DHIS2's period table.
+    CASE lower(period_type)
+        WHEN 'monthly' THEN
+            report_start_date := to_date(period_value || '01', 'YYYYMMDD');
+            report_end_date := (report_start_date + INTERVAL '1 month - 1 day')::date;
+        WHEN 'quarterly' THEN
+            -- Expected input: YYYYQ1, YYYYQ2, YYYYQ3, or YYYYQ4.
+            report_start_date := make_date(
+                left(period_value, 4)::int,
+                (right(period_value, 1)::int - 1) * 3 + 1,
+                1
+            );
+            report_end_date := (report_start_date + INTERVAL '3 months - 1 day')::date;
+        ELSE
+            SELECT p.startdate, p.enddate
+            INTO report_start_date, report_end_date
+            FROM period p
+            JOIN periodtype pt USING (periodtypeid)
+            WHERE lower(pt.name) = lower(period_type)
+              AND p.iso = period_value;
+    END CASE;
+
+    IF report_start_date IS NULL OR report_end_date IS NULL THEN
+        RAISE EXCEPTION 'Unsupported or missing period: % / %', period_type, period_value;
+    END IF;
 
     -- Define the 12-months look-back period
     twelve_months_ago := report_end_date - INTERVAL '12 months';
@@ -28,7 +46,7 @@ BEGIN
     WITH last_htn_visit AS (
         SELECT 
             ev.enrollmentid,
-            MAX(ev.occurreddate) AS last_htn_visit_date -- 2.41 Update: executiondate -> occurreddate
+            MAX(ev.occurreddate) AS last_htn_visit_date
         FROM 
             event ev -- 2.41 Update: programstageinstance -> event
         JOIN 
@@ -45,7 +63,7 @@ BEGIN
         SELECT 
             en.enrollmentid,
             en.trackedentityid, -- 2.41 Update: trackedentityinstanceid -> trackedentityid
-            en.enrolledat, -- 2.41 Update: enrollmentdate -> enrolledat
+            en.enrollmentdate,
             en.uid AS enrollment_uid,
             last_htn_visit.last_htn_visit_date,
             teav_htn.value AS htn_status,
@@ -100,14 +118,21 @@ DECLARE
     report_start_date DATE;
     report_end_date DATE;
 BEGIN
-    -- Fetch period start and end dates
-    EXECUTE format(
-        'SELECT startdate, enddate 
-         FROM period 
-         WHERE periodtypeid = (SELECT periodtypeid FROM periodtype WHERE LOWER(name) = LOWER(%L)) 
-         AND startdate::TEXT LIKE %L',
-        period_type, LEFT(period_value, 4) || '-' || RIGHT(period_value, 2) || '%'
-    ) INTO report_start_date, report_end_date;
+    CASE lower(period_type)
+        WHEN 'monthly' THEN
+            report_start_date := to_date(period_value || '01', 'YYYYMMDD');
+            report_end_date := (report_start_date + INTERVAL '1 month - 1 day')::date;
+        WHEN 'quarterly' THEN
+            report_start_date := make_date(left(period_value, 4)::int, (right(period_value, 1)::int - 1) * 3 + 1, 1);
+            report_end_date := (report_start_date + INTERVAL '3 months - 1 day')::date;
+        ELSE
+            SELECT p.startdate, p.enddate INTO report_start_date, report_end_date
+            FROM period p JOIN periodtype pt USING (periodtypeid)
+            WHERE lower(pt.name) = lower(period_type) AND p.iso = period_value;
+    END CASE;
+    IF report_start_date IS NULL OR report_end_date IS NULL THEN
+        RAISE EXCEPTION 'Unsupported or missing period: % / %', period_type, period_value;
+    END IF;
 
     RETURN QUERY
     WITH puc_patients AS (
@@ -133,20 +158,20 @@ BEGIN
             AND teav_phone.trackedentityattributeid = (SELECT trackedentityattributeid FROM trackedentityattribute WHERE uid = 'YRDy9xy9jD0')
             AND (teav_phone.value IS NOT NULL OR teav_phone.value != '') -- Have a phone number -> Contactable
             AND ev.deleted = FALSE
-            AND en.enrolledat < report_end_date -- Ensure enrolled before period
+            AND en.enrollmentdate < report_end_date -- Ensure enrolled before period
             AND (
-                -- Condition 1: SCHEDULE or OVERDUE, duedate is overdue at period start
+                -- Condition 1: SCHEDULE or OVERDUE, scheduled date is overdue at period start
                 (ev.status IN ('SCHEDULE', 'OVERDUE') 
-                 AND ev.duedate IS NOT NULL 
-                 AND ev.duedate < report_start_date)
+                 AND ev.scheduleddate IS NOT NULL 
+                 AND ev.scheduleddate < report_start_date)
                 OR
-                -- Condition 2: COMPLETED or ACTIVE, duedate < occurreddate, occurreddate in period
+                -- Condition 2: COMPLETED or ACTIVE, scheduled date < occurred date, occurred date in period
                 (ev.status IN ('COMPLETED', 'ACTIVE') 
-                 AND ev.duedate IS NOT NULL 
-                 AND ev.duedate < report_start_date
+                 AND ev.scheduleddate IS NOT NULL 
+                 AND ev.scheduleddate < report_start_date
                  AND ev.occurreddate IS NOT NULL 
                  AND ev.occurreddate >= report_start_date
-                 AND ev.duedate < ev.occurreddate)
+                 AND ev.scheduleddate < ev.occurreddate)
             )
     )
     SELECT 
@@ -176,14 +201,21 @@ DECLARE
     report_start_date DATE;
     report_end_date DATE;
 BEGIN
-    -- Fetch period start and end dates
-    EXECUTE format(
-        'SELECT startdate, enddate 
-         FROM period 
-         WHERE periodtypeid = (SELECT periodtypeid FROM periodtype WHERE LOWER(name) = LOWER(%L)) 
-         AND startdate::TEXT LIKE %L',
-        period_type, LEFT(period_value, 4) || '-' || RIGHT(period_value, 2) || '%'
-    ) INTO report_start_date, report_end_date;
+    CASE lower(period_type)
+        WHEN 'monthly' THEN
+            report_start_date := to_date(period_value || '01', 'YYYYMMDD');
+            report_end_date := (report_start_date + INTERVAL '1 month - 1 day')::date;
+        WHEN 'quarterly' THEN
+            report_start_date := make_date(left(period_value, 4)::int, (right(period_value, 1)::int - 1) * 3 + 1, 1);
+            report_end_date := (report_start_date + INTERVAL '3 months - 1 day')::date;
+        ELSE
+            SELECT p.startdate, p.enddate INTO report_start_date, report_end_date
+            FROM period p JOIN periodtype pt USING (periodtypeid)
+            WHERE lower(pt.name) = lower(period_type) AND p.iso = period_value;
+    END CASE;
+    IF report_start_date IS NULL OR report_end_date IS NULL THEN
+        RAISE EXCEPTION 'Unsupported or missing period: % / %', period_type, period_value;
+    END IF;
 
     RETURN QUERY
     WITH puc_patients AS (
@@ -324,14 +356,21 @@ DECLARE
     report_start_date DATE;
     report_end_date DATE;
 BEGIN
-    -- Fetch period start and end dates
-    EXECUTE format(
-        'SELECT startdate, enddate 
-         FROM period 
-         WHERE periodtypeid = (SELECT periodtypeid FROM periodtype WHERE LOWER(name) = LOWER(%L)) 
-         AND startdate::TEXT LIKE %L',
-        period_type, LEFT(period_value, 4) || '-' || RIGHT(period_value, 2) || '%'
-    ) INTO report_start_date, report_end_date;
+    CASE lower(period_type)
+        WHEN 'monthly' THEN
+            report_start_date := to_date(period_value || '01', 'YYYYMMDD');
+            report_end_date := (report_start_date + INTERVAL '1 month - 1 day')::date;
+        WHEN 'quarterly' THEN
+            report_start_date := make_date(left(period_value, 4)::int, (right(period_value, 1)::int - 1) * 3 + 1, 1);
+            report_end_date := (report_start_date + INTERVAL '3 months - 1 day')::date;
+        ELSE
+            SELECT p.startdate, p.enddate INTO report_start_date, report_end_date
+            FROM period p JOIN periodtype pt USING (periodtypeid)
+            WHERE lower(pt.name) = lower(period_type) AND p.iso = period_value;
+    END CASE;
+    IF report_start_date IS NULL OR report_end_date IS NULL THEN
+        RAISE EXCEPTION 'Unsupported or missing period: % / %', period_type, period_value;
+    END IF;
 
     RETURN QUERY
     WITH puc_patients AS (
@@ -379,7 +418,7 @@ BEGIN
         WHERE 
             visit.programstageid = (SELECT programstageid FROM programstage WHERE uid = 'anb2cjLx3WM') -- HTN Visit
             AND visit.occurreddate BETWEEN fc.first_call_date AND (fc.first_call_date + INTERVAL '15 days') -- Visit within 15 days of first call
-            AND visit.duedate < visit.occurreddate -- Visit was overdue
+            AND visit.scheduleddate < visit.occurreddate -- Visit was overdue
             AND visit.status IN ('ACTIVE', 'COMPLETED') -- Valid visit statuses
             AND visit.occurreddate BETWEEN report_start_date AND (report_end_date + INTERVAL '15 days')
             AND visit.deleted = FALSE
